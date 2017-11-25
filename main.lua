@@ -1,64 +1,47 @@
---https://www.youtube.com/watch?v=rlU4dxD9Ak0
---https://www.youtube.com/watch?v=A1DQ-BbqOX8
-
-
-require "src/moviments"
-require "src/player1"
-require "src/player2"
-require "src/shot1"
-require "src/shot2"
-require "src/circlecolision"
-require "src/floor"
-require "src/squarecolission"
---require "src/"
-
-function love.keypressed(key)
-	if key == "escape" then
-		love.event.quit()
-	end
-end
+--https://stackoverflow.com/questions/21089959/detecting-collision-of-rectangle-with-circle
+require "circlecolision"
 
 function love.load()
-	mx = 0
-	my = 0
-	gamestate = "player1"
-	moviments_load()
-	player1_load()
-	player2_load()
-	shot1_load()
-	shot2_load()
-	floor_load()
+	player = {}
+	player.x =  350
+	player.y = 50
+	player.speed = 100
+	player.r = 30
+	
+  	
 
+  	circle ={}
+  	circle.x = 300
+  	circle.y= 300
+  	circle.r = 10
 
+  	   	
 end
 
 function love.update(dt)
-
-	moviments_update(dt)
-	player1_update(dt)
-	player2_update(dt)
-	shot1_update(dt)
-	shot2_update(dt)
-	floor_update(dt)
-
+				
+	if love.keyboard.isDown("a") and player.x  > 0 then		
+		player.x = player.x - player.speed * dt
+	end
+	if love.keyboard.isDown("d") and player.x  < 800  then
+		player.x = player.x + player.speed * dt
+	end
+	if love.keyboard.isDown("w") and player.y > 0 then
+		player.y = player.y - player.speed * dt
+	end
+	if love.keyboard.isDown("s") and player.y < 600 then
+		player.y = player.y + player.speed * dt			
+	end
 end
+	
 
 function love.draw()
-
-	moviments_draw()
-	player1_draw()
-	player2_draw()
-	shot1_draw()
-	shot2_draw()
-	floor_draw()
-
+	love.graphics.circle("fill", player.x, player.y, player.r)
+	love.graphics.circle("line", circle.x, circle.y, circle.r)
+	if circlecolision(circle.x, circle.y, player.x, player.y, player.r + circle.r) then	 -- colisão entre circulo e quadrado
+		love.graphics.print("colisao", 100,200)
+	end	
 end
 
-function love.mousepressed(x, y, button)
-	if gamestate == "player1" then
-		shot1_mousepressed(x, y, button)
-	end
-	if gamestate == "player2" then
-		shot2_mousepressed(x, y, button)
-	end
-end
+
+
