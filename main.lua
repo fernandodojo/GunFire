@@ -52,6 +52,9 @@ function love.draw()
 	shot2_draw()
 	floor_draw()
 
+	--love.graphics.print(mx, 0,10)
+	--love.graphics.print(my, 0,40)
+
 end
 
 function love.mousepressed(x, y, button)
