@@ -11,9 +11,17 @@ function love.load()
   	
 
   	circle ={}
-  	circle.x = 300
-  	circle.y= 300
+  	circle.x = 100
+  	circle.y= 100
   	circle.r = 10
+
+  	terreno = {}
+  	for i= 100, 700 do
+  		terreno[i] = {}
+  		for j = 300, 400 do
+  			terreno[i][j] = 1
+  		end
+  	end 
 
   	   	
 end
@@ -37,11 +45,13 @@ end
 
 function love.draw()
 	love.graphics.circle("fill", player.x, player.y, player.r)
-	love.graphics.circle("line", circle.x, circle.y, circle.r)
-	if circlecolision(circle.x, circle.y, player.x, player.y, player.r + circle.r) then	 -- colisão entre circulo e quadrado
-		love.graphics.print("colisao", 100,200)
+	
+	for i= 100, 700, 20 do
+  		for j = 300, 400, 20 do
+  			love.graphics.circle("line", i, j,  circle.r)
+  			if circlecolision(i, j, player.x, player.y, player.r + circle.r) then	 -- colisão entre circulo e quadrado
+				love.graphics.print("colisao", 300,0)
+			end
+		end
 	end	
 end
-
-
-
