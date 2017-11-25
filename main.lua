@@ -1,64 +1,60 @@
---https://www.youtube.com/watch?v=rlU4dxD9Ak0
---https://www.youtube.com/watch?v=A1DQ-BbqOX8
-
-
-require "src/moviments"
-require "src/player1"
-require "src/player2"
-require "src/shot1"
-require "src/shot2"
-require "src/circlecolision"
-require "src/floor"
-require "src/squarecolission"
---require "src/"
-
-function love.keypressed(key)
-	if key == "escape" then
-		love.event.quit()
-	end
-end
+require "squarecolission"
 
 function love.load()
-	mx = 0
-	my = 0
-	gamestate = "player1"
-	moviments_load()
-	player1_load()
-	player2_load()
-	shot1_load()
-	shot2_load()
-	floor_load()
+	player = {}
+	player.x =  350
+	player.y = 50
+	player.speed = 100
+	
+
+  	h = 25
+  	w = 100
 
 
+  	terreno = {}
+  	for i= 100, 400 do
+  		terreno[i] = {}
+  		for j = 300, 325 do
+  			terreno[i][j] = 1
+  		end
+  	end 	
 end
 
 function love.update(dt)
+	local speed = 0
+	local speed2 = player.speed
+	for i= 100, 400, 100 do
+  		for j = 300, 400, 25 do
+  			if terreno[i][j] == 1 then
+  				if squarecolission(player.x, player.y, i, j, w, h ) then
+					speed2 = 0
+				end
+			end  			
+  		end
+  	end
 
-	moviments_update(dt)
-	player1_update(dt)
-	player2_update(dt)
-	shot1_update(dt)
-	shot2_update(dt)
-	floor_update(dt)
-
+	if love.keyboard.isDown("a") and player.x  > 0 then		
+		player.x = player.x - player.speed * dt
+	end
+	if love.keyboard.isDown("d") and player.x  < 800  then
+		player.x = player.x + player.speed * dt
+	end
+	if love.keyboard.isDown("w") and player.y > 0 then
+		player.y = player.y - (player.speed + 200) * dt
+	end
+	if love.keyboard.isDown("s") and player.y < 600 then
+		player.y = player.y + speed2 * dt			
+	end
 end
 
 function love.draw()
-
-	moviments_draw()
-	player1_draw()
-	player2_draw()
-	shot1_draw()
-	shot2_draw()
-	floor_draw()
-
-end
-
-function love.mousepressed(x, y, button)
-	if gamestate == "player1" then
-		shot1_mousepressed(x, y, button)
-	end
-	if gamestate == "player2" then
-		shot2_mousepressed(x, y, button)
+	love.graphics.circle("fill", player.x, player.y, 10)
+	for i= 100, 400, 100 do
+  		for j = 300, 325, 25 do
+		    love.graphics.rectangle("line", i, j, w, h)
+		    if squarecolission(player.x, player.y, i, j, w, h ) then
+				love.graphics.print("ok", 0, 50)
+			end
+		end
 	end
 end
