@@ -45,7 +45,7 @@ function love.update(dt)
 	b = (retangulo.x + w/2) - player.x
 	c = (retangulo.y + h/2) - player.y
 	if ( b < 10 + w/2 and b > (10 + w/2)*-1) and (c < 10 + h/2 and c > (10 + h/2)* -1) then
-		player.x = player.x -1
+		player.x = player.x -2
 	end
 end
 
