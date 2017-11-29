@@ -34,9 +34,9 @@ function shot2_update(dt)
 		  player1.life = player1.life - 10
 		end
 		--Remoção de bloco do piso
-		for k=0, 750, 50 do
-	    	for l = 450, 490, 10 do
-	    		if squarecolission(v.x, v.y, k, l, w, h) and floor[k][l] ==1 then
+		for k=10, 790, 20 do
+	    	for l = 300, 400, 20 do
+	    		if circlecolision(v.x, v.y, k, l, 10 + circle.r) and floor[k][l] ==1 then
 	        		floor[k][l] = 0
 	        		gamestate = "player1"
 	        		shotnumber = shotnumber - 1
@@ -53,7 +53,7 @@ end
 
 function shot2_draw()
 	for i,v in ipairs(bullets2) do
-		love.graphics.circle("fill", v.x, v.y, 3)
+		love.graphics.circle("fill", v.x, v.y, 10)
 		if circlecolision(player1.x, player1.y, v.x, v.y, 20) then
 			love.graphics.print("ok", 400, 0)
 			--gamestate = "player1"

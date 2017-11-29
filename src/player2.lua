@@ -3,31 +3,35 @@ function player2_load()
 	x =725,
 	y = 400,
 	speed = 200,
-	life = 100
+	life = 100,
+	r = 20
 	}
 end
 
 function player2_update(dt)
-	local speed = 0
-	local speed2 = 100
-	   
-
-	for i=0, 750, 50 do
-		for j = 450, 490, 10 do
-			if squarecolission(player2.x, player2.y + 20, i, j, w, h ) then
-	     
-	     		if floor[i][j] == 1 then
-	          		speed2 = 0
-	        	else
-	          		speed2 = player2.speed
-	        	end
+	
+	for i= 10, 790, 20 do
+	    for j = 300, 400, 20 do
+		    if circlecolision(i, j, player2.x, player2.y, player2.r + circle.r) then
+		        love.graphics.print("colisao", 100,200)
+		        if floor[i][j] == 1 then
+			        if player2.x < i then	 -- colisÃ£o entre circulo e circulo
+			          	player2.x = player2.x -1.1
+			          	player2.y = player2.y -1.1
+			        elseif player2.x > i then
+			          	player2.x = player2.x +1.1
+			          	player2.y = player2.y -1.1
+			        end
+			        if player2.y < j then
+			          	player2.y = player2.y -1.1
+			        elseif player2.y > j then
+			          	player2.y = player2.y -1.1
+			        end
+			    end
 	      	end
-	      	--if squarecolission(bullets1.x, bullets1.y, i, j, w, h) then
-	        --	floor[i][j] = 0
-	      	--end
 	    end
 	end
-	player2.y = player2.y + speed2 * dt
+	player2.y = player2.y + player2.speed/10 * dt 
 end
 
 function player2_draw()
