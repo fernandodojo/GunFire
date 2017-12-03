@@ -27,6 +27,7 @@ function love.load()
 end
 
 function love.update(dt)
+	speed2 = player.speed
 				
 	if love.keyboard.isDown("a") and player.x  > 0 then		
 		player.x = player.x - player.speed * dt
@@ -46,20 +47,26 @@ function love.update(dt)
       if circlecolision(i, j, player.x, player.y, player.r + circle.r) then
         love.graphics.print("colisao", 100,200)
         if player.x < i then	 -- colisÃ£o entre circulo e circulo
-          player.x = player.x -1.1
-          player.y = player.y -1.1
+          	player.x = player.x - 0.9
+          	--player.y = player.y -1.1
+          	speed2 = player.speed
         elseif player.x > i then
-          player.x = player.x +1.1
-          player.y = player.y -1.1
+          	player.x = player.x + 0.9
+          	--player.y = player.y -1.1
+          	speed2 = player.speed
         end
         if player.y < j then
-          player.y = player.y -1.1
-        elseif player.y > j then
-          player.y = player.y -1.1
+        	speed2 = 0
+          	--player.y = player.y -1.1
+        else
+         --player.y > j then
+          	--player.y = player.y -1.1
+          	speed2 = player.speed
         end
       end
     end
-  end 
+  end
+  player.y = player.y + speed2 * dt 
   
 end
 	
