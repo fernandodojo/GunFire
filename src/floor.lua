@@ -2,10 +2,10 @@ function floor_load()
   circle ={}
     --circle.x = 100
     --circle.y= 100
-    circle.r = 10
+    circle.r = 15
 
     floor = {}
-    for i= 10, 790 do
+    for i= 10, 810 do
       floor[i] = {}
       for j = 300, 400 do
         floor[i][j] = 1
@@ -19,8 +19,8 @@ function floor_update(dt)
 end
 
 function floor_draw()
-  for i= 10, 790, 20 do
-      for j = 300, 400, 20 do
+  for i= 10, 810, 30 do
+      for j = 300, 400, 30 do
           if floor[i][j] == 1 then
             love.graphics.circle("line", i, j,  circle.r, 8)
           end

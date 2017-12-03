@@ -10,8 +10,8 @@ end
 
 function player2_update(dt)
 	
-	for i= 10, 790, 20 do
-	    for j = 300, 400, 20 do
+	for i= 10, 810, 30 do
+	    for j = 300, 400, 30 do
 		    if circlecolision(i, j, player2.x, player2.y, player2.r + circle.r) then
 		        love.graphics.print("colisao", 100,200)
 		        if floor[i][j] == 1 then
@@ -31,7 +31,7 @@ function player2_update(dt)
 	      	end
 	    end
 	end
-	player2.y = player2.y + player2.speed/10 * dt 
+	player2.y = player2.y + player2.speed * dt 
 end
 
 function player2_draw()
