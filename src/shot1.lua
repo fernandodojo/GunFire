@@ -37,7 +37,7 @@ function shot1_update(dt)
 
 		--Remoção de bloco do piso
 		for k=10, 810, 30 do
-	    	for l = 300, 400, 30 do
+	    	for l = 400, 500, 30 do
 	    		if circlecolision(v.x, v.y, k, l, 10 + circle.r) and floor[k][l] ==1 then
 	        		floor[k][l] = 0
 		        	gamestate = "player2"						
