@@ -28,8 +28,6 @@ function love.load()
 	shot1_load()
 	shot2_load()
 	floor_load()
-
-
 end
 
 function love.update(dt)
@@ -40,7 +38,6 @@ function love.update(dt)
 	shot1_update(dt)
 	shot2_update(dt)
 	floor_update(dt)
-
 end
 
 function love.draw()
@@ -51,10 +48,6 @@ function love.draw()
 	shot1_draw()
 	shot2_draw()
 	floor_draw()
-
-	--love.graphics.print(mx, 0,10)
-	--love.graphics.print(my, 0,40)
-
 end
 
 function love.mousepressed(x, y, button)

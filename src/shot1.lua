@@ -1,19 +1,34 @@
 function shot1_load()
-	bullets1 = {}
-	angle1 = 0
-	shotnumber = 0
-	strength1 = 0
-	gravity = 5
+	bullets1 = {} -- tabela de balas
+	angle1 = 0 --declaração de variável para guardar o angulo de tiro
+	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
+	strength1 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
+	gravity = 3 -- gravidade aplicada apenas na bala.
+
+	strengthline1 = {
+	x = 60,
+	y = 540,
+	w = 300,
+	h = 10
+	}
+
+	life1 = {
+	x = player1.x - 50,
+	y = player1.y,
+	w = 50,
+	h = 5
+	}	
+
 end
 
 function shot1_update(dt)
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
-	if gamestate == "player1" then
+	if gamestate == "player1" then 
 		if love.keyboard.isDown("space") then
 			if strength1 >=500 then
 				strength1 = 500
 			else
-				strength1 = strength1 + 10
+				strength1 = strength1 + 3
 			end
 		end
 	end
@@ -29,11 +44,14 @@ function shot1_update(dt)
 			shotnumber = shotnumber - 1
 			strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 		end
+
+		-- DECRESCIMENTO DE VIDA --
 		if circlecolision(player2.x, player2.y, v.x, v.y, 18) then --Decrescimento de vida quando detectado colisão da bala com o player
 			player2.life = player2.life - 10
 		end
+		-- DECRESCIMENTO DE VIDA --
 
-		--Remoção de bloco do piso
+		--REMOÇÃO BLOCO DE PISO --
 		for k=0, 750, 50 do
 	    	for l = 300, 480, 30 do
 	    		if squarecolission(v.x, v.y,3, k, l, w, h) and floor[k][l] ==1 then
@@ -46,7 +64,7 @@ function shot1_update(dt)
 		      	end
 	    	end
 	  	end
-  		--Remoção de bloco do piso
+  		--REMOÇÃO BLOCO DE PISO --
 	end
 end
 
@@ -61,8 +79,18 @@ function shot1_draw()
 
 	--love.graphics.print(angle1, 0, 30)
 	--love.graphics.print(angle2, 0, 60)
-	love.graphics.print(strength1, 50, 550) -- impressão da força de tiro
-	love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
+	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
+
+	-- BARRA DE VIDA -- 
+	love.graphics.rectangle("line", life1.x, life1.y, life1.w, life1.h)
+	love.graphics.rectangle("fill", life1.x, life1.y, player1.life/2, life1.h)
+	-- BARRA DE VIDA --
+
+	--BARRA DE VELOCIDADE--
+	love.graphics.print(strength1, (strength1 + 98)/1.66, 550)	--
+	love.graphics.rectangle("line", strengthline1.x, strengthline1.y, strengthline1.w, strengthline1.h)
+	love.graphics.rectangle("fill", strengthline1.x, strengthline1.y, strength1/1.66, strengthline1.h)
+	--BARRA DE VELOCIDADE--
 end
 
 function shot1_mousepressed(x, y, button)

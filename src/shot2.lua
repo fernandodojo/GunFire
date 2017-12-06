@@ -3,7 +3,21 @@ function shot2_load()
 	angle2 = 0
 	shotnumber = 0
 	strength2 = 0
-	gravity = 5
+	gravity = 3
+
+	strengthline2 = {
+	x = 460,
+	y = 540,
+	w = 300,
+	h = 10
+	}
+
+	life2 = {
+	x = player2.x,
+	y = player2.y,
+	w = 50,
+	h = 5
+	}
 
 end
 
@@ -14,7 +28,7 @@ function shot2_update(dt)
 			if strength2 >=500 then
 				strength2 = 500
 			else
-				strength2 = strength2 + 10
+				strength2 = strength2 + 3
 			end
 		end
 	end
@@ -30,10 +44,14 @@ function shot2_update(dt)
 			shotnumber = shotnumber - 1
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 		end
+
+		-- DECRESCIMENTO DE VIDA -- 
 		if circlecolision(player1.x, player1.y, v.x, v.y, 18) then --Decrescimento de vida quando detectado colisão da bala com o player
 		  player1.life = player1.life - 10
 		end
-		--Remoção de bloco do piso
+		-- DECRESCIMENTO DE VIDA --
+
+		--REMOÇÃO BLOCO DE PISO --
 		for k=0, 750, 50 do
 	    	for l = 300, 480, 30 do
 	    		if squarecolission(v.x, v.y,3, k, l, w, h) and floor[k][l] ==1 then
@@ -45,7 +63,7 @@ function shot2_update(dt)
 				end
 	    	end
 	  	end
-  		--Remoção de bloco do piso
+  		--REMOÇÃO BLOCO DE PISO -- 
 	end
 end
 
@@ -60,8 +78,19 @@ function shot2_draw()
 
 	--love.graphics.print(angle1, 0, 60)
 	--love.graphics.print(angle2, 0, 80)
-	love.graphics.print(strength2, 730, 550) -- impressão da força de tiro
-	love.graphics.print(player2.life, player2.x + 10, player2.y - 40) -- impressão da quantidade de vida abaixo do jogador
+	--love.graphics.print(player2.life, player2.x + 10, player2.y - 40) -- impressão da quantidade de vida abaixo do jogador	
+
+	-- BARRA DE VIDA -- 
+	love.graphics.rectangle("line", life2.x, life2.y, life2.w, life2.h)
+	love.graphics.rectangle("fill", life2.x, life2.y, player2.life/2, life2.h)
+	-- BARRA DE VIDA -- 
+
+	--BARRA DE VELOCIDADE--
+	love.graphics.print(strength2, (strength2 + 762)/1.66, 550) -- impressão da força de tiro
+	love.graphics.rectangle("line", strengthline2.x, strengthline2.y, strengthline2.w, strengthline2.h)
+	love.graphics.rectangle("fill", strengthline2.x, strengthline2.y, strength2/1.66, strengthline2.h)
+	--BARRA DE VELOCIDADE--
+
 end
 
 function shot2_mousepressed(x, y, button)
