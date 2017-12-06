@@ -4,8 +4,6 @@ function shot1_load()
 	shotnumber = 0
 	strength1 = 0
 	gravity = 5
-
-
 end
 
 function shot1_update(dt)
@@ -37,8 +35,8 @@ function shot1_update(dt)
 
 		--Remoção de bloco do piso
 		for k=0, 750, 50 do
-	    	for l = 450, 490, 10 do
-	    		if squarecolission(v.x, v.y, k, l, w, h) and floor[k][l] ==1 then
+	    	for l = 300, 480, 30 do
+	    		if squarecolission(v.x, v.y,3, k, l, w, h) and floor[k][l] ==1 then
 	        		floor[k][l] = 0
 		        	gamestate = "player2"						
 					shotnumber = shotnumber - 1
@@ -50,9 +48,6 @@ function shot1_update(dt)
 	  	end
   		--Remoção de bloco do piso
 	end
-
-
-
 end
 
 function shot1_draw()
@@ -68,8 +63,6 @@ function shot1_draw()
 	--love.graphics.print(angle2, 0, 60)
 	love.graphics.print(strength1, 50, 550) -- impressão da força de tiro
 	love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
-
-
 end
 
 function shot1_mousepressed(x, y, button)
