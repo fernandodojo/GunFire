@@ -35,8 +35,8 @@ function shot2_update(dt)
 		end
 		--Remoção de bloco do piso
 		for k=0, 750, 50 do
-	    	for l = 450, 490, 10 do
-	    		if squarecolission(v.x, v.y, k, l, w, h) and floor[k][l] ==1 then
+	    	for l = 300, 480, 30 do
+	    		if squarecolission(v.x, v.y,3, k, l, w, h) and floor[k][l] ==1 then
 	        		floor[k][l] = 0
 	        		gamestate = "player1"
 	        		shotnumber = shotnumber - 1
@@ -47,8 +47,6 @@ function shot2_update(dt)
 	  	end
   		--Remoção de bloco do piso
 	end
-
-
 end
 
 function shot2_draw()
@@ -64,8 +62,6 @@ function shot2_draw()
 	--love.graphics.print(angle2, 0, 80)
 	love.graphics.print(strength2, 730, 550) -- impressão da força de tiro
 	love.graphics.print(player2.life, player2.x + 10, player2.y - 40) -- impressão da quantidade de vida abaixo do jogador
-
-
 end
 
 function shot2_mousepressed(x, y, button)
@@ -80,7 +76,5 @@ function shot2_mousepressed(x, y, button)
 	if button == 1 and shotnumber == 0 then
 		table.insert(bullets2, {x = player2.x, y = player2.y , dx = direction2x, dy = direction2y})
 		shotnumber = shotnumber + 1
-
-
 	end
 end

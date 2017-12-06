@@ -1,3 +1,3 @@
-function squarecolission(xt, yt, x, y, width, height )
-	return (xt >= x and xt <= x + width)  and  (yt >= y and yt <= y + height)
+function squarecolission(xt, yt,raio, x, y, width, height )
+	return  (xt + raio >= x and xt + raio <= x + width)  and  (yt + raio >= y and yt + raio <= y + height) or (xt - raio >= x and xt - raio <= x + width)  and  (yt - raio >= y and yt - raio <= y + height) or (xt + raio >= x and xt + raio <= x + width)  and  (yt - raio >= y and yt - raio <= y + height) or (xt - raio >= x and xt - raio <= x + width)  and  (yt + raio >= y and yt + raio <= y + height)
 end
