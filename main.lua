@@ -36,30 +36,18 @@ function love.update(dt)
 	if love.keyboard.isDown("s") and player.y < 600 then
 		player.y = player.y + speeds * dt			
 	end
-end
 
-function love.draw()
-	love.graphics.circle("fill", player.x, player.y, 10)	
-	love.graphics.rectangle("line", x, y, w, h)
 	if squarecolission(player.x, player.y, 10, x, y, w, h ) then
 		love.graphics.print("ok", 0, 50)
-		if player.x< x and player.y> y then
-			speedd = 0
-			speedw = player.speed					
+		if player.x< x and player.y> y and player.y < y+ h then
+			player.x = player.x - 2								
 		end
-		if player.x> x then
-			speeda = 0
-			speedw = player.speed
+		if player.x > x + w and player.y> y and player.y < y+ h then
+			player.x = player.x + 2
 		end				
 		if player.y< y then
-			speeds = 0
-			speeda = player.speed						
-		end
-		--if player.y> y then
-			--speedw = 0
-			-- = player.speed			
-		--end
-		
+			speeds = 0					
+		end				
 	else
 		speedw = player.speed
 	  	speeda = player.speed
@@ -67,3 +55,12 @@ function love.draw()
 	  	speedd = player.speed		
 	end
 end
+
+function love.draw()
+	love.graphics.circle("fill", player.x, player.y, 10)	
+	love.graphics.rectangle("line", x, y, w, h)
+	if squarecolission(player.x, player.y, 10, x, y, w, h ) then
+		love.graphics.print("ok", 0, 50)
+	end
+end
+	
