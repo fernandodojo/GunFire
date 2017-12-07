@@ -35,6 +35,13 @@ function shot1_update(dt)
 		end
 	end
 
+	--BUG FIX--
+	--Concerta impedimento de atirar quando é decrementado mais de 1 ao remover mais de 1 piso.
+	if shotnumber < 0 then
+		shotnumber = 0
+	end
+	-- BUG FIX--
+
 	for i, v in ipairs(bullets1) do
 		v.x = v.x + v.dx * dt --modificação de posição da bala atirando em direção ao mouse
 		v.y = v.y + v.dy * dt
@@ -49,7 +56,11 @@ function shot1_update(dt)
 
 		-- DECRESCIMENTO DE VIDA --
 		if circlecolision(player2.x, player2.y, v.x, v.y, 18) then --Decrescimento de vida quando detectado colisão da bala com o player
-			player2.life = player2.life - 10
+			player2.life = player2.life - (10 * (strength1/300))
+		end
+
+		if circlecolision(player1.x, player1.y, v.x, v.y, 36) and strength1< 50 then --Decrescimento de vida quando detectado colisão da bala com o player		
+			player1.life = player1.life - 0.5		
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -78,15 +89,15 @@ end
 function shot1_draw()
 	for i, v in ipairs(bullets1) do
 		love.graphics.circle("fill", v.x, v.y, 3)
+		love.graphics.print(v.dx, 0, 0)
 		if circlecolision(player2.x, player2.y, v.x, v.y, 20) then
 			love.graphics.print("ok2", 400, 40)
+
 			--gamestate = "player2"
 		end
 	end
 
-	--love.graphics.print(angle1, 0, 30)
-	--love.graphics.print(angle2, 0, 60)
-	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
+	
 
 	-- BARRA DE VIDA -- 
 	love.graphics.rectangle("line", life1.x, life1.y, life1.w, life1.h)
@@ -98,6 +109,15 @@ function shot1_draw()
 	love.graphics.rectangle("line", strengthline1.x, strengthline1.y, strengthline1.w, strengthline1.h)
 	love.graphics.rectangle("fill", strengthline1.x, strengthline1.y, strength1/1.66, strengthline1.h)
 	--BARRA DE VELOCIDADE--
+
+	--DEBUGGING AND OLD CODE--
+	--love.graphics.print(bullets1.dx, 0, 0)
+	--love.graphics.print(shotnumber,100,100)
+	--love.graphics.print(angle1, 0, 30)
+	--love.graphics.print(angle2, 0, 60)
+	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
+	--DEBUGGING AND OLD CODE--
+
 end
 
 function shot1_mousepressed(x, y, button)
