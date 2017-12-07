@@ -89,10 +89,8 @@ end
 function shot1_draw()
 	for i, v in ipairs(bullets1) do
 		love.graphics.circle("fill", v.x, v.y, 3)
-		love.graphics.print(v.dx, 0, 0)
 		if circlecolision(player2.x, player2.y, v.x, v.y, 20) then
 			love.graphics.print("ok2", 400, 40)
-
 			--gamestate = "player2"
 		end
 	end
