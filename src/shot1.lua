@@ -12,9 +12,10 @@ function shot1_load()
 	h = 10
 	}
 
+	
 	life1 = {
-	x = player1.x - 50,
-	y = player1.y,
+	x = nil,
+	y = nil,
 	w = 50,
 	h = 5
 	}	
@@ -22,6 +23,7 @@ function shot1_load()
 end
 
 function shot1_update(dt)
+
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player1" then 
 		if love.keyboard.isDown("space") then
@@ -66,6 +68,11 @@ function shot1_update(dt)
 	  	end
   		--REMOÇÃO BLOCO DE PISO --
 	end
+
+	-- atualização da posição da barra de vida--
+	life1.x = player1.x - 50 
+	life1.y = player1.y - 35
+	-- atualização da posição da barra de vida--
 end
 
 function shot1_draw()

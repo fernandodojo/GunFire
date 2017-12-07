@@ -1,9 +1,9 @@
 function shot2_load()
-	bullets2 = {}
-	angle2 = 0
-	shotnumber = 0
-	strength2 = 0
-	gravity = 3
+	bullets2 = {}-- tabela de balas
+	angle2 = 0 --declaração de variável para guardar o angulo de tiro
+	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
+	strength2 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
+	gravity = 3 -- gravidade aplicada apenas na bala.
 
 	strengthline2 = {
 	x = 460,
@@ -13,8 +13,8 @@ function shot2_load()
 	}
 
 	life2 = {
-	x = player2.x,
-	y = player2.y,
+	x = nil,
+	y = nil,
 	w = 50,
 	h = 5
 	}
@@ -65,6 +65,9 @@ function shot2_update(dt)
 	  	end
   		--REMOÇÃO BLOCO DE PISO -- 
 	end
+	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
+	life2.x = player2.x
+	life2.y = player2.y - 35
 end
 
 function shot2_draw()
