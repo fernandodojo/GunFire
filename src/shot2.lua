@@ -33,6 +33,13 @@ function shot2_update(dt)
 		end
 	end
 
+	--BUG FIX--
+	--Concerta impedimento de atirar quando é decrementado mais de 1 ao remover mais de 1 piso.
+	if shotnumber < 0 then
+		shotnumber = 0
+	end
+	-- BUG FIX--
+
 	for i, v in ipairs (bullets2) do
 		v.x = v.x + v.dx * dt --modificação de posição da bala atirando em direção ao mouse
 		v.y = v.y + v.dy * dt
@@ -45,9 +52,10 @@ function shot2_update(dt)
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 		end
 
+
 		-- DECRESCIMENTO DE VIDA -- 
 		if circlecolision(player1.x, player1.y, v.x, v.y, 18) then --Decrescimento de vida quando detectado colisão da bala com o player
-		  player1.life = player1.life - 10
+		  player1.life = player1.life - (10 * (strength2/300))
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -57,7 +65,11 @@ function shot2_update(dt)
 	    		if squarecolission(v.x, v.y,3, k, l, w, h) and floor[k][l] ==1 then
 	        		floor[k][l] = 0
 	        		gamestate = "player1"
-	        		shotnumber = shotnumber - 1
+	        		if shotnumber < 0 then
+	        			shotnumber = 0
+	        		else
+	        			shotnumber = shotnumber - 1
+	        		end
 					strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
 					table.remove(bullets2, i)					
 				end
@@ -65,9 +77,11 @@ function shot2_update(dt)
 	  	end
   		--REMOÇÃO BLOCO DE PISO -- 
 	end
+	
 	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
 	life2.x = player2.x
 	life2.y = player2.y - 35
+	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
 end
 
 function shot2_draw()
@@ -77,11 +91,7 @@ function shot2_draw()
 			love.graphics.print("ok", 400, 0)
 			--gamestate = "player1"
 		end
-	end
-
-	--love.graphics.print(angle1, 0, 60)
-	--love.graphics.print(angle2, 0, 80)
-	--love.graphics.print(player2.life, player2.x + 10, player2.y - 40) -- impressão da quantidade de vida abaixo do jogador	
+	end	
 
 	-- BARRA DE VIDA -- 
 	love.graphics.rectangle("line", life2.x, life2.y, life2.w, life2.h)
@@ -93,6 +103,12 @@ function shot2_draw()
 	love.graphics.rectangle("line", strengthline2.x, strengthline2.y, strengthline2.w, strengthline2.h)
 	love.graphics.rectangle("fill", strengthline2.x, strengthline2.y, strength2/1.66, strengthline2.h)
 	--BARRA DE VELOCIDADE--
+
+	--DEBUGGING AND OLD CODE--
+	--love.graphics.print(angle1, 0, 60)
+	--love.graphics.print(angle2, 0, 80)
+	--love.graphics.print(player2.life, player2.x + 10, player2.y - 40) -- impressão da quantidade de vida abaixo do jogador
+	--DEBUGGING AND OLD CODE--
 
 end
 
