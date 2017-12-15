@@ -12,17 +12,17 @@ function shot1_load()
 	h = 10
 	}
 
-	
 	life1 = {
 	x = nil,
 	y = nil,
 	w = 50,
 	h = 5
-	}	
+	}
+
 
 end
 
-function shot1_update(dt)
+function shot1_update(dt)	
 
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player1" then 
@@ -43,19 +43,21 @@ function shot1_update(dt)
 	-- BUG FIX--
 
 	for i, v in ipairs(bullets1) do
-		v.x = v.x + v.dx * dt --modificação de posição da bala atirando em direção ao mouse
-		v.y = v.y + v.dy * dt
+		v.x = v.x + v.dx * dt --+ (vento) --modificação de posição da bala atirando em direção ao mouse no eixo x
+		v.y = v.y + v.dy * dt --modificação de posição da bala atirando em direção ao mouse no eixo y
 		v.dy = v.dy + gravity -- implementação da gravidade
+		v.dx = v.dx + vento
 
-		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 18) then
+		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 13) then
 			gamestate = "player2"
 			table.remove(bullets1, i)
 			shotnumber = shotnumber - 1
+			delay.temp = delay.init
 			strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 		end
 
 		-- DECRESCIMENTO DE VIDA --
-		if circlecolision(player2.x, player2.y, v.x, v.y, 18) then --Decrescimento de vida quando detectado colisão da bala com o player
+		if circlecolision(player2.x, player2.y, v.x, v.y, 13) then --Decrescimento de vida quando detectado colisão da bala com o player
 			player2.life = player2.life - (10 * (strength1/300))
 		end
 
@@ -67,10 +69,11 @@ function shot1_update(dt)
 		--REMOÇÃO BLOCO DE PISO --
 		for k=0, 750, 50 do
 	    	for l = 300, 480, 30 do
-	    		if squarecolission(v.x, v.y,3, k, l, w, h) and floor[k][l] ==1 then
+	    		if squarecolission(v.x, v.y,5, k, l, w, h) and floor[k][l] ==1 then
 	        		floor[k][l] = 0
 		        	gamestate = "player2"						
 					shotnumber = shotnumber - 1
+					delay.temp = delay.init
 					strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
 					table.remove(bullets1, i)
 		      		
@@ -88,14 +91,8 @@ end
 
 function shot1_draw()
 	for i, v in ipairs(bullets1) do
-		love.graphics.circle("fill", v.x, v.y, 3)
-		if circlecolision(player2.x, player2.y, v.x, v.y, 20) then
-			love.graphics.print("ok2", 400, 40)
-			--gamestate = "player2"
-		end
-	end
-
-	
+		love.graphics.circle("fill", v.x, v.y, 5)		
+	end	
 
 	-- BARRA DE VIDA -- 
 	love.graphics.rectangle("line", life1.x, life1.y, life1.w, life1.h)
@@ -115,6 +112,8 @@ function shot1_draw()
 	--love.graphics.print(angle2, 0, 60)
 	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
 	--DEBUGGING AND OLD CODE--
+	
+	
 
 end
 
@@ -124,14 +123,18 @@ function shot1_mousepressed(x, y, button)
 
 	angle1 = math.atan2(my-player1.y , mx - player1.x )
 
-	direction1x = strength1 * math.cos(angle1)
-	direction1y = strength1 * math.sin(angle1)
+	direction1x = (strength1 + vento) * math.cos(angle1)
+	direction1y = (strength1+ vento) * math.sin(angle1)
 
-	if button == 1 and shotnumber == 0 then
+	
 
-		table.insert (bullets1 , {x = player1.x, y = player1.y, dx = direction1x , dy = direction1y})
+	if button == 1 and shotnumber ==0 then
+
+		table.insert (bullets1 , {x = player1.x, y = player1.y, dx = direction1x, dy = direction1y})
 		shotnumber = shotnumber + 1
-
-		--gamestate = "player2"
+		
+		table.insert (bullets1 , {x = player1.x, y = player1.y, dx = direction1x, dy = direction1y+10 })
+		
+	
 	end
 end
