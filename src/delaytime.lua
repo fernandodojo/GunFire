@@ -5,10 +5,7 @@ function delaytime_load()
 	print1 = 5
 	}
 
-	vento = 0
-	gerador = 0
-	gravity = 3
-
+	vento,gerador,gravity = 0,0,3
 end
 
 function delaytime_update(dt)
@@ -22,9 +19,11 @@ function delaytime_update(dt)
 		if gamestate == "player1" then
 			gamestate = "player2"
 			strength2 = 0
+			motionlimiter = 50
 		elseif gamestate == "player2" then
 			gamestate = "player1"
-			strength1 = 0			
+			strength1 = 0
+			motionlimiter = 50			
 		end
 	end
 end

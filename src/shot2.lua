@@ -24,12 +24,13 @@ function shot2_load()
 end
 
 function shot2_update(dt)
+	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 	if maxheight2 then	
-		decrelife2 = (10 * (strength2/100)* (gravity/5)) * 2
+		decrelife2 = (10 * (strength2/300)* (gravity/5)) * 2
 	else
-		decrelife2 = (10 * (strength2/100)* (gravity/5))
+		decrelife2 = (10 * (strength2/300)* (gravity/5))
 	end
-
+	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player2" then
@@ -62,6 +63,7 @@ function shot2_update(dt)
 			shotnumber = shotnumber - 1
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 			random()
+			motionlimiter = 50
 		end
 
 		-- DECRESCIMENTO DE VIDA --
@@ -87,13 +89,13 @@ function shot2_update(dt)
 					strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
 					table.remove(bullets2, i)
 					random()
-					maxheight2 = false					
+					maxheight2 = false
+					motionlimiter = 50					
 				end
 	    	end
 	  	end
   		--REMOÇÃO BLOCO DE PISO -- 
-	end
-	
+	end	
 	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
 	life2.x = player2.x
 	life2.y = player2.y - 35
@@ -117,14 +119,12 @@ function shot2_draw()
 	--BARRA DE VELOCIDADE--
 
 	--DEBUGGING AND OLD CODE--
-	love.graphics.print(tostring(maxheight2), 750,25)
-	love.graphics.print(decrelife2, 750,0)
+	--love.graphics.print(tostring(maxheight2), 750,25)
+	--love.graphics.print(decrelife2, 770,0)
 	--love.graphics.print(angle1, 0, 60)
 	--love.graphics.print(angle2, 0, 80)
 	--love.graphics.print(player2.life, player2.x + 10, player2.y - 40) -- impressão da quantidade de vida abaixo do jogador
-	--DEBUGGING AND OLD CODE--
-	
-
+	--DEBUGGING AND OLD CODE--	
 end
 
 function shot2_mousepressed(x, y, button)

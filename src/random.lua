@@ -6,7 +6,7 @@ function random()
 	gerador = math.random(-5,10)
 	if gerador < 0 then
 		vento = math.random(-2,2)
-		gravity = math.random(1,5)
+		gravity = math.random(2,7)
 	elseif gerador > 0 then
 		vento = 0
 		gravity = 3
