@@ -3,8 +3,7 @@ function shot2_load()
 	angle2 = 0 --declaração de variável para guardar o angulo de tiro
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
 	strength2 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
-	gravity = 3 -- gravidade aplicada apenas na bala.
-
+	
 	strengthline2 = {
 	x = 460,
 	y = 540,
@@ -23,7 +22,6 @@ end
 
 function shot2_update(dt)
 
-
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player2" then
 		if love.keyboard.isDown("space") then
@@ -35,8 +33,6 @@ function shot2_update(dt)
 		end
 	end
 
-
-
 	--BUG FIX--
 	--Concerta impedimento de atirar quando é decrementado mais de 1 ao remover mais de 1 piso.
 	if shotnumber < 0 then
@@ -47,7 +43,7 @@ function shot2_update(dt)
 	for i, v in ipairs (bullets2) do
 		v.x = v.x + v.dx * dt ---(vento)--modificação de posição da bala atirando em direção ao mouse
 		v.y = v.y + v.dy * dt
-		v.dy = v.dy + gravity -- implementação da gravidade
+		v.dy = v.dy + gravity + vento-- implementação da gravidade
 		v.dx = v.dx + vento
 
 		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 13) then
@@ -58,10 +54,12 @@ function shot2_update(dt)
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 		end
 
-
 		-- DECRESCIMENTO DE VIDA -- 
 		if circlecolision(player1.x, player1.y, v.x, v.y, 13) then --Decrescimento de vida quando detectado colisão da bala com o player
-		  player1.life = player1.life - (10 * (strength2/300))
+		  player1.life = player1.life - (10 * (strength2/300)* (gravity/10))
+		end
+		if circlecolision(player2.x, player2.y, v.x, v.y, 36) then --Decrescimento de vida quando detectado colisão da bala com o player
+			player2.life = player2.life - 0.5	
 		end
 		-- DECRESCIMENTO DE VIDA --
 

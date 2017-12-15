@@ -3,8 +3,7 @@ function shot1_load()
 	angle1 = 0 --declaração de variável para guardar o angulo de tiro
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
 	strength1 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
-	gravity = 3 -- gravidade aplicada apenas na bala.
-
+	
 	strengthline1 = {
 	x = 60,
 	y = 540,
@@ -18,7 +17,6 @@ function shot1_load()
 	w = 50,
 	h = 5
 	}
-
 
 end
 
@@ -58,9 +56,8 @@ function shot1_update(dt)
 
 		-- DECRESCIMENTO DE VIDA --
 		if circlecolision(player2.x, player2.y, v.x, v.y, 13) then --Decrescimento de vida quando detectado colisão da bala com o player
-			player2.life = player2.life - (10 * (strength1/300))
+			player2.life = player2.life - (10 * (strength1/300)* (gravity/10))
 		end
-
 		if circlecolision(player1.x, player1.y, v.x, v.y, 36) and strength1< 50 then --Decrescimento de vida quando detectado colisão da bala com o player		
 			player1.life = player1.life - 0.5		
 		end
@@ -75,8 +72,7 @@ function shot1_update(dt)
 					shotnumber = shotnumber - 1
 					delay.temp = delay.init
 					strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
-					table.remove(bullets1, i)
-		      		
+					table.remove(bullets1, i)		      		
 		      	end
 	    	end
 	  	end
@@ -111,9 +107,7 @@ function shot1_draw()
 	--love.graphics.print(angle1, 0, 30)
 	--love.graphics.print(angle2, 0, 60)
 	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
-	--DEBUGGING AND OLD CODE--
-	
-	
+	--DEBUGGING AND OLD CODE--	
 
 end
 
@@ -124,17 +118,12 @@ function shot1_mousepressed(x, y, button)
 	angle1 = math.atan2(my-player1.y , mx - player1.x )
 
 	direction1x = (strength1 + vento) * math.cos(angle1)
-	direction1y = (strength1+ vento) * math.sin(angle1)
-
-	
+	direction1y = (strength1+ vento) * math.sin(angle1)	
 
 	if button == 1 and shotnumber ==0 then
-
 		table.insert (bullets1 , {x = player1.x, y = player1.y, dx = direction1x, dy = direction1y})
 		shotnumber = shotnumber + 1
 		
-		table.insert (bullets1 , {x = player1.x, y = player1.y, dx = direction1x, dy = direction1y+10 })
-		
-	
+		table.insert (bullets1 , {x = player1.x, y = player1.y, dx = direction1x, dy = direction1y+10 })	
 	end
 end

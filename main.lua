@@ -1,7 +1,6 @@
 --https://www.youtube.com/watch?v=rlU4dxD9Ak0
 --https://www.youtube.com/watch?v=A1DQ-BbqOX8
 
-
 require "src/moviments"
 require "src/player1"
 require "src/player2"
@@ -19,8 +18,6 @@ function love.keypressed(key)
 end
 
 function love.load()
-	mx = 0
-	my = 0
 	gamestate = "player1"
 	moviments_load()
 	delaytime_load()
@@ -32,7 +29,6 @@ function love.load()
 end
 
 function love.update(dt)
-
 	moviments_update(dt)
 	delaytime_update(dt)
 	player1_update(dt)
@@ -43,7 +39,6 @@ function love.update(dt)
 end
 
 function love.draw()
-
 	moviments_draw()
 	delaytime_draw()
 	player1_draw()
