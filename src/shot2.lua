@@ -58,8 +58,8 @@ function shot2_update(dt)
 		if circlecolision(player1.x, player1.y, v.x, v.y, 13) then --Decrescimento de vida quando detectado colisão da bala com o player
 		  player1.life = player1.life - (10 * (strength2/300)* (gravity/10))
 		end
-		if circlecolision(player2.x, player2.y, v.x, v.y, 36) then --Decrescimento de vida quando detectado colisão da bala com o player
-			player2.life = player2.life - 0.5	
+		if circlecolision(player2.x, player2.y, v.x, v.y, 30) then --Decrescimento de vida quando detectado colisão da bala com o player
+			player2.life = player2.life - 0.4	
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -119,9 +119,9 @@ function shot2_mousepressed(x, y, button)
 	direction2y = (strength2 - vento) * math.sin(angle2)
 
 	if button == 1 and shotnumber == 0 then
-		table.insert(bullets2, {x = player2.x, y = player2.y , dx = direction2x, dy = direction2y})
+		table.insert(bullets2, {x = player2.x, y = player2.y -32 , dx = direction2x, dy = direction2y})
 		shotnumber = shotnumber + 1
 
-		table.insert(bullets2, {x = player2.x, y = player2.y , dx = direction2x, dy = direction2y+ 10})
+		table.insert(bullets2, {x = player2.x, y = player2.y -32  , dx = direction2x, dy = direction2y+ 10})
 	end
 end
