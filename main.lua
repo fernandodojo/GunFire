@@ -10,7 +10,7 @@ require "src/shot2"
 require "src/circlecolision"
 require "src/floor"
 require "src/squarecolission"
---require "src/"
+require "src/delaytime"
 
 function love.keypressed(key)
 	if key == "escape" then
@@ -23,6 +23,7 @@ function love.load()
 	my = 0
 	gamestate = "player1"
 	moviments_load()
+	delaytime_load()
 	player1_load()
 	player2_load()
 	shot1_load()
@@ -33,6 +34,7 @@ end
 function love.update(dt)
 
 	moviments_update(dt)
+	delaytime_update(dt)
 	player1_update(dt)
 	player2_update(dt)
 	shot1_update(dt)
@@ -43,6 +45,7 @@ end
 function love.draw()
 
 	moviments_draw()
+	delaytime_draw()
 	player1_draw()
 	player2_draw()
 	shot1_draw()
