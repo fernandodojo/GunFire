@@ -10,6 +10,7 @@ require "src/circlecolision"
 require "src/floor"
 require "src/squarecolission"
 require "src/delaytime"
+require "src/random"
 
 function love.keypressed(key)
 	if key == "escape" then

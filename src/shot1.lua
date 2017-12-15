@@ -18,9 +18,19 @@ function shot1_load()
 	h = 5
 	}
 
+	maxheight1 = false
+	decrelife1 = 0
+
 end
 
-function shot1_update(dt)	
+function shot1_update(dt)
+	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
+	if maxheight1 then	
+		decrelife1 = (10 * (strength1/100)* (gravity/5)) * 2
+	else
+		decrelife1 = (10 * (strength1/100)* (gravity/5))
+	end
+	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player1" then 
@@ -46,20 +56,25 @@ function shot1_update(dt)
 		v.dy = v.dy + gravity -- implementação da gravidade
 		v.dx = v.dx + vento
 
-		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 13) then
+		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 19) then
 			gamestate = "player2"
 			table.remove(bullets1, i)
 			shotnumber = shotnumber - 1
 			delay.temp = delay.init
 			strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
+			random()
+		end
+		
+		-- DECRESCIMENTO DE VIDA --
+		if v.y< 100 then
+			maxheight1 = true
+		end		
+		if circlecolision(player2.x, player2.y, v.x, v.y, 19) then --Decrescimento de vida quando detectado colisão da bala com o player
+			player2.life = player2.life - decrelife1
 		end
 
-		-- DECRESCIMENTO DE VIDA --
-		if circlecolision(player2.x, player2.y, v.x, v.y, 13) then --Decrescimento de vida quando detectado colisão da bala com o player
-			player2.life = player2.life - (10 * (strength1/300)* (gravity/10))
-		end
 		if circlecolision(player1.x, player1.y, v.x, v.y, 30)  then --Decrescimento de vida quando detectado colisão da bala com o player		
-			player1.life = player1.life - 0.4		
+			player1.life = player1.life - 0.2		
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -72,17 +87,19 @@ function shot1_update(dt)
 					shotnumber = shotnumber - 1
 					delay.temp = delay.init
 					strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
-					table.remove(bullets1, i)		      		
+					table.remove(bullets1, i)
+					random()
+					maxheight1 = false		      		
 		      	end
 	    	end
 	  	end
   		--REMOÇÃO BLOCO DE PISO --
 	end
 
-	-- atualização da posição da barra de vida--
+	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
 	life1.x = player1.x - 50 
 	life1.y = player1.y - 35
-	-- atualização da posição da barra de vida--
+	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
 end
 
 function shot1_draw()
@@ -102,12 +119,13 @@ function shot1_draw()
 	--BARRA DE VELOCIDADE--
 
 	--DEBUGGING AND OLD CODE--
-	--love.graphics.print(bullets1.dx, 0, 0)
-	--love.graphics.print(shotnumber,100,100)
+	love.graphics.print(tostring(maxheight1), 0,25)
+	love.graphics.print(decrelife1, 0,0)
 	--love.graphics.print(angle1, 0, 30)
 	--love.graphics.print(angle2, 0, 60)
 	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
-	--DEBUGGING AND OLD CODE--	
+	--DEBUGGING AND OLD CODE--
+	
 
 end
 

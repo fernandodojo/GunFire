@@ -18,9 +18,18 @@ function shot2_load()
 	h = 5
 	}
 
+	maxheight2 = false
+	decrelife2 = 0
+
 end
 
 function shot2_update(dt)
+	if maxheight2 then	
+		decrelife2 = (10 * (strength2/100)* (gravity/5)) * 2
+	else
+		decrelife2 = (10 * (strength2/100)* (gravity/5))
+	end
+
 
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player2" then
@@ -46,20 +55,24 @@ function shot2_update(dt)
 		v.dy = v.dy + gravity + vento-- implementação da gravidade
 		v.dx = v.dx + vento
 
-		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 13) then
-			gamestate = "player1"
+		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 19) then
+			gamestate = "player1"			
 			table.remove(bullets2, i)
 			delay.temp = delay.init
 			shotnumber = shotnumber - 1
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
+			random()
 		end
 
-		-- DECRESCIMENTO DE VIDA -- 
-		if circlecolision(player1.x, player1.y, v.x, v.y, 13) then --Decrescimento de vida quando detectado colisão da bala com o player
-		  player1.life = player1.life - (10 * (strength2/300)* (gravity/10))
+		-- DECRESCIMENTO DE VIDA --
+		if v.y< 100 then
+			maxheight2 = true
+		end 
+		if circlecolision(player1.x, player1.y, v.x, v.y, 19) then --Decrescimento de vida quando detectado colisão da bala com o player
+		  player1.life = player1.life - decrelife2
 		end
 		if circlecolision(player2.x, player2.y, v.x, v.y, 30) then --Decrescimento de vida quando detectado colisão da bala com o player
-			player2.life = player2.life - 0.4	
+			player2.life = player2.life - 0.2	
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -72,7 +85,9 @@ function shot2_update(dt)
 	        		shotnumber = shotnumber - 1
 	        		delay.temp = delay.init
 					strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
-					table.remove(bullets2, i)					
+					table.remove(bullets2, i)
+					random()
+					maxheight2 = false					
 				end
 	    	end
 	  	end
@@ -86,7 +101,7 @@ function shot2_update(dt)
 end
 
 function shot2_draw()
-	for i,v in ipairs(bullets2) do
+	for i, v in ipairs(bullets2) do
 		love.graphics.circle("fill", v.x, v.y, 5)		
 	end	
 
@@ -102,10 +117,13 @@ function shot2_draw()
 	--BARRA DE VELOCIDADE--
 
 	--DEBUGGING AND OLD CODE--
+	love.graphics.print(tostring(maxheight2), 750,25)
+	love.graphics.print(decrelife2, 750,0)
 	--love.graphics.print(angle1, 0, 60)
 	--love.graphics.print(angle2, 0, 80)
 	--love.graphics.print(player2.life, player2.x + 10, player2.y - 40) -- impressão da quantidade de vida abaixo do jogador
 	--DEBUGGING AND OLD CODE--
+	
 
 end
 

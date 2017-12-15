@@ -18,18 +18,7 @@ function delaytime_update(dt)
 		delay.print1 = math.floor(delay.temp)
 	elseif delay.temp <=0 then
 		delay.temp = delay.init
-
-		--GERADOR DE NUMEROA ALEATÓRIO--
-		gerador = math.random(-5,10)
-		if gerador < 0 then
-		  vento = math.random(-5,5)
-		  gravity = math.random(1,5)
-		elseif gerador > 0 then
-		  vento = 0
-		  gravity = 3
-		end
-		--GERADOR DE NUMEROA ALEATÓRIO--
-
+		random()
 		if gamestate == "player1" then
 			gamestate = "player2"
 			strength2 = 0
@@ -41,16 +30,21 @@ function delaytime_update(dt)
 end
 
 function delaytime_draw()
-	love.graphics.print(delay.print1, 375,100)
+	love.graphics.print(delay.print1, 395,25)
 	if gamestate == "player1" then
-		love.graphics.print("Player 1", 375, 75)
+		love.graphics.print("Player 1", 375, 0)
 	elseif gamestate == "player2" then
-		love.graphics.print("Player 2", 375, 75)
+		love.graphics.print("Player 2", 375, 0)
 	end
-	love.graphics.print(vento, 700,100)
-	love.graphics.print("Vento", 700, 75)
-
-	love.graphics.print(gravity, 600,100)
-	love.graphics.print("Gravidade", 600, 75)
-
+	
+	love.graphics.print("Vento", 460, 0)
+	love.graphics.print(vento, 460,25)
+	if vento> 0 then
+		love.graphics.print("-->",475,25)
+	elseif vento< 0 then
+		love.graphics.print("<--",475,25)
+	end
+	
+	love.graphics.print("Gravidade", 275, 0)
+	love.graphics.print(gravity, 300,25)	
 end
