@@ -1,3 +1,6 @@
+local bullets2image, bullets2anim
+
+
 function shot2_load()
 	bullets2 = {}-- tabela de balas
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
@@ -20,9 +23,14 @@ function shot2_load()
 	maxheight2 = false
 	decrelife2 = 0
 
+	bullets2image = love.graphics.newImage("/res/img/bullets2.png")
+	local bullets2animgrid = anim.newGrid(256,256,bullets2image:getWidth(), bullets2image:getHeight())
+	bullets2anim = anim.newAnimation(bullets2animgrid('1-8',1, '1-8', 2), 0.03)
+
 end
 
 function shot2_update(dt)
+	
 	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 	if maxheight2 then	
 		decrelife2 = (10 * (strength2/300)* (gravity/5)) * 2
@@ -99,11 +107,15 @@ function shot2_update(dt)
 	life2.x = player2.x
 	life2.y = player2.y - 35
 	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
+
+	bullets2anim:update(dt)
 end
 
 function shot2_draw()
 	for i, v in ipairs(bullets2) do
-		love.graphics.circle("fill", v.x, v.y, 5)
+		bullets2anim:draw(bullets2image,v.x, v.y, 0, 0.3, 0.3, bullets2image:getWidth()/16,bullets2image:getHeight()/16)
+		--love.graphics.circle("fill", v.x, v.y, 5)
+		
 		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
 	end	
 

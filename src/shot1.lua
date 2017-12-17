@@ -1,3 +1,5 @@
+local bullets1image, bullets1anim
+
 function shot1_load()
 	bullets1 = {} -- tabela de balas
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
@@ -20,9 +22,15 @@ function shot1_load()
 	maxheight1 = false
 	decrelife1 = 0
 
+	bullets1image = love.graphics.newImage("/res/img/bullets1.png")
+	local bullets1animgrid = anim.newGrid(256,256,bullets1image:getWidth(), bullets1image:getHeight())
+	bullets1anim = anim.newAnimation(bullets1animgrid('1-8',1, '1-8', 2), 0.03)
+
+
 end
 
 function shot1_update(dt)
+	
 	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 	if maxheight1 then	
 		decrelife1 = (10 * (strength1/300)* (gravity/5)) * 2
@@ -54,6 +62,8 @@ function shot1_update(dt)
 		v.y = v.y + v.dy * dt --modificação de posição da bala atirando em direção ao mouse no eixo y
 		v.dy = v.dy + gravity -- implementação da gravidade
 		v.dx = v.dx + vento
+
+		
 
 		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 19) then
 			gamestate = "player2"
@@ -99,12 +109,15 @@ function shot1_update(dt)
 	life1.x = player1.x - 50 
 	life1.y = player1.y - 35
 	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
+
+	bullets1anim:update(dt)
 end
 
 function shot1_draw()
 	for i, v in ipairs(bullets1) do
-		love.graphics.circle("fill", v.x, v.y, 5)
-		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
+		bullets1anim:draw(bullets1image,v.x, v.y, 0, 0.3, 0.3, bullets1image:getWidth()/16,bullets1image:getHeight()/16)
+		--love.graphics.circle("fill", v.x, v.y, 5)		
+ 		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
 	end	
 
 	-- BARRA DE VIDA -- 

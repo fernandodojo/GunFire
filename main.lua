@@ -20,6 +20,8 @@ require "src/game"
 require "src/end"
 require "src/instruction"
 
+anim = require "libs/anim8"
+
 function love.keypressed(key)
 	if key == "escape" then
 		love.event.quit()
