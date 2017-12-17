@@ -1,5 +1,5 @@
 function moviments_load()
-	motionlimiter = 50
+	motionlimiter = 500
 end
 
 function moviments_update(dt)
