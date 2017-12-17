@@ -1,14 +1,16 @@
+local bullets2image, bullets2anim
+
+
 function shot2_load()
 	bullets2 = {}-- tabela de balas
-	angle2 = 0 --declaração de variável para guardar o angulo de tiro
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
 	strength2 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
 	
 	strengthline2 = {
-	x = 460,
-	y = 540,
+	x = 475,
+	y = 530,
 	w = 300,
-	h = 10
+	h = 13
 	}
 
 	life2 = {
@@ -21,9 +23,14 @@ function shot2_load()
 	maxheight2 = false
 	decrelife2 = 0
 
+	bullets2image = love.graphics.newImage("/res/img/bullets2.png")
+	local bullets2animgrid = anim.newGrid(256,256,bullets2image:getWidth(), bullets2image:getHeight())
+	bullets2anim = anim.newAnimation(bullets2animgrid('1-8',1, '1-8', 2), 0.03)
+
 end
 
 function shot2_update(dt)
+	
 	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 	if maxheight2 then	
 		decrelife2 = (10 * (strength2/300)* (gravity/5)) * 2
@@ -63,7 +70,7 @@ function shot2_update(dt)
 			shotnumber = shotnumber - 1
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 			random()
-			motionlimiter = 50
+			motionlimiter2 = 50
 		end
 
 		-- DECRESCIMENTO DE VIDA --
@@ -90,7 +97,7 @@ function shot2_update(dt)
 					table.remove(bullets2, i)
 					random()
 					maxheight2 = false
-					motionlimiter = 500					
+					motionlimiter2 = 50					
 				end
 	    	end
 	  	end
@@ -100,11 +107,15 @@ function shot2_update(dt)
 	life2.x = player2.x
 	life2.y = player2.y - 35
 	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
+
+	bullets2anim:update(dt)
 end
 
 function shot2_draw()
 	for i, v in ipairs(bullets2) do
-		love.graphics.circle("fill", v.x, v.y, 5)
+		bullets2anim:draw(bullets2image,v.x, v.y, 0, 0.3, 0.3, bullets2image:getWidth()/16,bullets2image:getHeight()/16)
+		--love.graphics.circle("fill", v.x, v.y, 5)
+		
 		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
 	end	
 
@@ -113,17 +124,21 @@ function shot2_draw()
 	love.graphics.rectangle("fill", life2.x, life2.y, player2.life/2, life2.h)
 	-- BARRA DE VIDA -- 
 
-	--BARRA DE VELOCIDADE--
-	love.graphics.print(strength2, (strength2 + 762)/1.66, 550) -- impressão da força de tiro
+	--BARRA DE FORÇA--
+	love.graphics.print(strength2, (strength2 + 790)/1.66, 531) -- impressão da força de tiro
 	love.graphics.rectangle("line", strengthline2.x, strengthline2.y, strengthline2.w, strengthline2.h)
 	love.graphics.rectangle("fill", strengthline2.x, strengthline2.y, strength2/1.66, strengthline2.h)
-	--BARRA DE VELOCIDADE--
+	--BARRA DE FORÇA--
+
+	--MOSTRADOR DE ANGULO--
+	love.graphics.print(math.ceil(math.deg(angle2)), 431, 565)
+	--MOSTRADOR DE ANGULO--
+
 
 	--DEBUGGING AND OLD CODE--
 	--love.graphics.print(tostring(maxheight2), 750,25)
 	--love.graphics.print(decrelife2, 770,0)
-	--love.graphics.print(angle1, 0, 60)
-	--love.graphics.print(angle2, 0, 80)
+	--love.graphics.print(angle1, 0, 60)	
 	--love.graphics.print(player2.life, player2.x + 10, player2.y - 40) -- impressão da quantidade de vida abaixo do jogador
 	--DEBUGGING AND OLD CODE--	
 end

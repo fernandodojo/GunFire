@@ -1,7 +1,7 @@
 function player2_load()
 	player2 = {
 	x =725,
-	y = 250,
+	y = 200,
 	speed = 25,
 	life = 100,
 	w = 15,

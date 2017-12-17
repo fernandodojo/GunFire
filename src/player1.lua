@@ -1,13 +1,16 @@
+local player1image , player1anim
+local direction = true
+
 function player1_load()
 	player1 = {
 	x =75,
-	y = 250,
+	y = 200,
 	speed = 25,
 	life = 100,
 	w = 15,
 	h = 15
 	}
-	player1dead = false
+	player1dead = false	
 end
 
 function player1_update(dt)
@@ -39,6 +42,6 @@ function player1_draw()
 		player1dead = true
 		state = "end"
 		end_load()
-	end
+	end	
 end
 

@@ -1,8 +1,8 @@
 function aiming1_load()			
 	x1 = 0
 	y1 =  0
-	angle1 = 0	
-	anglespeed1 = 1-- change this to the angular speed you want
+	angle1 = - 0.785398
+	anglespeed1 = 0.3-- change this to the angular speed you want
 end
 
 function aiming1_update(dt)
