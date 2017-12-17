@@ -1,14 +1,13 @@
 function shot1_load()
 	bullets1 = {} -- tabela de balas
-	angle1 = 0 --declaração de variável para guardar o angulo de tiro
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
 	strength1 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
 	
 	strengthline1 = {
-	x = 60,
-	y = 540,
+	x = 75,
+	y = 530,
 	w = 300,
-	h = 10
+	h = 13
 	}
 
 	life1 = {
@@ -63,7 +62,7 @@ function shot1_update(dt)
 			delay.temp = delay.init
 			strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 			random()
-			motionlimiter = 50
+			motionlimiter1 = 50
 		end
 		
 		-- DECRESCIMENTO DE VIDA --
@@ -90,7 +89,7 @@ function shot1_update(dt)
 					table.remove(bullets1, i)
 					random()
 					maxheight1 = false
-					motionlimiter = 500		      		
+					motionlimiter1 = 50		      		
 		      	end
 	    	end
 	  	end
@@ -113,16 +112,20 @@ function shot1_draw()
 	love.graphics.rectangle("fill", life1.x, life1.y, player1.life/2, life1.h)
 	-- BARRA DE VIDA --
 
-	--BARRA DE VELOCIDADE--
-	love.graphics.print(strength1, (strength1 + 98)/1.66, 550)	--
+	--BARRA DE FORÇA--
+	love.graphics.print(strength1, (strength1 + 126)/1.66, 531)	--
 	love.graphics.rectangle("line", strengthline1.x, strengthline1.y, strengthline1.w, strengthline1.h)
 	love.graphics.rectangle("fill", strengthline1.x, strengthline1.y, strength1/1.66, strengthline1.h)
-	--BARRA DE VELOCIDADE--
+	--BARRA DE FORÇA--
+
+	--MOSTRADOR DE ANGULO--
+	love.graphics.print(math.ceil(math.deg(-angle1)), 31, 565)
+	--MOSTRADOR DE ANGULO--
+
 
 	--DEBUGGING AND OLD CODE--
 	--love.graphics.print(tostring(maxheight1), 0,25)
-	--love.graphics.print(decrelife1, 0,0)
-	--love.graphics.print(angle1, 0, 30)
+	--love.graphics.print(decrelife1, 0,0)	
 	--love.graphics.print(angle2, 0, 60)
 	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
 	--DEBUGGING AND OLD CODE--
