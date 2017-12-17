@@ -63,7 +63,7 @@ function shot2_update(dt)
 			shotnumber = shotnumber - 1
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 			random()
-			motionlimiter = 500
+			motionlimiter = 50
 		end
 
 		-- DECRESCIMENTO DE VIDA --

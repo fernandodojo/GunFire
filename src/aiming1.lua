@@ -10,10 +10,10 @@ function aiming1_update(dt)
 	x1 = player1.x + math.cos(angle1) * 25
 	y1 = player1.y + math.sin(angle1) * 25
 	
-	if love.keyboard.isDown("w") then
+	if love.keyboard.isDown("w") and gamestate == "player1" then
 		angle1 = angle1 - anglespeed1 * dt
 	end
-	if love.keyboard.isDown("s") then
+	if love.keyboard.isDown("s") and gamestate == "player1" then
 		angle1 = angle1 + anglespeed1 * dt
 	end	
 end
