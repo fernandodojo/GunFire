@@ -81,7 +81,7 @@ function shot2_update(dt)
 		--REMOÇÃO BLOCO DE PISO --
 		for k=0, 750, 50 do
 	    	for l = 300, 480, 30 do
-	    		if squarecolission(v.x, v.y,5, k, l, w, h) and floor[k][l] ==1 then
+	    		if squarecollision(v.x-5, v.y-5,10, 10, k, l, w, h) and floor[k][l] ==1 then
 	        		floor[k][l] = 0
 	        		gamestate = "player1"	        		
 	        		shotnumber = shotnumber - 1
@@ -90,7 +90,7 @@ function shot2_update(dt)
 					table.remove(bullets2, i)
 					random()
 					maxheight2 = false
-					motionlimiter = 50					
+					motionlimiter = 500					
 				end
 	    	end
 	  	end
@@ -104,7 +104,8 @@ end
 
 function shot2_draw()
 	for i, v in ipairs(bullets2) do
-		love.graphics.circle("fill", v.x, v.y, 5)		
+		love.graphics.circle("fill", v.x, v.y, 5)
+		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
 	end	
 
 	-- BARRA DE VIDA -- 
@@ -128,18 +129,18 @@ function shot2_draw()
 end
 
 function shot2_mousepressed(x, y, button)
-	mx = x
-	my = y
+	--mx = x
+	--my = y
 
-	angle2 = math.atan2(my-player2.y , mx - player2.x )
+	--angle2 = math.atan2(my-player2.y , mx - player2.x )
 
-	direction2x = (strength2 - vento) * math.cos(angle2)
-	direction2y = (strength2 - vento) * math.sin(angle2)
+	direction2x = (strength2 - vento) * -math.cos(angle2)
+	direction2y = (strength2 - vento) * -math.sin(angle2)
 
 	if button == 1 and shotnumber == 0 then
-		table.insert(bullets2, {x = player2.x, y = player2.y -32 , dx = direction2x, dy = direction2y})
+		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y})
 		shotnumber = shotnumber + 1
 
-		table.insert(bullets2, {x = player2.x, y = player2.y -32  , dx = direction2x, dy = direction2y+ 10})
+		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y+ 10})
 	end
 end

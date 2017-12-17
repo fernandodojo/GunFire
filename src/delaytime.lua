@@ -1,8 +1,8 @@
 function delaytime_load()
 	delay = {
-	init = 6,
-	temp = 6,
-	print1 = 5
+	init = 31,
+	temp = 31,
+	print1 = 30
 	}
 
 	vento,gerador,gravity = 0,0,3
