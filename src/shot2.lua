@@ -1,6 +1,5 @@
 local bullets2image, bullets2anim
 
-
 function shot2_load()
 	bullets2 = {}-- tabela de balas
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
@@ -114,8 +113,7 @@ end
 function shot2_draw()
 	for i, v in ipairs(bullets2) do
 		bullets2anim:draw(bullets2image,v.x, v.y, 0, 0.3, 0.3, bullets2image:getWidth()/16,bullets2image:getHeight()/16)
-		--love.graphics.circle("fill", v.x, v.y, 5)
-		
+		--love.graphics.circle("fill", v.x, v.y, 5)		
 		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
 	end	
 
