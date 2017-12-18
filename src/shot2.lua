@@ -117,15 +117,19 @@ function shot2_draw()
 		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
 	end	
 
-	-- BARRA DE VIDA -- 
+	-- BARRA DE VIDA --
+	love.graphics.setColor(190, 0, 0) 
 	love.graphics.rectangle("line", life2.x, life2.y, life2.w, life2.h)
 	love.graphics.rectangle("fill", life2.x, life2.y, player2.life/2, life2.h)
+	love.graphics.setColor(255,255,255)
 	-- BARRA DE VIDA -- 
 
 	--BARRA DE FORÇA--
 	love.graphics.print(strength2, (strength2 + 790)/1.66, 531) -- impressão da força de tiro
+	love.graphics.setColor(216, 136, 32)
 	love.graphics.rectangle("line", strengthline2.x, strengthline2.y, strengthline2.w, strengthline2.h)
 	love.graphics.rectangle("fill", strengthline2.x, strengthline2.y, strength2/1.66, strengthline2.h)
+	love.graphics.setColor(255,255,255)
 	--BARRA DE FORÇA--
 
 	--MOSTRADOR DE ANGULO--

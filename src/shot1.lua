@@ -105,6 +105,7 @@ function shot1_update(dt)
 	  	end
   		--REMOÇÃO BLOCO DE PISO --
 	end
+
 	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
 	life1.x = player1.x - 50 
 	life1.y = player1.y - 35
@@ -120,15 +121,19 @@ function shot1_draw()
  		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
 	end	
 
-	-- BARRA DE VIDA -- 
+	-- BARRA DE VIDA --
+	love.graphics.setColor(190, 0, 0) 
 	love.graphics.rectangle("line", life1.x, life1.y, life1.w, life1.h)
 	love.graphics.rectangle("fill", life1.x, life1.y, player1.life/2, life1.h)
+	love.graphics.setColor(255,255,255)
 	-- BARRA DE VIDA --
 
-	--BARRA DE FORÇA--
-	love.graphics.print(strength1, (strength1 + 126)/1.66, 531)	--
+	--BARRA DE FORÇA--	
+	love.graphics.print(strength1, (strength1 + 126)/1.66, 531)	
+	love.graphics.setColor(216, 136, 32)
 	love.graphics.rectangle("line", strengthline1.x, strengthline1.y, strengthline1.w, strengthline1.h)
 	love.graphics.rectangle("fill", strengthline1.x, strengthline1.y, strength1/1.66, strengthline1.h)
+	love.graphics.setColor(255,255,255)
 	--BARRA DE FORÇA--
 
 	--MOSTRADOR DE ANGULO--

@@ -1,16 +1,21 @@
 local player1image , player1anim
-local direction = true
 
 function player1_load()
 	player1 = {
 	x =75,
-	y = 200,
+	y = 100,
 	speed = 25,
 	life = 100,
 	w = 15,
-	h = 15
+	h = 15,
+	image = love.graphics.newImage("res/img/player1.png")
 	}
-	player1dead = false	
+	player1dead = false
+
+
+	player1image = love.graphics.newImage("res/img/ship1.png")
+	player1animgrid = anim.newGrid(124,123,player1image:getWidth(), player1image:getHeight())
+	player1anim = anim.newAnimation(player1animgrid('1-1', 1,'1-1', 2, '1-1', 3, '1-1', 4, '1-1', 5, '1-1', 6, '1-1', 7, '1-1', 8, '1-1', 9 ),0.04)
 end
 
 function player1_update(dt)
@@ -33,15 +38,20 @@ function player1_update(dt)
   		end
   	end
   	player1.y = player1.y + grav * dt
+  	player1anim:update(dt)
 end
 
 function player1_draw()
-	love.graphics.circle("fill", player1.x, player1.y, 15)
+	--love.graphics.circle("fill", player1.x, player1.y, 15)
 	--love.graphics.rectangle("line",player1.x-15, player1.y-15, 30,30)
+	player1anim:draw(player1image,player1.x, player1.y-4, 0, 0.27, 0.27, player1image:getWidth()/2,player1image:getHeight()/18)
+	love.graphics.draw(player1.image, 10,525, 0, 0.45,0.45)
 	if player1.life <= 0 or player1.y > 600 then
 		player1dead = true
 		state = "end"
 		end_load()
 	end	
+
+	
 end
 

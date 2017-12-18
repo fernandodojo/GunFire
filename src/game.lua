@@ -9,6 +9,7 @@ function game_load()
 	shot1_load()
 	shot2_load()
 	floor_load()
+	backgroud = love.graphics.newImage("res/img/background.png")
 	function love.mousepressed(x, y, button)
 	if gamestate == "player1" and state == "game" then
 		shot1_mousepressed(x, y, button)
@@ -16,6 +17,7 @@ function game_load()
 	if gamestate == "player2" and state == "game" then
 		shot2_mousepressed(x, y, button)
 	end
+	
 end
 
 end
@@ -33,6 +35,7 @@ function game_update(dt)
 end
 
 function game_draw()
+	love.graphics.draw(backgroud,0, 0)
 	moviments_draw()
 	delaytime_draw()
 	aiming1_draw()
@@ -42,6 +45,7 @@ function game_draw()
 	shot1_draw()
 	shot2_draw()
 	floor_draw()
+	
 end
 
 function love.mousepressed(x, y, button)
