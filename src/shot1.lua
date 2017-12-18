@@ -65,7 +65,7 @@ function shot1_update(dt)
 
 		
 
-		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 19) then
+		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 20) then
 			gamestate = "player2"
 			table.remove(bullets1, i)
 			shotnumber = shotnumber - 1
@@ -79,7 +79,7 @@ function shot1_update(dt)
 		if v.y< 100 then
 			maxheight1 = true
 		end		
-		if circlecolision(player2.x, player2.y, v.x, v.y, 19) then --Decrescimento de vida quando detectado colisão da bala com o player
+		if circlecolision(player2.x, player2.y, v.x, v.y, 20) then --Decrescimento de vida quando detectado colisão da bala com o player
 			player2.life = player2.life - decrelife1
 		end
 		if circlecolision(player1.x, player1.y, v.x, v.y, 30)  then --Decrescimento de vida quando detectado colisão da bala com o player		
