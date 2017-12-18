@@ -41,6 +41,7 @@ function end_update(dt)
 end
 
 function end_draw()
+	love.graphics.setBackgroundColor(61, 61, 61, 50)
 	if player1dead then
 		love.graphics.print("Jogador 2 Ganhou", 350,150)
 	elseif player2dead then

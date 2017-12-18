@@ -10,19 +10,22 @@ function menu_load()
   	}
 
   	instructions = {
-	x = 90,
+	x = 158,
 	y = 450,
 	w = 147,
 	h = 30
 	}
 
   	exit={
-  	x = 650,
+  	x = 505,
   	y = 450,
   	w = 57,
   	h = 30
   	}
-  	fontetitle = love.graphics.setNewFont("res/font/POLYA.otf", 70) 
+  	menuimage = love.graphics.newImage("res/img/bakchgroundmenu.png")
+  	--fontetitle = love.graphics.setNewFont("res/font/POLYA.otf", 70)
+
+  	fontetitle = love.graphics.setNewFont("res/font/Ailerons.otf", 100) 
   	fontmenu = love.graphics.setNewFont("res/font/Ailerons.otf", 25) 	
 end
 
@@ -45,9 +48,10 @@ function menu_update()
 end
 
 function menu_draw()
+	love.graphics.draw(menuimage, 0, 0)
 	love.graphics.setFont(fontetitle)
-	love.graphics.setColor(255,0,0)
-	love.graphics.printf("GUNFIRE", 250, 150, 350)
+	--love.graphics.setColor(255,0,0)
+	love.graphics.printf("GUNFIRE", 200, 137, 450)
 	love.graphics.setColor(255,255,255)
 
 	love.graphics.setFont(fontmenu)
@@ -59,6 +63,8 @@ function menu_draw()
 
 	love.graphics.rectangle("line", exit.x, exit.y, exit.w, exit.h)
 	love.graphics.printf("Sair", exit.x, exit.y, 250)
+
+
 end
 
 function game()
