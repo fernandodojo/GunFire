@@ -8,7 +8,8 @@ function player1_load()
 	life = 100,
 	w = 15,
 	h = 15,
-	image = love.graphics.newImage("res/img/player1.png")
+	image = love.graphics.newImage("res/img/player1.png"),
+	imagedamaged = love.graphics.newImage("res/img/player1_damage.png")
 	}
 	player1dead = false
 
@@ -42,8 +43,11 @@ function player1_update(dt)
 end
 
 function player1_draw()
+	--DEBUGGING AND OLD CODE--
 	--love.graphics.circle("fill", player1.x, player1.y, 15)
 	--love.graphics.rectangle("line",player1.x-15, player1.y-15, 30,30)
+	--DEBUGGING AND OLD CODE--
+	
 	player1anim:draw(player1image,player1.x, player1.y-4, 0, 0.27, 0.27, player1image:getWidth()/2,player1image:getHeight()/18)
 	love.graphics.draw(player1.image, 10,525, 0, 0.45,0.45)
 	if player1.life <= 0 or player1.y > 600 then

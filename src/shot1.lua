@@ -116,8 +116,10 @@ end
 function shot1_draw()
 	for i, v in ipairs(bullets1) do
 		bullets1anim:draw(bullets1image,v.x, v.y, 0, 0.3, 0.3, bullets1image:getWidth()/16,bullets1image:getHeight()/16)
+		--DEBUGGING AND OLD CODE--
 		--love.graphics.circle("fill", v.x, v.y, 5)		
- 		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
+ 		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)
+ 		--DEBUGGING AND OLD CODE--		
 	end	
 
 	-- BARRA DE VIDA --
@@ -149,10 +151,11 @@ function shot1_draw()
 end
 
 function shot1_mousepressed(x, y, button)
+	--DEBUGGING AND OLD CODE--
 	--mx = x
 	--my = y
-
 	--angle = math.atan2(x1-player1.y , y1 - player1.x )
+	--DEBUGGING AND OLD CODE--
 
 	direction1x = (strength1 + vento) * math.cos(angle1)
 	direction1y = (strength1+ vento) * math.sin(angle1)	
