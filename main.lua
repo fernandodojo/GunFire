@@ -22,6 +22,8 @@ require "src/instruction"
 
 anim = require "libs/anim8"
 
+math.randomseed(os.time())
+
 function love.keypressed(key)
 	if key == "escape" then
 		love.event.quit()

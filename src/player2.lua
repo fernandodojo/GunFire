@@ -1,13 +1,22 @@
+local player2image , player2anim
+
 function player2_load()
 	player2 = {
-	x =725,
-	y = 200,
+	x =math.random(420,780),
+	y = 0,
 	speed = 25,
 	life = 100,
 	w = 15,
-	h = 15
+	h = 15,
+	image = love.graphics.newImage("res/img/player2.png"),
+	imagedamaged = love.graphics.newImage("res/img/player2_damage.png")
 	}
+
 	player2dead = false
+
+	player2image = love.graphics.newImage("res/img/ship2.png")
+	player2animgrid = anim.newGrid(124,127,player2image:getWidth(), player2image:getHeight())
+	player2anim = anim.newAnimation(player2animgrid('1-1', 1,'1-1', 2, '1-1', 3, '1-1', 4, '1-1', 5, '1-1', 6, '1-1', 7, '1-1', 8, '1-1', 9 ),0.04)
 end
 
 function player2_update(dt)
@@ -30,11 +39,17 @@ function player2_update(dt)
   		end
   	end
   	player2.y = player2.y + grav * dt
+  	player2anim:update(dt)
 end
 
 function player2_draw()
-	love.graphics.circle("fill", player2.x, player2.y, 15)
-	--love.graphics.rectangle("line",player2.x-15, player2.y-15, 30,30)
+	--DEBUGGING AND OLD CODE--
+	--love.graphics.circle("fill", player2.x, player2.y, 15)
+	--love.graphics.rectangle("line",player2.x-15, player2.y-15, 30,30)	
+	--DEBUGGING AND OLD CODE--
+	
+	player2anim:draw(player2image,player2.x, player2.y-4, 0, 0.27, 0.27, player2image:getWidth()/2,player2image:getHeight()/18)
+	love.graphics.draw(player2.image, 400,525, 0, 0.45,0.45)
 	if player2.life <= 0 or player2.y > 600 then
 		player2dead = true
 		state = "end"

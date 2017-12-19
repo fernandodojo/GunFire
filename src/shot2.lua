@@ -1,16 +1,15 @@
 local bullets2image, bullets2anim
 
-
 function shot2_load()
 	bullets2 = {}-- tabela de balas
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
 	strength2 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
 	
 	strengthline2 = {
-	x = 475,
+	x = 465,
 	y = 530,
 	w = 300,
-	h = 13
+	h = 14
 	}
 
 	life2 = {
@@ -63,7 +62,7 @@ function shot2_update(dt)
 		v.dy = v.dy + gravity + vento-- implementação da gravidade
 		v.dx = v.dx + vento
 
-		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 19) then
+		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 20) then
 			gamestate = "player1"			
 			table.remove(bullets2, i)
 			delay.temp = delay.init
@@ -77,7 +76,7 @@ function shot2_update(dt)
 		if v.y< 100 then
 			maxheight2 = true
 		end 
-		if circlecolision(player1.x, player1.y, v.x, v.y, 19) then --Decrescimento de vida quando detectado colisão da bala com o player
+		if circlecolision(player1.x, player1.y, v.x, v.y, 20) then --Decrescimento de vida quando detectado colisão da bala com o player
 		  player1.life = player1.life - decrelife2
 		end
 		if circlecolision(player2.x, player2.y, v.x, v.y, 30) then --Decrescimento de vida quando detectado colisão da bala com o player
@@ -114,24 +113,27 @@ end
 function shot2_draw()
 	for i, v in ipairs(bullets2) do
 		bullets2anim:draw(bullets2image,v.x, v.y, 0, 0.3, 0.3, bullets2image:getWidth()/16,bullets2image:getHeight()/16)
-		--love.graphics.circle("fill", v.x, v.y, 5)
-		
+		--love.graphics.circle("fill", v.x, v.y, 5)		
 		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
 	end	
 
-	-- BARRA DE VIDA -- 
+	-- BARRA DE VIDA --
+	love.graphics.setColor(190, 0, 0) 
 	love.graphics.rectangle("line", life2.x, life2.y, life2.w, life2.h)
 	love.graphics.rectangle("fill", life2.x, life2.y, player2.life/2, life2.h)
+	love.graphics.setColor(255,255,255)
 	-- BARRA DE VIDA -- 
 
 	--BARRA DE FORÇA--
-	love.graphics.print(strength2, (strength2 + 790)/1.66, 531) -- impressão da força de tiro
+	love.graphics.print(strength2, (strength2 + 772)/1.66, 531) -- impressão da força de tiro
+	love.graphics.setColor(216, 136, 32)
 	love.graphics.rectangle("line", strengthline2.x, strengthline2.y, strengthline2.w, strengthline2.h)
 	love.graphics.rectangle("fill", strengthline2.x, strengthline2.y, strength2/1.66, strengthline2.h)
+	love.graphics.setColor(255,255,255)
 	--BARRA DE FORÇA--
 
 	--MOSTRADOR DE ANGULO--
-	love.graphics.print(math.ceil(math.deg(angle2)), 431, 565)
+	love.graphics.print(math.ceil(math.deg(angle2)).."º", x2 -30, y2 - 30)
 	--MOSTRADOR DE ANGULO--
 
 
@@ -156,6 +158,6 @@ function shot2_mousepressed(x, y, button)
 		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y})
 		shotnumber = shotnumber + 1
 
-		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y+ 10})
+		table.insert(bullets2, {x = x2+ 10, y = y2+ 10, dx = direction2x, dy = direction2y-20})
 	end
 end
