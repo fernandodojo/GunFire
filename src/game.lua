@@ -1,3 +1,4 @@
+local gamefont = love.graphics.setNewFont("res/font/A-Space.otf", 13)
 function game_load()
 	gamestate = "player1"
 	moviments_load()
@@ -11,15 +12,13 @@ function game_load()
 	floor_load()
 	backgroud = love.graphics.newImage("res/img/background.png")
 	function love.mousepressed(x, y, button)
-	if gamestate == "player1" and state == "game" then
-		shot1_mousepressed(x, y, button)
-	end
-	if gamestate == "player2" and state == "game" then
-		shot2_mousepressed(x, y, button)
-	end
-	
-end
-
+		if gamestate == "player1" and state == "game" then
+			shot1_mousepressed(x, y, button)
+		end
+		if gamestate == "player2" and state == "game" then
+			shot2_mousepressed(x, y, button)
+		end
+	end	
 end
 
 function game_update(dt)
@@ -35,6 +34,7 @@ function game_update(dt)
 end
 
 function game_draw()
+	love.graphics.setFont(gamefont)
 	love.graphics.draw(backgroud,0, 0)
 	moviments_draw()
 	delaytime_draw()
@@ -44,8 +44,7 @@ function game_draw()
 	player2_draw()
 	shot1_draw()
 	shot2_draw()
-	floor_draw()
-	
+	floor_draw()	
 end
 
 function love.mousepressed(x, y, button)

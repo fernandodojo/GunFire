@@ -6,10 +6,10 @@ function shot2_load()
 	strength2 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
 	
 	strengthline2 = {
-	x = 475,
+	x = 465,
 	y = 530,
 	w = 300,
-	h = 13
+	h = 14
 	}
 
 	life2 = {
@@ -125,7 +125,7 @@ function shot2_draw()
 	-- BARRA DE VIDA -- 
 
 	--BARRA DE FORÇA--
-	love.graphics.print(strength2, (strength2 + 790)/1.66, 531) -- impressão da força de tiro
+	love.graphics.print(strength2, (strength2 + 772)/1.66, 531) -- impressão da força de tiro
 	love.graphics.setColor(216, 136, 32)
 	love.graphics.rectangle("line", strengthline2.x, strengthline2.y, strengthline2.w, strengthline2.h)
 	love.graphics.rectangle("fill", strengthline2.x, strengthline2.y, strength2/1.66, strengthline2.h)
@@ -133,7 +133,7 @@ function shot2_draw()
 	--BARRA DE FORÇA--
 
 	--MOSTRADOR DE ANGULO--
-	love.graphics.print(math.ceil(math.deg(angle2)), 431, 565)
+	love.graphics.print(math.ceil(math.deg(angle2)).."º", x2 -30, y2 - 30)
 	--MOSTRADOR DE ANGULO--
 
 
@@ -158,6 +158,6 @@ function shot2_mousepressed(x, y, button)
 		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y})
 		shotnumber = shotnumber + 1
 
-		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y+ 10})
+		table.insert(bullets2, {x = x2+ 10, y = y2+ 10, dx = direction2x, dy = direction2y-20})
 	end
 end

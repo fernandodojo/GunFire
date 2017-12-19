@@ -19,11 +19,11 @@ function delaytime_update(dt)
 		if gamestate == "player1" then
 			gamestate = "player2"
 			strength2 = 0
-			motionlimiter = 50
+			motionlimiter2 = 50
 		elseif gamestate == "player2" then
 			gamestate = "player1"
 			strength1 = 0
-			motionlimiter = 50			
+			motionlimiter1 = 50			
 		end
 	end
 end

@@ -9,7 +9,7 @@ function moviments_load()
 	h = 10
 	}
 	motion2= {
-	x = 475,
+	x = 465,
 	y = 565,
 	w = 300,
 	h = 10

@@ -1,3 +1,5 @@
+
+
 function instruction_load()
 
 	menuback={
@@ -13,16 +15,15 @@ function instruction_load()
   	w = 63,
   	h = 18
   	}
-
+  	
   	instructionsimage = love.graphics.newImage("res/img/backgroundinstructions.png")
-  	instructionfont = love.graphics.setNewFont("res/font/Kenney_Future_Narrow.ttf", 16)	
-  	instructionfontb = love.graphics.setNewFont("res/font/Kenney_Future_Narrow.ttf", 24)
+	instructionfont = love.graphics.setNewFont("res/font/Kenney_Future_Narrow.ttf", 16)	
+	instructionfontb = love.graphics.setNewFont("res/font/Kenney_Future_Narrow.ttf", 24)
 
-  	leftarrow = love.graphics.newImage("res/img/leftarrow.png")
-  	rightarrow = love.graphics.newImage("res/img/rightarrow.png")
-  	uparrow = love.graphics.newImage("res/img/uparrow.png")
-  	downarrow = love.graphics.newImage("res/img/downarrow.png")
-
+	leftarrow = love.graphics.newImage("res/img/leftarrow.png")
+	rightarrow = love.graphics.newImage("res/img/rightarrow.png")
+	uparrow = love.graphics.newImage("res/img/uparrow.png")
+	downarrow = love.graphics.newImage("res/img/downarrow.png") 	
 end
 
 function instruction_update(dt)

@@ -9,7 +9,7 @@ function shot1_load()
 	x = 75,
 	y = 530,
 	w = 300,
-	h = 13
+	h = 14
 	}
 
 	life1 = {
@@ -26,10 +26,9 @@ function shot1_load()
 	local bullets1animgrid = anim.newGrid(256,256,bullets1image:getWidth(), bullets1image:getHeight())
 	bullets1anim = anim.newAnimation(bullets1animgrid('1-8',1, '1-8', 2), 0.03)
 
-
 end
 
-function shot1_update(dt)
+function shot1_update(dt)	
 	
 	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 	if maxheight1 then	
@@ -137,7 +136,7 @@ function shot1_draw()
 	--BARRA DE FORÇA--
 
 	--MOSTRADOR DE ANGULO--
-	love.graphics.print(math.ceil(math.deg(-angle1)), 31, 565)
+	love.graphics.print(math.ceil(math.deg(-angle1)).."º", x1, y1 - 30)
 	--MOSTRADOR DE ANGULO--
 
 
@@ -146,7 +145,7 @@ function shot1_draw()
 	--love.graphics.print(decrelife1, 0,0)	
 	--love.graphics.print(angle2, 0, 60)
 	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
-	--DEBUGGING AND OLD CODE--
+	--DEBUGGING AND OLD CODE--	
 end
 
 function shot1_mousepressed(x, y, button)
@@ -160,8 +159,10 @@ function shot1_mousepressed(x, y, button)
 
 	if button == 1 and shotnumber ==0 then
 		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x, dy = direction1y})
-		shotnumber = shotnumber + 1
+		shotnumber = shotnumber + 1		
 		
-		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x, dy = direction1y+10 })	
+		table.insert (bullets1 , {x = x1-10, y = y1+10, dx = direction1x, dy = direction1y-20})		
 	end
 end
+
+

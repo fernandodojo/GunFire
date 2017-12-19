@@ -1,25 +1,26 @@
+local endfont = love.graphics.setNewFont("res/font/A-Space.otf", 20)
 function end_load()
 	playagain = {
-	x = 350,
+	x = 285,
 	y = 400,
 	w = 100,
 	h = 50
 	}
 
 	menuend = {
-	x = 380,
+	x = 360,
 	y = 450,
 	w = 100,
 	h = 50
 	}
 
 	exit = {
-  	x = 385,
+  	x = 370,
   	y = 500,
   	w = 50,
   	h = 50
   	}
-end
+ end
 
 function end_update(dt)
 	function love.mousepressed(x, y, button)
@@ -41,11 +42,12 @@ function end_update(dt)
 end
 
 function end_draw()
+	love.graphics.setFont(endfont)
 	love.graphics.setBackgroundColor(61, 61, 61, 50)
 	if player1dead then
-		love.graphics.print("Jogador 2 Ganhou", 350,150)
+		love.graphics.print("Jogador 2 Venceu", 285,75)
 	elseif player2dead then
-		love.graphics.print("Jogador 1 Ganhou", 350,150)
+		love.graphics.print("Jogador 1 Venceu", 290,75)
 	end
 
 	love.graphics.print("Jogar Novamente", playagain.x, playagain.y)
