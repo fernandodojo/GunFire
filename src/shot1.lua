@@ -25,7 +25,6 @@ function shot1_load()
 	bullets1image = love.graphics.newImage("/res/img/bullets1.png")
 	local bullets1animgrid = anim.newGrid(256,256,bullets1image:getWidth(), bullets1image:getHeight())
 	bullets1anim = anim.newAnimation(bullets1animgrid('1-8',1, '1-8', 2), 0.03)
-
 end
 
 function shot1_update(dt)	
@@ -139,7 +138,6 @@ function shot1_draw()
 	--MOSTRADOR DE ANGULO--
 	love.graphics.print(math.ceil(math.deg(-angle1)).."º", x1, y1 - 30)
 	--MOSTRADOR DE ANGULO--
-
 
 	--DEBUGGING AND OLD CODE--
 	--love.graphics.print(tostring(maxheight1), 0,25)

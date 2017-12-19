@@ -55,7 +55,5 @@ function player1_draw()
 		state = "end"
 		end_load()
 	end	
-
-	
 end
 
