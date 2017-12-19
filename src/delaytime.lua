@@ -1,3 +1,4 @@
+local delayfont = love.graphics.setNewFont("res/font/A-Space.otf", 18)
 function delaytime_load()
 	delay = {
 	init = 31,
@@ -29,21 +30,22 @@ function delaytime_update(dt)
 end
 
 function delaytime_draw()
+	love.graphics.setFont(delayfont)
 	love.graphics.print(delay.print1, 395,25)
 	if gamestate == "player1" then
-		love.graphics.print("Player 1", 375, 0)
+		love.graphics.print("Player 1", 360, 0)
 	elseif gamestate == "player2" then
-		love.graphics.print("Player 2", 375, 0)
+		love.graphics.print("Player 2", 360, 0)
 	end
 	
-	love.graphics.print("Vento", 460, 0)
-	love.graphics.print(vento, 460,25)
+	love.graphics.print("Vento", 580, 0)
+	love.graphics.print(vento, 590,25)
 	if vento> 0 then
-		love.graphics.print("-->",475,25)
+		love.graphics.print("-->",615,25)
 	elseif vento< 0 then
-		love.graphics.print("<--",475,25)
+		love.graphics.print("<--",615,25)
 	end
 	
-	love.graphics.print("Gravidade", 275, 0)
-	love.graphics.print(gravity, 300,25)	
+	love.graphics.print("Gravidade", 150, 0)
+	love.graphics.print(gravity, 200,25)	
 end

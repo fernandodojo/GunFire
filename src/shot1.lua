@@ -56,13 +56,11 @@ function shot1_update(dt)
 	end
 	-- BUG FIX--
 
-	for i, v in ipairs(bullets1) do
+	for i, v in ipairs (bullets1) do
 		v.x = v.x + v.dx * dt --+ (vento) --modificação de posição da bala atirando em direção ao mouse no eixo x
 		v.y = v.y + v.dy * dt --modificação de posição da bala atirando em direção ao mouse no eixo y
 		v.dy = v.dy + gravity -- implementação da gravidade
-		v.dx = v.dx + vento
-
-		
+		v.dx = v.dx + vento		
 
 		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 20) then
 			gamestate = "player2"
@@ -114,6 +112,7 @@ function shot1_update(dt)
 end
 
 function shot1_draw()
+	love.graphics.setFont(gamefont)
 	for i, v in ipairs(bullets1) do
 		bullets1anim:draw(bullets1image,v.x, v.y, 0, 0.3, 0.3, bullets1image:getWidth()/16,bullets1image:getHeight()/16)
 		--DEBUGGING AND OLD CODE--

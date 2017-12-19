@@ -1,4 +1,4 @@
-local gamefont = love.graphics.setNewFont("res/font/A-Space.otf", 13)
+gamefont = love.graphics.setNewFont("res/font/A-Space.otf", 13)
 function game_load()
 	gamestate = "player1"
 	moviments_load()
