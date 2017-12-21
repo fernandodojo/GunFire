@@ -7,8 +7,28 @@ function delaytime_load()
 	}
 
 	delayrandom={
-	init = 5,
-	temp = 5
+	init = 20,
+	temp = 20
+	}
+
+	arrows={
+	left = love.graphics.newImage("res/img/left.png"),
+	right = love.graphics.newImage("res/img/right.png"),
+	up = love.graphics.newImage("res/img/up.png"),
+	down = love.graphics.newImage("res/img/down.png"),
+	downleft = love.graphics.newImage("res/img/downleft.png"),
+	upleft = love.graphics.newImage("res/img/upleft.png"),
+	downright = love.graphics.newImage("res/img/downright.png"),
+	upright = love.graphics.newImage("res/img/upright.png"),
+	fastleft = love.graphics.newImage("res/img/fastleft.png"),
+	fastright = love.graphics.newImage("res/img/fastright.png"),	
+	fastdown = love.graphics.newImage("res/img/fastdown.png"),
+	fastdownleft = love.graphics.newImage("res/img/fastdownleft.png"),
+	fastupleft = love.graphics.newImage("res/img/fastupleft.png"),
+	fastdownright = love.graphics.newImage("res/img/fastdownright.png"),
+	fastupright = love.graphics.newImage("res/img/fastupright.png"),
+	fastdowndownright = love.graphics.newImage("res/img/fastdowndownright.png"),
+	fastdowndownleft = love.graphics.newImage("res/img/fastdowndownleft.png"),
 	}
 end
 
@@ -19,7 +39,6 @@ function delaytime_update(dt)
 		delay.print1 = math.floor(delay.temp)
 	elseif delay.temp <=0 then
 		delay.temp = delay.init
-		--random()
 		if gamestate == "player1" then
 			gamestate = "player2"
 			strength2 = 0
@@ -50,15 +69,62 @@ function delaytime_draw()
 	
 	love.graphics.print("Vento", 580, 0)
 	love.graphics.print(vento, 590,25)
-	if vento> 0 then
-		love.graphics.print("-->",615,25)
-	elseif vento< 0 then
-		love.graphics.print("<--",615,25)
+	
+
+	if vento == -1 and vento2 == 0 then
+		love.graphics.draw(arrows.left,615,25, 0, 0.3)
+	end
+	if vento == 1 and vento2 == 0 then
+		love.graphics.draw(arrows.right,615,25, 0, 0.3)
+	end
+	if vento == 0 and vento2 == -1 then
+		love.graphics.draw(arrows.up,615,25, 0, 0.3)
+	end
+	if vento == 0 and vento2 == 1 then
+		love.graphics.draw(arrows.down,615,25, 0, 0.3)
+	end
+	if vento ==1 and vento2 == 1 then
+		love.graphics.draw(arrows.downright,615,25, 0, 0.3)
+	end
+	if vento== -1 and vento2 == 1 then
+		love.graphics.draw(arrows.downleft,615,25, 0, 0.3)
+	end
+	if vento == 1 and vento2 == -1 then
+		love.graphics.draw(arrows.upright,615,25, 0, 0.3)
+	end
+	if vento == -1 and vento2 == -1 then
+		love.graphics.draw(arrows.upleft,615,25, 0, 0.3)
+	end
+
+
+	if vento == -2 and vento2 == 0 then
+		love.graphics.draw(arrows.fastleft,615,25, 0, 0.3)
+	end
+	if vento == 2 and vento2 == 0 then
+		love.graphics.draw(arrows.fastright,615,25, 0, 0.3)
 	end
 	
-	love.graphics.print("Gravidade", 150, 0)
-	love.graphics.print(gravity, 200,25)
 
-	love.graphics.print(vento2, 0,0)
-	love.graphics.print(delayrandom.temp, 0,50)
+
+	if vento == 0 and vento2 == 2 then
+		love.graphics.draw(arrows.fastdown,615,25, 0, 0.3)
+	end
+	if vento ==2 and vento2 == 1 then
+		love.graphics.draw(arrows.fastdownright,615,25, 0, 0.3)
+	end
+	if vento== -2 and vento2 == 1 then
+		love.graphics.draw(arrows.fastdownleft,615,25, 0, 0.3)
+	end
+	if vento == 2 and vento2 == -1 then
+		love.graphics.draw(arrows.fastupright,615,25, 0, 0.3)
+	end
+	if vento == -2 and vento2 == -1 then
+		love.graphics.draw(arrows.fastupleft,615,25, 0, 0.3)
+	end
+	if vento ==2 and vento2 == 2 then
+		love.graphics.draw(arrows.fastdowndownright,615,25, 0, 0.3)
+	end
+	if vento== -2 and vento2 == 2 then
+		love.graphics.draw(arrows.fastdowndownleft,615,25, 0, 0.3)
+	end
 end

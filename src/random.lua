@@ -1,5 +1,5 @@
 vento = 0
-vento2 = 0
+vento2 =0
 gerador = 0
 function random()
 	math.randomseed(os.time())

@@ -21,7 +21,7 @@ function shot1_load()
 
 	--vento = 5
 	--vento2 = -1
-	
+
 	maxheight1 = false
 	decrelife1 = 0
 
@@ -84,7 +84,6 @@ function shot1_update(dt)
 			shotnumber = shotnumber - 1
 			delay.temp = delay.init
 			strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
-			--random()
 			motionlimiter1 = 50
 		end
 		
@@ -110,8 +109,7 @@ function shot1_update(dt)
 					shotnumber = shotnumber - 1
 					delay.temp = delay.init
 					strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
-					table.remove(bullets1, i)
-					--random()
+					table.remove(bullets1, i)					
 					maxheight1 = false
 					motionlimiter1 = 50		      		
 		      	end
@@ -135,6 +133,7 @@ function shot1_draw()
 		--DEBUGGING AND OLD CODE--
 		--love.graphics.circle("fill", v.x, v.y, 5)		
  		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)
+ 		love.graphics.print(v.dy,0 , 300)
  		--DEBUGGING AND OLD CODE--		
 	end	
 
@@ -171,6 +170,7 @@ function shot1_draw()
 	--love.graphics.print(decrelife1, 0,0)	
 	--love.graphics.print(angle2, 0, 60)
 	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
+
 	--DEBUGGING AND OLD CODE--
 	
 	
