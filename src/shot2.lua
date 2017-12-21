@@ -32,7 +32,6 @@ function shot2_load()
 	bullets2image = love.graphics.newImage("/res/img/bullets2.png")
 	local bullets2animgrid = anim.newGrid(256,256,bullets2image:getWidth(), bullets2image:getHeight())
 	bullets2anim = anim.newAnimation(bullets2animgrid('1-8',1, '1-8', 2), 0.03)
-
 end
 
 function shot2_update(dt)
@@ -48,7 +47,7 @@ function shot2_update(dt)
 	
 	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 	if maxheight2 then	
-		decrelife2 = (10 * (strength2/300)* (gravity/5)) * 2
+		decrelife2 = (10 * (strength2/300)) * 2
 	else
 		decrelife2 = (10 * (strength2/300)* (gravity/5))
 	end
@@ -75,7 +74,7 @@ function shot2_update(dt)
 	for i, v in ipairs (bullets2) do
 		v.x = v.x + v.dx * dt ---(vento)--modificação de posição da bala atirando em direção ao mouse
 		v.y = v.y + v.dy * dt
-		v.dy = v.dy + gravity + vento-- implementação da gravidade
+		v.dy = v.dy + gravity + vento2-- implementação da gravidade
 		v.dx = v.dx + vento
 
 		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 20) then
@@ -84,7 +83,7 @@ function shot2_update(dt)
 			delay.temp = delay.init
 			shotnumber = shotnumber - 1
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
-			random()
+			--random()
 			motionlimiter2 = 50
 		end
 
@@ -97,7 +96,7 @@ function shot2_update(dt)
 		  printflag2 = true
 		end
 		if circlecolision(player2.x, player2.y, v.x, v.y, 25) then --Decrescimento de vida quando detectado colisão da bala com o player
-			player2.life = player2.life - 0.2
+			player2.life = player2.life - decrelife2/10
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -111,7 +110,7 @@ function shot2_update(dt)
 	        		delay.temp = delay.init
 					strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
 					table.remove(bullets2, i)
-					random()
+					--random()
 					maxheight2 = false
 					motionlimiter2 = 50					
 				end

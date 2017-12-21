@@ -1,5 +1,6 @@
 gamefont = love.graphics.setNewFont("res/font/A-Space.otf", 13)
 function game_load()
+	gravity = 4
 	gamestate = "player1"
 	moviments_load()
 	delaytime_load()

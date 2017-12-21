@@ -6,7 +6,10 @@ function delaytime_load()
 	print1 = 30
 	}
 
-	vento,gerador,gravity = 0,0,3
+	delayrandom={
+	init = 5,
+	temp = 5
+	}
 end
 
 function delaytime_update(dt)
@@ -16,7 +19,7 @@ function delaytime_update(dt)
 		delay.print1 = math.floor(delay.temp)
 	elseif delay.temp <=0 then
 		delay.temp = delay.init
-		random()
+		--random()
 		if gamestate == "player1" then
 			gamestate = "player2"
 			strength2 = 0
@@ -26,6 +29,13 @@ function delaytime_update(dt)
 			strength1 = 0
 			motionlimiter1 = 50			
 		end
+	end
+
+	if delayrandom.temp > 0 then
+		delayrandom.temp = delayrandom.temp - dt
+	elseif delayrandom.temp<=0 then
+		delayrandom.temp = delayrandom.init
+		random()
 	end
 end
 
@@ -47,5 +57,8 @@ function delaytime_draw()
 	end
 	
 	love.graphics.print("Gravidade", 150, 0)
-	love.graphics.print(gravity, 200,25)	
+	love.graphics.print(gravity, 200,25)
+
+	love.graphics.print(vento2, 0,0)
+	love.graphics.print(delayrandom.temp, 0,50)
 end
