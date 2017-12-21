@@ -22,6 +22,13 @@ function shot2_load()
 	maxheight2 = false
 	decrelife2 = 0
 
+	--delay de impressão
+	delayprintinit2 = 2
+	delayprinttemp2 = 2
+	printflag2 = false
+	printflag2self = false		
+	--delay de impressão
+
 	bullets2image = love.graphics.newImage("/res/img/bullets2.png")
 	local bullets2animgrid = anim.newGrid(256,256,bullets2image:getWidth(), bullets2image:getHeight())
 	bullets2anim = anim.newAnimation(bullets2animgrid('1-8',1, '1-8', 2), 0.03)
@@ -29,6 +36,15 @@ function shot2_load()
 end
 
 function shot2_update(dt)
+
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+	if printflag2 == true  and delayprinttemp2 > 0 then
+		delayprinttemp2 = delayprinttemp2 - dt
+	elseif 	delayprinttemp2 <= 0 then
+		delayprinttemp2 = delayprintinit2
+		printflag2 = false
+	end
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	
 	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 	if maxheight2 then	
@@ -78,9 +94,10 @@ function shot2_update(dt)
 		end 
 		if circlecolision(player1.x, player1.y, v.x, v.y, 20) then --Decrescimento de vida quando detectado colisão da bala com o player
 		  player1.life = player1.life - decrelife2
+		  printflag2 = true
 		end
-		if circlecolision(player2.x, player2.y, v.x, v.y, 30) then --Decrescimento de vida quando detectado colisão da bala com o player
-			player2.life = player2.life - 0.2	
+		if circlecolision(player2.x, player2.y, v.x, v.y, 25) then --Decrescimento de vida quando detectado colisão da bala com o player
+			player2.life = player2.life - 0.2
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -125,6 +142,15 @@ function shot2_draw()
 	love.graphics.setColor(255,255,255)
 	-- BARRA DE VIDA -- 
 
+
+	-- DECRESCIMENTO DE VIDA --
+	love.graphics.setColor(255,0,0)
+	if printflag2 == true then		
+		love.graphics.print(math.floor(player1.life), player1.x - 15, player1.y - 65)
+	end	
+	love.graphics.setColor(255,255,255)
+	-- DECRESCIMENTO DE VIDA --
+
 	--BARRA DE FORÇA--
 	love.graphics.print(strength2, (strength2 + 772)/1.66, 531) -- impressão da força de tiro
 	love.graphics.setColor(216, 136, 32)
@@ -159,6 +185,6 @@ function shot2_mousepressed(x, y, button)
 		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y})
 		shotnumber = shotnumber + 1
 
-		table.insert(bullets2, {x = x2+ 10, y = y2+ 10, dx = direction2x, dy = direction2y-20})
+		table.insert(bullets2, {x = x2, y = y2, dx = direction2x + 5, dy = direction2y-20})
 	end
 end

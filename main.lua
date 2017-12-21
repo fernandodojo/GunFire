@@ -41,7 +41,7 @@ function love.update(dt)
 		menu_update(dt)
 	elseif state == "instruction" then
 		instruction_update(dt)
-	elseif state == "game" then
+	elseif state == "game" then 
 		game_update(dt)
 	elseif state == "end" then
 		end_update(dt)

@@ -25,9 +25,24 @@ function shot1_load()
 	bullets1image = love.graphics.newImage("/res/img/bullets1.png")
 	local bullets1animgrid = anim.newGrid(256,256,bullets1image:getWidth(), bullets1image:getHeight())
 	bullets1anim = anim.newAnimation(bullets1animgrid('1-8',1, '1-8', 2), 0.03)
+
+	--delay de impressão
+	delayprintinit1 = 2
+	delayprinttemp1 = 2
+	printflag1 = false		
+	--delay de impressão
+	soma = 0
 end
 
-function shot1_update(dt)	
+function shot1_update(dt)
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+	if printflag1 == true and delayprinttemp1 > 0 then
+		delayprinttemp1 = delayprinttemp1 - dt
+	elseif 	delayprinttemp1 <= 0 then
+		delayprinttemp1 = delayprintinit1
+		printflag1 = false	
+	end
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	
 	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 	if maxheight1 then	
@@ -75,11 +90,12 @@ function shot1_update(dt)
 		if v.y< 100 then
 			maxheight1 = true
 		end		
-		if circlecolision(player2.x, player2.y, v.x, v.y, 20) then --Decrescimento de vida quando detectado colisão da bala com o player
+		if circlecolision(player2.x, player2.y, v.x, v.y, 21) then --Decrescimento de vida quando detectado colisão da bala com o player
 			player2.life = player2.life - decrelife1
+			printflag1 = true
 		end
-		if circlecolision(player1.x, player1.y, v.x, v.y, 30)  then --Decrescimento de vida quando detectado colisão da bala com o player		
-			player1.life = player1.life - 0.2		
+		if circlecolision(player1.x, player1.y, v.x, v.y, 25)  then --Decrescimento de vida quando detectado colisão da bala com o player		
+			player1.life = player1.life - 0.2	
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -127,6 +143,15 @@ function shot1_draw()
 	love.graphics.setColor(255,255,255)
 	-- BARRA DE VIDA --
 
+	-- DECRESCIMENTO DE VIDA --
+	love.graphics.setColor(255,0,0)
+	if printflag1 == true then		
+		love.graphics.print(math.floor(player2.life), player2.x + 15, player2.y - 65)
+	end
+	love.graphics.setColor(255,255,255)
+	-- DECRESCIMENTO DE VIDA --
+
+
 	--BARRA DE FORÇA--	
 	love.graphics.print(strength1, (strength1 + 126)/1.66, 531)	
 	love.graphics.setColor(216, 136, 32)
@@ -144,7 +169,10 @@ function shot1_draw()
 	--love.graphics.print(decrelife1, 0,0)	
 	--love.graphics.print(angle2, 0, 60)
 	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
-	--DEBUGGING AND OLD CODE--	
+	--DEBUGGING AND OLD CODE--
+	
+	
+	
 end
 
 function shot1_mousepressed(x, y, button)
@@ -161,7 +189,7 @@ function shot1_mousepressed(x, y, button)
 		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x, dy = direction1y})
 		shotnumber = shotnumber + 1		
 		
-		table.insert (bullets1 , {x = x1-10, y = y1+10, dx = direction1x, dy = direction1y-20})		
+		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})		
 	end
 end
 
