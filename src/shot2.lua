@@ -25,7 +25,12 @@ function shot2_load()
 	delayprintinit2 = 2
 	delayprinttemp2 = 2
 	printflag2 = false
-	printflag2self = false		
+	--delay de impressão
+
+	--delay de impressão
+	delayprintinitself2 = 3
+	delayprinttempself2 = 3
+	printflagself2 = false		
 	--delay de impressão
 
 	bullets2image = love.graphics.newImage("/res/img/bullets2.png")
@@ -88,11 +93,12 @@ function shot2_update(dt)
 		-- DECRESCIMENTO DE VIDA --		
 		decrelife2 = (strength2/100 + v.dy/100) 		 
 		if circlecolision(player1.x, player1.y, v.x, v.y, 20) then --Decrescimento de vida quando detectado colisão da bala com o player
-		  player1.life = player1.life - decrelife2
-		  printflag2 = true
+		  	player1.life = player1.life - decrelife2
+			printflag2 = true
 		end
 		if circlecolision(player2.x, player2.y, v.x, v.y, 25) then --Decrescimento de vida quando detectado colisão da bala com o player
-			player2.life = player2.life - decrelife2/10
+			player2.life = player2.life - decrelife2/15
+			printflagself2 = true
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -140,6 +146,14 @@ function shot2_draw()
 	love.graphics.setColor(255,0,0)
 	if printflag2 == true then		
 		love.graphics.print(math.floor(player1.life), player1.x - 15, player1.y - 65)
+	end	
+	love.graphics.setColor(255,255,255)
+	-- DECRESCIMENTO DE VIDA --
+
+	-- DECRESCIMENTO DE VIDA --
+	love.graphics.setColor(255,0,0)
+	if printflagself2 == true then		
+		love.graphics.print(math.floor(player2.life), player2.x + 15, player2.y - 65)
 	end	
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --

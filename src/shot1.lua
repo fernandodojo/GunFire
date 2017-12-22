@@ -22,10 +22,18 @@ function shot1_load()
 	decrelife1 = 0
 
 	--delay de impressão
-	delayprintinit1 = 2
-	delayprinttemp1 = 2
+	delayprintinit1 = 3
+	delayprinttemp1 = 3
 	printflag1 = false		
 	--delay de impressão
+
+	--delay de impressão
+	delayprintinitself1 = 3
+	delayprinttempself1 = 3
+	printflagself1 = false		
+	--delay de impressão
+
+
 
 	bullets1image = love.graphics.newImage("/res/img/bullets1.png")
 	local bullets1animgrid = anim.newGrid(256,256,bullets1image:getWidth(), bullets1image:getHeight())
@@ -39,6 +47,15 @@ function shot1_update(dt)
 	elseif 	delayprinttemp1 <= 0 then
 		delayprinttemp1 = delayprintinit1
 		printflag1 = false	
+	end
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+	if printflag2 == true and delayprinttemp2 > 0 then
+		delayprinttemp2 = delayprinttemp2 - dt
+	elseif 	delayprinttemp2 <= 0 then
+		delayprinttemp2 = delayprintinit2
+		printflag2 = false	
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	
@@ -83,7 +100,8 @@ function shot1_update(dt)
 			printflag1 = true
 		end
 		if circlecolision(player1.x, player1.y, v.x, v.y, 25)  then --Decrescimento de vida quando detectado colisão da bala com o player		
-			player1.life = player1.life - decrelife1/10
+			player1.life = player1.life - decrelife1/15
+			printflagself1 = true
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -134,6 +152,14 @@ function shot1_draw()
 	love.graphics.setColor(255,0,0)
 	if printflag1 == true then		
 		love.graphics.print(math.floor(player2.life), player2.x + 15, player2.y - 65)
+	end
+	love.graphics.setColor(255,255,255)
+	-- DECRESCIMENTO DE VIDA --
+
+	-- DECRESCIMENTO DE VIDA --
+	love.graphics.setColor(255,0,0)
+	if printflagself1 == true then		
+		love.graphics.print(math.floor(player1.life), player1.x -15, player1.y - 65)
 	end
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --
