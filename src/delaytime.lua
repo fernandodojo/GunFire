@@ -7,8 +7,8 @@ function delaytime_load()
 	}
 
 	delayrandom={
-	init = 20,
-	temp = 20
+	init = 15,
+	temp = 15
 	}
 
 	arrows={
@@ -21,7 +21,7 @@ function delaytime_load()
 	downright = love.graphics.newImage("res/img/downright.png"),
 	upright = love.graphics.newImage("res/img/upright.png"),
 	fastleft = love.graphics.newImage("res/img/fastleft.png"),
-	fastright = love.graphics.newImage("res/img/fastright.png"),	
+	fastright = love.graphics.newImage("res/img/fastright.png"),
 	fastdown = love.graphics.newImage("res/img/fastdown.png"),
 	fastdownleft = love.graphics.newImage("res/img/fastdownleft.png"),
 	fastupleft = love.graphics.newImage("res/img/fastupleft.png"),
@@ -46,7 +46,7 @@ function delaytime_update(dt)
 		elseif gamestate == "player2" then
 			gamestate = "player1"
 			strength1 = 0
-			motionlimiter1 = 50			
+			motionlimiter1 = 50
 		end
 	end
 
@@ -66,65 +66,50 @@ function delaytime_draw()
 	elseif gamestate == "player2" then
 		love.graphics.print("Player 2", 360, 0)
 	end
-	
+
 	love.graphics.print("Vento", 580, 0)
-	love.graphics.print(vento, 590,25)
 	
-
-	if vento == -1 and vento2 == 0 then
-		love.graphics.draw(arrows.left,615,25, 0, 0.3)
-	end
-	if vento == 1 and vento2 == 0 then
-		love.graphics.draw(arrows.right,615,25, 0, 0.3)
-	end
-	if vento == 0 and vento2 == -1 then
-		love.graphics.draw(arrows.up,615,25, 0, 0.3)
-	end
-	if vento == 0 and vento2 == 1 then
-		love.graphics.draw(arrows.down,615,25, 0, 0.3)
-	end
-	if vento ==1 and vento2 == 1 then
-		love.graphics.draw(arrows.downright,615,25, 0, 0.3)
-	end
-	if vento== -1 and vento2 == 1 then
-		love.graphics.draw(arrows.downleft,615,25, 0, 0.3)
-	end
-	if vento == 1 and vento2 == -1 then
-		love.graphics.draw(arrows.upright,615,25, 0, 0.3)
-	end
-	if vento == -1 and vento2 == -1 then
-		love.graphics.draw(arrows.upleft,615,25, 0, 0.3)
-	end
-
-
-	if vento == -2 and vento2 == 0 then
-		love.graphics.draw(arrows.fastleft,615,25, 0, 0.3)
-	end
-	if vento == 2 and vento2 == 0 then
-		love.graphics.draw(arrows.fastright,615,25, 0, 0.3)
-	end
-	
-
-
-	if vento == 0 and vento2 == 2 then
-		love.graphics.draw(arrows.fastdown,615,25, 0, 0.3)
-	end
-	if vento ==2 and vento2 == 1 then
-		love.graphics.draw(arrows.fastdownright,615,25, 0, 0.3)
-	end
-	if vento== -2 and vento2 == 1 then
-		love.graphics.draw(arrows.fastdownleft,615,25, 0, 0.3)
-	end
-	if vento == 2 and vento2 == -1 then
-		love.graphics.draw(arrows.fastupright,615,25, 0, 0.3)
-	end
-	if vento == -2 and vento2 == -1 then
-		love.graphics.draw(arrows.fastupleft,615,25, 0, 0.3)
-	end
-	if vento ==2 and vento2 == 2 then
-		love.graphics.draw(arrows.fastdowndownright,615,25, 0, 0.3)
-	end
-	if vento== -2 and vento2 == 2 then
-		love.graphics.draw(arrows.fastdowndownleft,615,25, 0, 0.3)
+	if vento2 == -1 then
+		if vento == 0 then
+			love.graphics.draw(arrows.up,605,25, 0, 0.3)
+		elseif vento == 1 then
+			love.graphics.draw(arrows.upright,605,25, 0, 0.3)
+		elseif vento == -1 then
+			love.graphics.draw(arrows.upleft,605,25, 0, 0.3)
+		elseif vento == 2 then
+			love.graphics.draw(arrows.fastupright,605,25, 0, 0.3)
+		elseif vento == -2  then
+			love.graphics.draw(arrows.fastupleft,605,25, 0, 0.3)
+		end		
+	elseif vento2 == 0 then
+		if vento ==-1 then
+			love.graphics.draw(arrows.left,605,25, 0, 0.3)
+		elseif vento == 1 then
+			love.graphics.draw(arrows.right,605,25, 0, 0.3)
+		elseif vento == -2 then
+		love.graphics.draw(arrows.fastleft,605,25, 0, 0.3)
+		elseif vento == 2 then
+		love.graphics.draw(arrows.fastright,605,25, 0, 0.3)
+		end
+	elseif vento == 1 then
+		if vento == 0 then
+		love.graphics.draw(arrows.down,605,25, 0, 0.3)
+		elseif vento ==1 then
+		love.graphics.draw(arrows.downright,605,25, 0, 0.3)
+		elseif vento== -1 then
+		love.graphics.draw(arrows.downleft,605,25, 0, 0.3)
+		elseif vento ==2 then
+		love.graphics.draw(arrows.fastdownright,605,25, 0, 0.3)
+		elseif vento== -2 then
+		love.graphics.draw(arrows.fastdownleft,605,25, 0, 0.3)
+		end
+	elseif vento2 ==2 then
+		if vento == 0 then
+		love.graphics.draw(arrows.fastdown,605,25, 0, 0.3)
+		elseif vento ==2  then
+		love.graphics.draw(arrows.fastdowndownright,605,25, 0, 0.3)
+		elseif vento== -2 then
+		love.graphics.draw(arrows.fastdowndownleft,605,25, 0, 0.3)
+		end		
 	end
 end
