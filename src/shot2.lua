@@ -19,7 +19,6 @@ function shot2_load()
 	h = 5
 	}
 
-	maxheight2 = false
 	decrelife2 = 0
 
 	--delay de impressão
@@ -46,11 +45,11 @@ function shot2_update(dt)
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	
 	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
-	if maxheight2 then	
+	--[[if maxheight2 then	
 		decrelife2 = (10 * (strength2/300)) * 2
 	else
 		decrelife2 = (10 * (strength2/300)* (gravity/5))
-	end
+	end]]
 	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
@@ -86,10 +85,8 @@ function shot2_update(dt)
 			motionlimiter2 = 50
 		end
 
-		-- DECRESCIMENTO DE VIDA --
-		if v.y< 100 then
-			maxheight2 = true
-		end 
+		-- DECRESCIMENTO DE VIDA --		
+		decrelife2 = (strength2/100 + v.dy/100) 		 
 		if circlecolision(player1.x, player1.y, v.x, v.y, 20) then --Decrescimento de vida quando detectado colisão da bala com o player
 		  player1.life = player1.life - decrelife2
 		  printflag2 = true
@@ -129,8 +126,6 @@ function shot2_draw()
 	love.graphics.setFont(gamefont)
 	for i, v in ipairs(bullets2) do
 		bullets2anim:draw(bullets2image,v.x, v.y, 0, 0.3, 0.3, bullets2image:getWidth()/16,bullets2image:getHeight()/16)
-		--love.graphics.circle("fill", v.x, v.y, 5)		
-		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)		
 	end	
 
 	-- BARRA DE VIDA --

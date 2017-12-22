@@ -19,10 +19,6 @@ function shot1_load()
 	h = 5
 	}
 
-	--vento = 5
-	--vento2 = -1
-
-	maxheight1 = false
 	decrelife1 = 0
 
 	--delay de impressão
@@ -46,14 +42,6 @@ function shot1_update(dt)
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	
-	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
-	if maxheight1 then	
-		decrelife1 = (10 * (strength1/300)* (gravity/5)) * 2
-	else
-		decrelife1 = (10 * (strength1/300)* (gravity/5))
-	end
-	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
-
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player1" then 
 		if love.keyboard.isDown("space") then
@@ -76,7 +64,8 @@ function shot1_update(dt)
 		v.x = v.x + v.dx * dt --+ (vento) --modificação de posição da bala atirando em direção ao mouse no eixo x
 		v.y = v.y + v.dy * dt --modificação de posição da bala atirando em direção ao mouse no eixo y
 		v.dy = v.dy + gravity + vento2 -- implementação da gravidade
-		v.dx = v.dx + vento		
+		v.dx = v.dx + vento	
+			
 
 		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 20) then
 			gamestate = "player2"
@@ -88,9 +77,7 @@ function shot1_update(dt)
 		end
 		
 		-- DECRESCIMENTO DE VIDA --
-		if v.y< 100 then
-			maxheight1 = true
-		end		
+		decrelife1 = (strength1/100 + v.dy/100) 				
 		if circlecolision(player2.x, player2.y, v.x, v.y, 21) then --Decrescimento de vida quando detectado colisão da bala com o player
 			player2.life = player2.life - decrelife1
 			printflag1 = true
@@ -133,7 +120,6 @@ function shot1_draw()
 		--DEBUGGING AND OLD CODE--
 		--love.graphics.circle("fill", v.x, v.y, 5)		
  		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)
- 		love.graphics.print(v.dy,0 , 300)
  		--DEBUGGING AND OLD CODE--		
 	end	
 
@@ -166,15 +152,10 @@ function shot1_draw()
 	--MOSTRADOR DE ANGULO--
 
 	--DEBUGGING AND OLD CODE--
-	--love.graphics.print(tostring(maxheight1), 0,25)
 	--love.graphics.print(decrelife1, 0,0)	
 	--love.graphics.print(angle2, 0, 60)
 	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
-
-	--DEBUGGING AND OLD CODE--
-	
-	
-	
+	--DEBUGGING AND OLD CODE--	
 end
 
 function shot1_mousepressed(x, y, button)
