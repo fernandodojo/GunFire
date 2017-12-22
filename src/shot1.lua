@@ -33,8 +33,6 @@ function shot1_load()
 	printflagself1 = false		
 	--delay de impressão
 
-
-
 	bullets1image = love.graphics.newImage("/res/img/bullets1.png")
 	local bullets1animgrid = anim.newGrid(256,256,bullets1image:getWidth(), bullets1image:getHeight())
 	bullets1anim = anim.newAnimation(bullets1animgrid('1-8',1, '1-8', 2), 0.03)	
@@ -51,11 +49,11 @@ function shot1_update(dt)
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
-	if printflag2 == true and delayprinttemp2 > 0 then
-		delayprinttemp2 = delayprinttemp2 - dt
-	elseif 	delayprinttemp2 <= 0 then
-		delayprinttemp2 = delayprintinit2
-		printflag2 = false	
+	if printflagself1 == true and delayprinttempself1 > 0 then
+		delayprinttempself1 = delayprinttempself1 - dt
+	elseif 	delayprinttempself1 <= 0 then
+		delayprinttempself1 = delayprintinitself1
+		printflagself1 = false	
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	
@@ -81,8 +79,7 @@ function shot1_update(dt)
 		v.x = v.x + v.dx * dt --+ (vento) --modificação de posição da bala atirando em direção ao mouse no eixo x
 		v.y = v.y + v.dy * dt --modificação de posição da bala atirando em direção ao mouse no eixo y
 		v.dy = v.dy + gravity + vento2 -- implementação da gravidade
-		v.dx = v.dx + vento	
-			
+		v.dx = v.dx + vento				
 
 		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 20) then
 			gamestate = "player2"
@@ -134,11 +131,7 @@ end
 function shot1_draw()
 	love.graphics.setFont(gamefont)
 	for i, v in ipairs(bullets1) do
-		bullets1anim:draw(bullets1image,v.x, v.y, 0, 0.3, 0.3, bullets1image:getWidth()/16,bullets1image:getHeight()/16)
-		--DEBUGGING AND OLD CODE--
-		--love.graphics.circle("fill", v.x, v.y, 5)		
- 		--love.graphics.rectangle("line", v.x-5, v.y-5, 10, 10)
- 		--DEBUGGING AND OLD CODE--		
+		bullets1anim:draw(bullets1image,v.x, v.y, 0, 0.3, 0.3, bullets1image:getWidth()/16,bullets1image:getHeight()/16)	
 	end	
 
 	-- BARRA DE VIDA --
@@ -163,7 +156,6 @@ function shot1_draw()
 	end
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --
-
 
 	--BARRA DE FORÇA--	
 	love.graphics.print(strength1, (strength1 + 126)/1.66, 531)	
@@ -201,5 +193,3 @@ function shot1_mousepressed(x, y, button)
 		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})		
 	end
 end
-
-

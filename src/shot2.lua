@@ -22,8 +22,8 @@ function shot2_load()
 	decrelife2 = 0
 
 	--delay de impressão
-	delayprintinit2 = 2
-	delayprinttemp2 = 2
+	delayprintinit2 = 3
+	delayprinttemp2 = 3
 	printflag2 = false
 	--delay de impressão
 
@@ -48,15 +48,16 @@ function shot2_update(dt)
 		printflag2 = false
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
-	
-	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
-	--[[if maxheight2 then	
-		decrelife2 = (10 * (strength2/300)) * 2
-	else
-		decrelife2 = (10 * (strength2/300)* (gravity/5))
-	end]]
-	--CALCULO PARA NIVEL DE DECRESCIMENTO DE VIDA--
 
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+	if printflagself2 == true and delayprinttempself2 > 0 then
+		delayprinttempself2 = delayprinttempself2 - dt
+	elseif 	delayprinttempself2 <= 0 then
+		delayprinttempself2 = delayprintinitself2
+		printflagself2 = false	
+	end
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+	
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player2" then
 		if love.keyboard.isDown("space") then
@@ -112,7 +113,6 @@ function shot2_update(dt)
 	        		delay.temp = delay.init
 					strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
 					table.remove(bullets2, i)
-					--random()
 					maxheight2 = false
 					motionlimiter2 = 50					
 				end
@@ -141,7 +141,6 @@ function shot2_draw()
 	love.graphics.setColor(255,255,255)
 	-- BARRA DE VIDA -- 
 
-
 	-- DECRESCIMENTO DE VIDA --
 	love.graphics.setColor(255,0,0)
 	if printflag2 == true then		
@@ -169,7 +168,6 @@ function shot2_draw()
 	--MOSTRADOR DE ANGULO--
 	love.graphics.print(math.ceil(math.deg(angle2)).."º", x2 -30, y2 - 30)
 	--MOSTRADOR DE ANGULO--
-
 
 	--DEBUGGING AND OLD CODE--
 	--love.graphics.print(tostring(maxheight2), 750,25)
