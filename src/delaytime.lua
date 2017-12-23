@@ -71,7 +71,7 @@ function delaytime_update(dt)
 	end
 
 	if star.x >= 50 and star.x <= 750 then 
-		star.x = star.x +(5* vento) * dt
+		star.x = star.x +(7* vento) * dt
 		if star.x < 50 then
 			star.x = 50
 		elseif star.x > 750 then
@@ -79,7 +79,7 @@ function delaytime_update(dt)
 		end
 	end
 	if star.y >= 65 and star.y <= 250 then 
-		star.y = star.y +(5* vento2) * dt
+		star.y = star.y +(7* vento2) * dt
 		if star.y < 65 then
 			star.y = 65
 		elseif star.y > 250 then
