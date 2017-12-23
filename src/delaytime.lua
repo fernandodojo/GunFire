@@ -7,9 +7,22 @@ function delaytime_load()
 	}
 
 	delayrandom={
-	init = 15,
-	temp = 15
+	init = 5,
+	temp = 5
 	}
+
+	star = {
+	x = 400,
+	y =100 ,
+	speed = 10	 
+	}
+
+	--starimage = love.graphics.newImage("res/img/star.png")
+	starimage = love.graphics.newImage("res/img/star2.png")
+	staranimgrid = anim.newGrid(256,256,starimage:getWidth(), starimage:getHeight())
+	staranim = anim.newAnimation(staranimgrid('1-17', 1),0.07)
+
+	
 
 	arrows={
 	left = love.graphics.newImage("res/img/left.png"),
@@ -56,6 +69,29 @@ function delaytime_update(dt)
 		delayrandom.temp = delayrandom.init
 		random()
 	end
+
+	if star.x >= 50 and star.x <= 750 then 
+		star.x = star.x +(5* vento) * dt
+		if star.x < 50 then
+			star.x = 50
+		elseif star.x > 750 then
+			star.x = 750
+		end
+	end
+	if star.y >= 65 and star.y <= 250 then 
+		star.y = star.y +(5* vento2) * dt
+		if star.y < 65 then
+			star.y = 65
+		elseif star.y > 250 then
+			star.y = 250
+		end
+	end
+	--sentinel2.x =star.x + 400
+	--sentinel2.y = star.y
+	
+
+	staranim:update(dt)
+	--sentinel2anim:update(dt)
 end
 
 function delaytime_draw()
@@ -66,6 +102,12 @@ function delaytime_draw()
 	elseif gamestate == "player2" then
 		love.graphics.print("Player 2", 360, 0)
 	end
+
+	--love.graphics.circle("line", star.x, star.y, 10)
+	--love.graphics.circle("line", sentinel2.x, sentinel2.y, 10)
+
+	staranim:draw(starimage,star.x, star.y, 0, 0.5, 0.5, starimage:getWidth()/34,starimage:getHeight()/2)
+	--sentinel2anim:draw(sentinel2image,sentinel2.x, sentinel2.y-5, 0, 0.11, 0.11, sentinel2image:getWidth()/6,sentinel2image:getHeight()/2)
 
 	love.graphics.print("Vento", 580, 0)
 	
