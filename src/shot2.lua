@@ -41,7 +41,6 @@ function shot2_load()
 end
 
 function shot2_update(dt)
-
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	if printflag2 == true  and delayprinttemp2 > 0 then
 		delayprinttemp2 = delayprinttemp2 - dt
@@ -124,7 +123,8 @@ function shot2_update(dt)
 	    	end
 	  	end
   		--REMOÇÃO BLOCO DE PISO -- 
-	end	
+	end
+
 	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
 	life2.x = player2.x
 	life2.y = player2.y - 35

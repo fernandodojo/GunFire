@@ -4,8 +4,7 @@ function shot1_load()
 	bullets1 = {} -- tabela de balas
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
 	strength1 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
-	
-	
+		
 	strengthline1 = {
 	x = 75,
 	y = 530,
@@ -41,8 +40,7 @@ function shot1_load()
 	bullets1anim = anim.newAnimation(bullets1animgrid('1-8',1, '1-8', 2), 0.03)	
 end
 
-function shot1_update(dt)
-	
+function shot1_update(dt)	
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	if printflag1 == true and delayprinttemp1 > 0 then
 		delayprinttemp1 = delayprinttemp1 - dt
@@ -198,6 +196,3 @@ function shot1_keypressed(key)
 		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})		
 	end
 end
-
-
-
