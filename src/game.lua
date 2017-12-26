@@ -1,5 +1,7 @@
 gamefont = love.graphics.setNewFont("res/font/A-Space.otf", 13)
 function game_load()
+	mx = 0
+	my = 0
 	gravity = 4
 	gamestate = "player1"
 	moviments_load()
@@ -19,6 +21,12 @@ function game_load()
 		if gamestate == "player2" and state == "game" then
 			shot2_keypressed(key)
 		end
+		if key == "escape" then
+		love.event.quit()
+		end
+	end
+
+	function love.mousepressed(x, y, button)		
 	end
 end
 
@@ -45,14 +53,5 @@ function game_draw()
 	player2_draw()
 	shot1_draw()
 	shot2_draw()
-	floor_draw()	
+	floor_draw()		
 end
-
---[[function love.mousepressed(x, y, button)
-	if gamestate == "player1" and state == "game" then
-		shot1_mousepressed(x, y, button)
-	end
-	if gamestate == "player2" and state == "game" then
-		shot2_mousepressed(x, y, button)
-	end
-end]]
