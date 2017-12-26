@@ -59,7 +59,7 @@ function shot1_update(dt)
 	
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player1" then 
-		if love.keyboard.isDown("space") then
+		if love.keyboard.isDown("lshift") then
 			if strength1 >=500 then
 				strength1 = 500
 			else
@@ -176,20 +176,21 @@ function shot1_draw()
 	--DEBUGGING AND OLD CODE--	
 end
 
-function shot1_mousepressed(x, y, button)
-	--DEBUGGING AND OLD CODE--
+function shot1_keypressed(key)
 	--mx = x
 	--my = y
 	--angle = math.atan2(x1-player1.y , y1 - player1.x )
-	--DEBUGGING AND OLD CODE--
-
+	
 	direction1x = (strength1 + vento) * math.cos(angle1)
 	direction1y = (strength1+ vento) * math.sin(angle1)	
 
-	if button == 1 and shotnumber ==0 then
+	if key == "space" and shotnumber ==0 then
 		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x, dy = direction1y})
 		shotnumber = shotnumber + 1		
 		
 		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})		
 	end
 end
+
+
+

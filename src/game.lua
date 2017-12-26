@@ -12,14 +12,14 @@ function game_load()
 	shot2_load()
 	floor_load()
 	backgroud = love.graphics.newImage("res/img/background.png")
-	function love.mousepressed(x, y, button)
+	function love.keypressed(key)
 		if gamestate == "player1" and state == "game" then
-			shot1_mousepressed(x, y, button)
+			shot1_keypressed(key)
 		end
 		if gamestate == "player2" and state == "game" then
-			shot2_mousepressed(x, y, button)
+			shot2_keypressed(key)
 		end
-	end	
+	end
 end
 
 function game_update(dt)
@@ -48,11 +48,11 @@ function game_draw()
 	floor_draw()	
 end
 
-function love.mousepressed(x, y, button)
+--[[function love.mousepressed(x, y, button)
 	if gamestate == "player1" and state == "game" then
 		shot1_mousepressed(x, y, button)
 	end
 	if gamestate == "player2" and state == "game" then
 		shot2_mousepressed(x, y, button)
 	end
-end
+end]]

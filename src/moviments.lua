@@ -22,17 +22,16 @@ function moviments_update(dt)
 	if love.keyboard.isDown("a") and player1.x > 15 and motionlimiter1 >0  and gamestate == "player1" then
 		player1.x = player1.x - player1.speed * dt
 		motionlimiter1 = motionlimiter1 - player1.speed * dt
-		direction = false
 	end
 	if love.keyboard.isDown("d") and player1.x < 785 and motionlimiter1 >0 and gamestate == "player1" then
 		player1.x = player1.x + player1.speed * dt
 		motionlimiter1 = motionlimiter1 - player1.speed * dt
 	end
-	if love.keyboard.isDown("left") and player2.x > 15 and motionlimiter2 >0 and gamestate == "player2"then
+	if love.keyboard.isDown("kp4") and player2.x > 15 and motionlimiter2 >0 and gamestate == "player2"then
 		player2.x = player2.x - player2.speed * dt
 		motionlimiter2 = motionlimiter2 - player1.speed * dt
 	end
-	if love.keyboard.isDown("right") and player2.x < 785 and motionlimiter2 >0 and gamestate == "player2"then
+	if love.keyboard.isDown("kp6") and player2.x < 785 and motionlimiter2 >0 and gamestate == "player2"then
 		player2.x = player2.x + player2.speed * dt
 		motionlimiter2 = motionlimiter2 - player1.speed * dt
 	end
