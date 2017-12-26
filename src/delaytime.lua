@@ -129,9 +129,11 @@ function delaytime_draw()
 		elseif vento == 1 then
 			love.graphics.draw(arrows.right,605,25, 0, 0.3)
 		elseif vento == -2 then
-		love.graphics.draw(arrows.fastleft,605,25, 0, 0.3)
+			love.graphics.draw(arrows.fastleft,605,25, 0, 0.3)
 		elseif vento == 2 then
-		love.graphics.draw(arrows.fastright,605,25, 0, 0.3)
+			love.graphics.draw(arrows.fastright,605,25, 0, 0.3)
+		elseif vento == 0 then
+			love.graphics.print("0", 610, 25)
 		end
 	elseif vento2 == 1 then
 		if vento == 0 then
@@ -152,6 +154,8 @@ function delaytime_draw()
 		love.graphics.draw(arrows.fastdowndownright,605,25, 0, 0.3)
 		elseif vento== -2 then
 		love.graphics.draw(arrows.fastdowndownleft,605,25, 0, 0.3)
-		end		
+		end
+	--elseif vento2==0 and vento1 == 0 then
+	--	love.graphics.print("0", 615, 25)		
 	end
 end
