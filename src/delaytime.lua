@@ -7,8 +7,8 @@ function delaytime_load()
 	}
 
 	delayrandom={
-	init = 5,
-	temp = 5
+	init = 10,
+	temp = 10
 	}
 
 	star = {

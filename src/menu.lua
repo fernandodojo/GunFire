@@ -57,12 +57,11 @@ function menu_draw()
 	love.graphics.printf("Iniciar", start.x, start.y, 250)
 	
 	love.graphics.printf("Instruções", instructions.x,instructions.y, 250)
-	love.graphics.printf("Sair", exit.x, exit.y, 250)
-
+	love.graphics.printf("Sair", exit.x, exit.y, 250)		
+		
 	--love.graphics.rectangle("line", start.x, start.y, start.w, start.h)
 	--love.graphics.rectangle("line", instructions.x, instructions.y, instructions.w, instructions.h)
-	--love.graphics.rectangle("line", exit.x, exit.y, exit.w, exit.h)
-	
+	--love.graphics.rectangle("line", exit.x, exit.y, exit.w, exit.h)	
 end
 
 function game()

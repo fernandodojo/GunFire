@@ -5,6 +5,7 @@ function shot1_load()
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
 	strength1 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
 	
+	
 	strengthline1 = {
 	x = 75,
 	y = 530,
@@ -20,6 +21,8 @@ function shot1_load()
 	}
 
 	decrelife1 = 0
+	damage1 = 0
+	selfdamage1 = 0
 
 	--delay de impressão
 	delayprintinit1 = 3
@@ -39,12 +42,14 @@ function shot1_load()
 end
 
 function shot1_update(dt)
+	
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	if printflag1 == true and delayprinttemp1 > 0 then
 		delayprinttemp1 = delayprinttemp1 - dt
 	elseif 	delayprinttemp1 <= 0 then
 		delayprinttemp1 = delayprintinit1
-		printflag1 = false	
+		printflag1 = false
+		damage1 = 0	
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 
@@ -53,7 +58,8 @@ function shot1_update(dt)
 		delayprinttempself1 = delayprinttempself1 - dt
 	elseif 	delayprinttempself1 <= 0 then
 		delayprinttempself1 = delayprintinitself1
-		printflagself1 = false	
+		printflagself1 = false
+		selfdamage1 = 0	
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	
@@ -95,10 +101,12 @@ function shot1_update(dt)
 		if circlecolision(player2.x, player2.y, v.x, v.y, 21) then --Decrescimento de vida quando detectado colisão da bala com o player
 			player2.life = player2.life - decrelife1
 			printflag1 = true
+			damage1 = damage1 + decrelife1
 		end
 		if circlecolision(player1.x, player1.y, v.x, v.y, 25)  then --Decrescimento de vida quando detectado colisão da bala com o player		
 			player1.life = player1.life - decrelife1/15
 			printflagself1 = true
+			selfdamage1 = selfdamage1 + decrelife1/15
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -112,7 +120,6 @@ function shot1_update(dt)
 					delay.temp = delay.init
 					strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
 					table.remove(bullets1, i)					
-					maxheight1 = false
 					motionlimiter1 = 50		      		
 		      	end
 	    	end
@@ -144,7 +151,7 @@ function shot1_draw()
 	-- DECRESCIMENTO DE VIDA --
 	love.graphics.setColor(255,0,0)
 	if printflag1 == true then		
-		love.graphics.print(math.floor(player2.life), player2.x + 15, player2.y - 65)
+		love.graphics.print(math.floor(damage1), player2.x + 15, player2.y - 65)
 	end
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --
@@ -152,7 +159,7 @@ function shot1_draw()
 	-- DECRESCIMENTO DE VIDA --
 	love.graphics.setColor(255,0,0)
 	if printflagself1 == true then		
-		love.graphics.print(math.floor(player1.life), player1.x -15, player1.y - 65)
+		love.graphics.print(math.floor(selfdamage1), player1.x -15, player1.y - 65)
 	end
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --

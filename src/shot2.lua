@@ -20,6 +20,8 @@ function shot2_load()
 	}
 
 	decrelife2 = 0
+	damage2 = 0
+	selfdamage2 = 0
 
 	--delay de impressão
 	delayprintinit2 = 3
@@ -46,6 +48,7 @@ function shot2_update(dt)
 	elseif 	delayprinttemp2 <= 0 then
 		delayprinttemp2 = delayprintinit2
 		printflag2 = false
+		damage2 = 0
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 
@@ -54,7 +57,8 @@ function shot2_update(dt)
 		delayprinttempself2 = delayprinttempself2 - dt
 	elseif 	delayprinttempself2 <= 0 then
 		delayprinttempself2 = delayprintinitself2
-		printflagself2 = false	
+		printflagself2 = false
+		selfdamage2 = 0	
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	
@@ -96,10 +100,12 @@ function shot2_update(dt)
 		if circlecolision(player1.x, player1.y, v.x, v.y, 20) then --Decrescimento de vida quando detectado colisão da bala com o player
 		  	player1.life = player1.life - decrelife2
 			printflag2 = true
+			damage2 = damage2 + decrelife2
 		end
 		if circlecolision(player2.x, player2.y, v.x, v.y, 25) then --Decrescimento de vida quando detectado colisão da bala com o player
 			player2.life = player2.life - decrelife2/15
 			printflagself2 = true
+			selfdamage2 = selfdamage2 + decrelife2/15
 		end
 		-- DECRESCIMENTO DE VIDA --
 
@@ -113,7 +119,6 @@ function shot2_update(dt)
 	        		delay.temp = delay.init
 					strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
 					table.remove(bullets2, i)
-					maxheight2 = false
 					motionlimiter2 = 50					
 				end
 	    	end
@@ -144,7 +149,7 @@ function shot2_draw()
 	-- DECRESCIMENTO DE VIDA --
 	love.graphics.setColor(255,0,0)
 	if printflag2 == true then		
-		love.graphics.print(math.floor(player1.life), player1.x - 15, player1.y - 65)
+		love.graphics.print(math.floor(damage2), player1.x - 15, player1.y - 65)
 	end	
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --
@@ -152,7 +157,7 @@ function shot2_draw()
 	-- DECRESCIMENTO DE VIDA --
 	love.graphics.setColor(255,0,0)
 	if printflagself2 == true then		
-		love.graphics.print(math.floor(player2.life), player2.x + 15, player2.y - 65)
+		love.graphics.print(math.floor(selfdamage2), player2.x + 15, player2.y - 65)
 	end	
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --
@@ -170,7 +175,6 @@ function shot2_draw()
 	--MOSTRADOR DE ANGULO--
 
 	--DEBUGGING AND OLD CODE--
-	--love.graphics.print(tostring(maxheight2), 750,25)
 	--love.graphics.print(decrelife2, 770,0)
 	--love.graphics.print(angle1, 0, 60)	
 	--love.graphics.print(player2.life, player2.x + 10, player2.y - 40) -- impressão da quantidade de vida abaixo do jogador
