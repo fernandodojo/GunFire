@@ -8,7 +8,7 @@ function floor_load()
   end
   w = 50
   h = 30
-  moonfloor = love.graphics.newImage("res/img/moonfloor.jpg")
+  moonfloor = love.graphics.newImage("res/img/moonfloor.png")
 
 end
 
