@@ -113,18 +113,19 @@ function shot2_update(dt)
 		pontox2 = v.x
 		pontoy2 = v.y
 
-		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 20) or circlecolision(player2.x, player2.y, v.x, v.y, 25) then
+		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 25) or circlecolision(player2.x, player2.y, v.x, v.y, 25) then
 			gamestate = "player1"
 			delay.temp = delay.init
 			shotnumber = shotnumber - 1
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 			motionlimiter2 = 50
+			explosion2sound:play()
 			table.remove(bullets2, i)
 		end
 
 		-- DECRESCIMENTO DE VIDA --		
 		decrelife2 = 2*(strength2/100 + v.dy/100) 		 
-		if circlecolision(player1.x, player1.y, v.x, v.y, 20) then --Decrescimento de vida quando detectado colisão da bala com o player
+		if circlecolision(player1.x, player1.y, v.x, v.y, 25) then --Decrescimento de vida quando detectado colisão da bala com o player
 		  	player1.life = player1.life - decrelife2
 			printflag2 = true
 			damage2 = damage2 + decrelife2
@@ -167,6 +168,7 @@ function shot2_draw()
 	love.graphics.setFont(gamefont)
 	for i, v in ipairs(bullets2) do
 		bullets2anim:draw(bullets2image,v.x, v.y, 0, 0.4, 0.4, bullets2image:getWidth()/16,bullets2image:getHeight()/16)
+		--love.graphics.circle("line", v.x, v.y, 30)
 	end
 
 	if printflag2 then

@@ -6,8 +6,8 @@ function player2_load()
 	y = 0,
 	speed = 25,
 	life = 100,
-	w = 15,
-	h = 15,
+	w = 30,
+	h = 30,
 	image = love.graphics.newImage("res/img/player2.png"),
 	imagedamaged = love.graphics.newImage("res/img/player2_damage.png")
 	}
@@ -24,7 +24,7 @@ function player2_update(dt)
 	for i=0, 750, 50 do
 		for j = 300, 480, 30 do
 			if floor[i][j] == 1 then
-				if squarecollision(player2.x-15,player2.y-15, 30, 30, i,j,w,h) then
+				if squarecollision(player2.x-15,player2.y-15, player2.w, player2.h, i,j,w,h) then
 					if player2.x< i and player2.y> j and player2.y < j+ h then
 						player2.x = player2.x - 1			
 					end
@@ -44,8 +44,10 @@ end
 
 function player2_draw()
 	--DEBUGGING AND OLD CODE--
-	--love.graphics.circle("fill", player2.x, player2.y, 15)
-	--love.graphics.rectangle("line",player2.x-15, player2.y-15, 30,30)	
+	--love.graphics.setColor(242, 94, 133)
+	--love.graphics.circle("line", player2.x, player2.y, 70)
+	--love.graphics.rectangle("line",player2.x-15, player2.y-15, player2.w,player2.h)
+	--love.graphics.setColor(255, 255, 255)	
 	--DEBUGGING AND OLD CODE--
 	
 	player2anim:draw(player2image,player2.x, player2.y-4, 0, 0.27, 0.27, player2image:getWidth()/2,player2image:getHeight()/18)
