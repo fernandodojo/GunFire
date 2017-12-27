@@ -228,10 +228,10 @@ function shot1_keypressed(key)
 	direction1x = (strength1 + vento) * math.cos(angle1)
 	direction1y = (strength1+ vento) * math.sin(angle1)	
 
-	if key == "space" and shotnumber ==0 then
+	if key == "space" and shotnumber ==0 and not printflag1 and not printflagself1 and not printfloorflag1 then
 		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x, dy = direction1y})
 		shotnumber = shotnumber + 1		
 		
-		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})		
+		--table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})
 	end
 end
