@@ -14,6 +14,7 @@ function game_load()
 	shot2_load()
 	floor_load()
 	backgroud = love.graphics.newImage("res/img/background.png")
+	mainsound = love.audio.newSource("res/sound/mainsoundtrack.wav")
 	function love.keypressed(key)
 		if gamestate == "player1" and state == "game" then
 			shot1_keypressed(key)
@@ -31,6 +32,7 @@ function game_load()
 end
 
 function game_update(dt)
+	mainsound:play()
 	moviments_update(dt)
 	delaytime_update(dt)
 	aiming1_update(dt)
