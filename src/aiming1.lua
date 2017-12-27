@@ -18,7 +18,9 @@ function aiming1_update(dt)
 end
  
 function aiming1_draw()
+	love.graphics.setColor(255, 63, 0)
 	love.graphics.circle("fill", x1, y1, 4)
+	love.graphics.setColor(255, 255, 255)	
 	--love.graphics.print(angle1, 0,0)
 	--love.graphics.print(x1, 0,25)
 	--love.graphics.print(y1, 0,50)
