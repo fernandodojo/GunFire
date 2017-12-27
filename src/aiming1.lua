@@ -6,7 +6,6 @@ function aiming1_load()
 end
 
 function aiming1_update(dt)
-	--
 	x1 = player1.x + math.cos(angle1) * 25
 	y1 = player1.y + math.sin(angle1) * 25
 	

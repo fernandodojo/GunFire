@@ -225,7 +225,9 @@ function shot1_draw()
 	--love.graphics.print(decrelife1, 0,0)	
 	--love.graphics.print(angle2, 0, 60)
 	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
-	--DEBUGGING AND OLD CODE--		
+	--DEBUGGING AND OLD CODE--
+
+
 end
 
 function shot1_keypressed(key)
