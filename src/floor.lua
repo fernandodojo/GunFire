@@ -9,7 +9,6 @@ function floor_load()
   w = 50
   h = 30
   moonfloor = love.graphics.newImage("res/img/moonfloor.png")
-
 end
 
 function floor_update(dt)

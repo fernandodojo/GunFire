@@ -1,5 +1,4 @@
 local bullets1image, bullets1anim
-local explosionimage , explosionanim
 
 function shot1_load()
 	bullets1 = {} -- tabela de balas
