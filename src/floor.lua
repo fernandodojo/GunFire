@@ -8,6 +8,7 @@ function floor_load()
   end
   w = 50
   h = 30
+  moonfloor = love.graphics.newImage("res/img/moonfloor.jpg")
 
 end
 
@@ -17,10 +18,10 @@ end
 
 function floor_draw()
   for i=0, 750, 50 do
-      for j = 300, 480, 30 do
-          if floor[i][j] == 1 then
-            love.graphics.rectangle("line", i, j, w, h)
-          end         
-      end
+    for j = 300, 480, 30 do
+      if floor[i][j] == 1 then
+        love.graphics.draw(moonfloor, i, j)
+      end         
     end
+  end
 end
