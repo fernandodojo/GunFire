@@ -186,7 +186,7 @@ function shot2_draw()
 	-- DECRESCIMENTO DE VIDA --
 	love.graphics.setColor(255,255,0)
 	if printflag2 == true then		
-		love.graphics.print(math.floor(damage2), player1.x - 15, player1.y - 65)
+		love.graphics.print(math.floor(damage2).."0", player1.x - 15, player1.y - 65)
 	end	
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --
@@ -194,7 +194,7 @@ function shot2_draw()
 	-- DECRESCIMENTO DE VIDA --
 	love.graphics.setColor(255,255,0)
 	if printflagself2 == true then		
-		love.graphics.print(math.floor(selfdamage2), player2.x + 15, player2.y - 65)
+		love.graphics.print(math.floor(selfdamage2).."0", player2.x + 15, player2.y - 65)
 	end	
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --
