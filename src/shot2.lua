@@ -19,6 +19,9 @@ function shot2_load()
 	h = 5
 	}
 
+	pontox2 = 0
+	pontoy2 = 0
+
 	decrelife2 = 0
 	damage2 = 0
 	selfdamage2 = 0
@@ -35,9 +38,19 @@ function shot2_load()
 	printflagself2 = false		
 	--delay de impressão
 
+	--delay de impressão de dano no piso
+	delayfloorflag2 = 3
+	delayfloorflaginit2 = 3
+	printfloorflag2 = false		
+	--delay de impressão de dano no piso
+
 	bullets2image = love.graphics.newImage("/res/img/bullets2.png")
 	local bullets2animgrid = anim.newGrid(256,256,bullets2image:getWidth(), bullets2image:getHeight())
 	bullets2anim = anim.newAnimation(bullets2animgrid('1-8',1, '1-8', 2), 0.03)
+
+	explosion2image = love.graphics.newImage("/res/img/bullets2.png")
+	local explosion2animgrid = anim.newGrid(256,256,explosion2image:getWidth(), explosion2image:getHeight())
+	explosion2anim = anim.newAnimation(explosion2animgrid('1-8',3, '1-8',4, '1-8', 5, '1-8',6, '1-8', 7, '1-8',8), 0.1)
 end
 
 function shot2_update(dt)
@@ -60,6 +73,15 @@ function shot2_update(dt)
 		selfdamage2 = 0	
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
+	if printfloorflag2 == true and delayfloorflag2 > 0 then
+		delayfloorflag2 = delayfloorflag2 - dt
+	elseif 	delayfloorflag2 <= 0 then
+		delayfloorflag2 = delayfloorflaginit2
+		printfloorflag2 = false
+	end
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
 	
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player2" then
@@ -84,6 +106,9 @@ function shot2_update(dt)
 		v.y = v.y + v.dy * dt
 		v.dy = v.dy + gravity + vento2-- implementação da gravidade
 		v.dx = v.dx + vento
+
+		pontox2 = v.x
+		pontoy2 = v.y
 
 		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 20) then
 			gamestate = "player1"			
@@ -116,9 +141,10 @@ function shot2_update(dt)
 	        		gamestate = "player1"	        		
 	        		shotnumber = shotnumber - 1
 	        		delay.temp = delay.init
-					strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.	        		
-					table.remove(bullets2, i)
-					motionlimiter2 = 50					
+					strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.					
+					printfloorflag2 = true
+					motionlimiter2 = 50
+					table.remove(bullets2, i)					
 				end
 	    	end
 	  	end
@@ -131,12 +157,23 @@ function shot2_update(dt)
 	--ATUALIZAÇÃO DA POSIÇÃO DA BARRA DE VIDA --
 
 	bullets2anim:update(dt)
+	explosion2anim:update(dt)
 end
 
 function shot2_draw()
 	love.graphics.setFont(gamefont)
 	for i, v in ipairs(bullets2) do
 		bullets2anim:draw(bullets2image,v.x, v.y, 0, 0.3, 0.3, bullets2image:getWidth()/16,bullets2image:getHeight()/16)
+	end
+
+	if printflag2 then
+		explosion2anim:draw(explosion2image,player1.x, player1.y, 0, 0.8, 0.8, explosion2image:getWidth()/16,explosion2image:getHeight()/16)
+	end
+	if printflagself2 then
+		explosion2anim:draw(explosion2image,player2.x, player2.y, 0, 0.8, 0.8, explosion2image:getWidth()/16,explosion2image:getHeight()/16)
+	end
+	if printfloorflag2 then
+		explosion2anim:draw(explosion2image,pontox2, pontoy2, 0, 0.8, 0.8, explosion2image:getWidth()/16,explosion2image:getHeight()/16)
 	end	
 
 	-- BARRA DE VIDA --
@@ -147,7 +184,7 @@ function shot2_draw()
 	-- BARRA DE VIDA -- 
 
 	-- DECRESCIMENTO DE VIDA --
-	love.graphics.setColor(255,0,0)
+	love.graphics.setColor(255,255,0)
 	if printflag2 == true then		
 		love.graphics.print(math.floor(damage2), player1.x - 15, player1.y - 65)
 	end	
@@ -155,7 +192,7 @@ function shot2_draw()
 	-- DECRESCIMENTO DE VIDA --
 
 	-- DECRESCIMENTO DE VIDA --
-	love.graphics.setColor(255,0,0)
+	love.graphics.setColor(255,255,0)
 	if printflagself2 == true then		
 		love.graphics.print(math.floor(selfdamage2), player2.x + 15, player2.y - 65)
 	end	
