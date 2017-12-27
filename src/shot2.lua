@@ -110,13 +110,13 @@ function shot2_update(dt)
 		pontox2 = v.x
 		pontoy2 = v.y
 
-		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 20) then
-			gamestate = "player1"			
-			table.remove(bullets2, i)
+		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 20) or circlecolision(player2.x, player2.y, v.x, v.y, 25) then
+			gamestate = "player1"
 			delay.temp = delay.init
 			shotnumber = shotnumber - 1
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 			motionlimiter2 = 50
+			table.remove(bullets2, i)
 		end
 
 		-- DECRESCIMENTO DE VIDA --		
