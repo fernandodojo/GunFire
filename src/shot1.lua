@@ -74,14 +74,14 @@ function shot1_update(dt)
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
 
-	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
+	--FLAG DE DELAY DE ANIMAÇÃO APÓS DANO NO PISO--
 	if printfloorflag1 == true and delayfloorflag1 > 0 then
 		delayfloorflag1 = delayfloorflag1 - dt
 	elseif 	delayfloorflag1 <= 0 then
 		delayfloorflag1 = delayfloorflaginit1
 		printfloorflag1 = false
 	end
-	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
+	--FLAG DE DELAY DE ANIMAÇÃO APÓS DANO NO PISO--
 
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player1" then 
@@ -217,7 +217,7 @@ function shot1_draw()
 	--love.graphics.print(decrelife1, 0,0)	
 	--love.graphics.print(angle2, 0, 60)
 	--love.graphics.print(player1.life, player1.x - 30, player1.y - 40) -- impressão da quantidade de vida abaixo do jogador
-	--DEBUGGING AND OLD CODE--	
+	--DEBUGGING AND OLD CODE--		
 end
 
 function shot1_keypressed(key)
