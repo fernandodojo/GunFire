@@ -64,7 +64,7 @@ function shot2_update(dt)
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 
-	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
 	if printflagself2 == true and delayprinttempself2 > 0 then
 		delayprinttempself2 = delayprinttempself2 - dt
 	elseif 	delayprinttempself2 <= 0 then
@@ -72,16 +72,16 @@ function shot2_update(dt)
 		printflagself2 = false
 		selfdamage2 = 0	
 	end
-	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
-
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
+
+	--FLAG DE DELAY DE ANIMAÇÃO APÓS DANO NO PISO--
 	if printfloorflag2 == true and delayfloorflag2 > 0 then
 		delayfloorflag2 = delayfloorflag2 - dt
 	elseif 	delayfloorflag2 <= 0 then
 		delayfloorflag2 = delayfloorflaginit2
 		printfloorflag2 = false
 	end
-	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
+	--FLAG DE DELAY DE ANIMAÇÃO APÓS DANO NO PISO--
 	
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player2" then
