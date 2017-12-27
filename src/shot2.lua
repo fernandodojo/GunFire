@@ -226,10 +226,10 @@ function shot2_keypressed(key)
 	direction2x = (strength2 - vento) * -math.cos(angle2)
 	direction2y = (strength2 - vento) * -math.sin(angle2)
 
-	if key == "kpenter" and shotnumber == 0 then
+	if key == "kpenter" and shotnumber == 0  and not printflag2 and not printflagself2 and not printfloorflag2 then
 		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y})
 		shotnumber = shotnumber + 1
 
-		table.insert(bullets2, {x = x2, y = y2, dx = direction2x + 5, dy = direction2y-20})
+		--table.insert(bullets2, {x = x2, y = y2, dx = direction2x + 5, dy = direction2y-20})
 	end
 end
