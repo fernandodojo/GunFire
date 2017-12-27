@@ -52,8 +52,9 @@ function shot2_load()
 	local explosion2animgrid = anim.newGrid(256,256,explosion2image:getWidth(), explosion2image:getHeight())
 	explosion2anim = anim.newAnimation(explosion2animgrid('1-8',3,'1-8',4, '1-8', 5, '1-8',6, '1-8', 7, '1-8',8), 0.03)
 
-	shot2sound = love.audio.newSource("res/sound/shot1.wav")
+	--shot2sound = love.audio.newSource("res/sound/shot1.wav")
 	explosion2sound = love.audio.newSource("res/sound/explosion2.wav")
+
 end
 
 function shot2_update(dt)
@@ -94,6 +95,7 @@ function shot2_update(dt)
 			else
 				strength2 = strength2 + 3
 			end
+			--loadingsound:play()
 		end
 	end
 
@@ -237,7 +239,7 @@ function shot2_keypressed(key)
 	if key == "kpenter" and shotnumber == 0  and not printflag2 and not printflagself2 and not printfloorflag2 then
 		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y})
 		shotnumber = shotnumber + 1
-		shot2sound:play()
+		shotsound:play()
 
 		--table.insert(bullets2, {x = x2, y = y2, dx = direction2x + 5, dy = direction2y-20})
 	end

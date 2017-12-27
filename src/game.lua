@@ -1,5 +1,6 @@
 gamefont = love.graphics.setNewFont("res/font/A-Space.otf", 13)
 function game_load()
+	
 	mx = 0
 	my = 0
 	gravity = 4
@@ -15,6 +16,9 @@ function game_load()
 	floor_load()
 	backgroud = love.graphics.newImage("res/img/background.png")
 	mainsound = love.audio.newSource("res/sound/mainsoundtrack.wav")
+	shotsound = love.audio.newSource("res/sound/shot1.wav")
+	--loadingsound = love.audio.newSource("res/sound/loadingsound.wav")
+
 	function love.keypressed(key)
 		if gamestate == "player1" and state == "game" then
 			shot1_keypressed(key)

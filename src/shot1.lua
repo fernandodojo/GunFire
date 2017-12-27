@@ -52,7 +52,7 @@ function shot1_load()
 	local explosion1animgrid = anim.newGrid(256,256,explosion1image:getWidth(), explosion1image:getHeight())
 	explosion1anim = anim.newAnimation(explosion1animgrid('1-8',4, '1-8',6, '1-8', 7, '1-8',8), 0.06)
 
-	shot1sound = love.audio.newSource("res/sound/shot1.wav")
+	--shot1sound = love.audio.newSource("res/sound/shot1.wav")
 	explosion1sound = love.audio.newSource("res/sound/explosion1.wav")
 end
 
@@ -94,6 +94,7 @@ function shot1_update(dt)
 			else
 				strength1 = strength1 + 3
 			end
+			--loadingsound:play()
 		end
 	end
 
@@ -241,7 +242,7 @@ function shot1_keypressed(key)
 	if key == "space" and shotnumber ==0 and not printflag1 and not printflagself1 and not printfloorflag1 then
 		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x, dy = direction1y})
 		shotnumber = shotnumber + 1
-		shot1sound:play()		
+		shotsound:play()		
 		
 		--table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})
 	end
