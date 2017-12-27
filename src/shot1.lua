@@ -150,6 +150,7 @@ function shot1_update(dt)
 					strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.			
 					motionlimiter1 = 50
 					printfloorflag1 = true
+					explosion1sound:play()
 					table.remove(bullets1, i)		      		
 		      	end
 	    	end
@@ -237,7 +238,8 @@ function shot1_keypressed(key)
 
 	if key == "space" and shotnumber ==0 and not printflag1 and not printflagself1 and not printfloorflag1 then
 		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x, dy = direction1y})
-		shotnumber = shotnumber + 1		
+		shotnumber = shotnumber + 1
+		shot1sound:play()		
 		
 		--table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})
 	end
