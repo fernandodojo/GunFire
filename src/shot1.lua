@@ -42,16 +42,15 @@ function shot1_load()
 	delayfloorflag1 = 3
 	delayfloorflaginit1 = 3
 	printfloorflag1 = false		
-	--delay de impressão de dano no piso
-	
+	--delay de impressão de dano no piso	
 
 	bullets1image = love.graphics.newImage("/res/img/bullets1.png")
 	local bullets1animgrid = anim.newGrid(256,256,bullets1image:getWidth(), bullets1image:getHeight())
-	bullets1anim = anim.newAnimation(bullets1animgrid('1-8',1, '1-8', 2, '1-8',3), 0.03)
+	bullets1anim = anim.newAnimation(bullets1animgrid('1-8',1, '1-8', 2), 0.03)
 
 	explosion1image = love.graphics.newImage("/res/img/bullets1.png")
 	local explosion1animgrid = anim.newGrid(256,256,explosion1image:getWidth(), explosion1image:getHeight())
-	explosion1anim = anim.newAnimation(explosion1animgrid('1-8',4, '1-8', 5, '1-8',6, '1-8', 7, '1-8',8), 0.08)
+	explosion1anim = anim.newAnimation(explosion1animgrid('1-8',4, '1-8', 5, '1-8',6, '1-8', 7, '1-8',8), 0.09)
 end
 
 function shot1_update(dt)	
@@ -164,14 +163,16 @@ end
 function shot1_draw()
 	love.graphics.setFont(gamefont)
 	for i, v in ipairs(bullets1) do
-		bullets1anim:draw(bullets1image,v.x, v.y, 0, 0.4, 0.4, bullets1image:getWidth()/16,bullets1image:getHeight()/16)
+		bullets1anim:draw(bullets1image,v.x, v.y, 0, 0.4, 0.4, bullets1image:getWidth()/16,bullets1image:getHeight()/16)		
 	end
 		
 	if printflag1 then
-		explosion1anim:draw(explosion1image,player2.x, player2.y, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
+		--explosion1anim:draw(explosion1image,player2.x, player2.y, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
+		explosion1anim:draw(explosion1image,pontox1, pontoy1, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
 	end
 	if printflagself1 then
-		explosion1anim:draw(explosion1image,player1.x, player1.y, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
+		--explosion1anim:draw(explosion1image,player1.x, player1.y, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
+		explosion1anim:draw(explosion1image,pontox1, pontoy1, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
 	end
 	if printfloorflag1 then
 		explosion1anim:draw(explosion1image,pontox1, pontoy1, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
