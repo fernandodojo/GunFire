@@ -120,16 +120,16 @@ function shot2_update(dt)
 		end
 
 		-- DECRESCIMENTO DE VIDA --		
-		decrelife2 = (strength2/100 + v.dy/100) 		 
+		decrelife2 = 2*(strength2/100 + v.dy/100) 		 
 		if circlecolision(player1.x, player1.y, v.x, v.y, 20) then --Decrescimento de vida quando detectado colisão da bala com o player
 		  	player1.life = player1.life - decrelife2
 			printflag2 = true
 			damage2 = damage2 + decrelife2
 		end
 		if circlecolision(player2.x, player2.y, v.x, v.y, 25) then --Decrescimento de vida quando detectado colisão da bala com o player
-			player2.life = player2.life - decrelife2/15
+			player2.life = player2.life - (decrelife2+10)/2
 			printflagself2 = true
-			selfdamage2 = selfdamage2 + decrelife2/15
+			selfdamage2 = selfdamage2 + (decrelife2+10)/2
 		end
 		-- DECRESCIMENTO DE VIDA --
 
