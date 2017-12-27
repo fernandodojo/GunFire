@@ -27,20 +27,20 @@ function shot1_load()
 	selfdamage1 = 0
 
 	--delay de impressão
-	delayprintinit1 = 3
-	delayprinttemp1 = 3
+	delayprintinit1 = 2
+	delayprinttemp1 = 2
 	printflag1 = false		
 	--delay de impressão
 
 	--delay de impressão de dano proprio
-	delayprintinitself1 = 3
-	delayprinttempself1 = 3
+	delayprintinitself1 = 2
+	delayprinttempself1 = 2
 	printflagself1 = false		
 	--delay de impressão de dano proprio
 
 	--delay de impressão de dano no piso
-	delayfloorflag1 = 3
-	delayfloorflaginit1 = 3
+	delayfloorflag1 = 2
+	delayfloorflaginit1 = 2
 	printfloorflag1 = false		
 	--delay de impressão de dano no piso	
 
@@ -50,7 +50,10 @@ function shot1_load()
 
 	explosion1image = love.graphics.newImage("/res/img/bullets1.png")
 	local explosion1animgrid = anim.newGrid(256,256,explosion1image:getWidth(), explosion1image:getHeight())
-	explosion1anim = anim.newAnimation(explosion1animgrid('1-8',4, '1-8', 5, '1-8',6, '1-8', 7, '1-8',8), 0.09)
+	explosion1anim = anim.newAnimation(explosion1animgrid('1-8',4, '1-8',6, '1-8', 7, '1-8',8), 0.06)
+
+	shot1sound = love.audio.newSource("res/sound/shot1.wav")
+	explosion1sound = love.audio.newSource("res/sound/explosion1.wav")
 end
 
 function shot1_update(dt)	
