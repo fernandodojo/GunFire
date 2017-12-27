@@ -52,7 +52,7 @@ function shot1_load()
 
 	explosion1image = love.graphics.newImage("/res/img/bullets1.png")
 	local explosion1animgrid = anim.newGrid(256,256,explosion1image:getWidth(), explosion1image:getHeight())
-	explosion1anim = anim.newAnimation(explosion1animgrid('1-8',4, '1-8', 5, '1-8',6, '1-8', 7, '1-8',8), 0.1)
+	explosion1anim = anim.newAnimation(explosion1animgrid('1-8',4, '1-8', 5, '1-8',6, '1-8', 7, '1-8',8), 0.08)
 end
 
 function shot1_update(dt)	
