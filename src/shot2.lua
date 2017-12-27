@@ -167,10 +167,12 @@ function shot2_draw()
 	end
 
 	if printflag2 then
-		explosion2anim:draw(explosion2image,player1.x, player1.y, 0, 0.8, 0.8, explosion2image:getWidth()/16,explosion2image:getHeight()/16)
+		--explosion2anim:draw(explosion2image,player1.x, player1.y, 0, 0.8, 0.8, explosion2image:getWidth()/16,explosion2image:getHeight()/16)
+		explosion2anim:draw(explosion2image,pontox2, pontoy2, 0, 0.8, 0.8, explosion2image:getWidth()/16,explosion2image:getHeight()/16)
 	end
 	if printflagself2 then
-		explosion2anim:draw(explosion2image,player2.x, player2.y, 0, 0.8, 0.8, explosion2image:getWidth()/16,explosion2image:getHeight()/16)
+		--explosion2anim:draw(explosion2image,player2.x, player2.y, 0, 0.8, 0.8, explosion2image:getWidth()/16,explosion2image:getHeight()/16)
+		explosion2anim:draw(explosion2image,pontox2, pontoy2, 0, 0.8, 0.8, explosion2image:getWidth()/16,explosion2image:getHeight()/16)
 	end
 	if printfloorflag2 then
 		explosion2anim:draw(explosion2image,pontox2, pontoy2, 0, 0.8, 0.8, explosion2image:getWidth()/16,explosion2image:getHeight()/16)
