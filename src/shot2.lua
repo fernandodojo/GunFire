@@ -163,7 +163,7 @@ end
 function shot2_draw()
 	love.graphics.setFont(gamefont)
 	for i, v in ipairs(bullets2) do
-		bullets2anim:draw(bullets2image,v.x, v.y, 0, 0.3, 0.3, bullets2image:getWidth()/16,bullets2image:getHeight()/16)
+		bullets2anim:draw(bullets2image,v.x, v.y, 0, 0.4, 0.4, bullets2image:getWidth()/16,bullets2image:getHeight()/16)
 	end
 
 	if printflag2 then
