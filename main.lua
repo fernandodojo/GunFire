@@ -19,7 +19,9 @@ require "src/menu"
 require "src/game"
 require "src/end"
 require "src/instruction"
+require "src/ui"
 anim = require "libs/anim8"
+gamera = require "libs/gamera"
 
 math.randomseed(os.time())
 
@@ -30,6 +32,7 @@ function love.keypressed(key)
 end
 
 function love.load()
+	love.graphics.setDefaultFilter( 'nearest', 'nearest' )
 	gamestate = "player1"
 	state = "menu"
 	menu_load()	

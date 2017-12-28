@@ -221,13 +221,13 @@ function shot1_draw()
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --
 
-	--BARRA DE FORÇA--	
+	--[[--BARRA DE FORÇA--	
 	love.graphics.print(strength1, (strength1 + 126)/1.66, 531)	
 	love.graphics.setColor(216, 136, 32)
 	love.graphics.rectangle("line", strengthline1.x, strengthline1.y, strengthline1.w, strengthline1.h)
 	love.graphics.rectangle("fill", strengthline1.x, strengthline1.y, strength1/1.66, strengthline1.h)
 	love.graphics.setColor(255,255,255)
-	--BARRA DE FORÇA--
+	--BARRA DE FORÇA--]]
 
 	--MOSTRADOR DE ANGULO--
 	love.graphics.print(math.ceil(math.deg(-angle1)).."º", x1, y1 - 30)

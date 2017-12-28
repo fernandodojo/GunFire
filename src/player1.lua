@@ -48,10 +48,10 @@ function player1_draw()
 	--love.graphics.circle("line", player1.x, player1.y, 50)
 	--love.graphics.rectangle("line",player1.x-15, player1.y-15, player1.w,player1.h)
 	--love.graphics.setColor(255, 255, 255)
-	--DEBUGGING AND OLD CODE--
+	--DEBUGGING AND OLD CODE--	
 	
 	player1anim:draw(player1image,player1.x, player1.y-4, 0, 0.27, 0.27, player1image:getWidth()/2,player1image:getHeight()/18)
-	love.graphics.draw(player1.image, 10,525, 0, 0.45,0.45)
+	--love.graphics.draw(player1.image, 10,525, 0, 0.45,0.45)
 	if player1.life <= 0 or player1.y > 600 then
 		player1dead = true
 		state = "end"

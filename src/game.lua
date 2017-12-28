@@ -44,7 +44,8 @@ function game_load()
 	end	
 end
 
-function game_update(dt)		
+function game_update(dt)
+	ui_update(dt)		
 	moviments_update(dt)
 	delaytime_update(dt)
 	aiming1_update(dt)
