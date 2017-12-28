@@ -93,15 +93,15 @@ function game_update(dt)
 	if not play then
 		mainsound:pause()
 	end
-
 end
 
 function game_draw()
 	love.graphics.setFont(gamefont)
+
 	if shotnumber ~= 0 or printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2 then
 		cam:draw(function()
 			love.graphics.setFont(gamefont)
-			love.graphics.draw(backgroud,-2000, -600)			
+			love.graphics.draw(backgroud,-1000, -600)			
 			moviments_draw()
 			delaytime_draw()
 			aiming1_draw()
@@ -114,7 +114,7 @@ function game_draw()
 		end)
 	else
 		love.graphics.setFont(gamefont)
-		love.graphics.draw(backgroud,-2000, -600)
+		love.graphics.draw(backgroud,-1000, -600)
 		moviments_draw()
 		delaytime_draw()
 		aiming1_draw()

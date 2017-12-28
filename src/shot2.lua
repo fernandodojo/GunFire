@@ -90,6 +90,9 @@ function shot2_update(dt)
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player2" then
 		if love.keyboard.isDown("up") then
+			--if not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
+				--cam:setPosition(player2.x, player2.y)
+			--end
 			if strength2 >=500 then
 				strength2 = 500
 			else
@@ -116,7 +119,9 @@ function shot2_update(dt)
 
 		pontox2 = v.x
 		pontoy2 = v.y
+
 		cam:setPosition(v.x, v.y)
+
 		if v.y > 600 then
 			printfloorflag2 = true
 		end

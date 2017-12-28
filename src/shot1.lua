@@ -89,6 +89,9 @@ function shot1_update(dt)
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player1" then 
 		if love.keyboard.isDown("lshift") then
+			--if not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
+				--cam:setPosition(player1.x, player1.y)
+			--end
 			if strength1 >=500 then
 				strength1 = 500
 			else
@@ -106,7 +109,7 @@ function shot1_update(dt)
 		shotnumber = 0
 	end
 	-- BUG FIX--
-
+	
 	for i, v in ipairs (bullets1) do
 		v.x = v.x + v.dx * dt --+ (vento) --modificação de posição da bala atirando em direção ao mouse no eixo x
 		v.y = v.y + v.dy * dt --modificação de posição da bala atirando em direção ao mouse no eixo y
@@ -115,7 +118,9 @@ function shot1_update(dt)
 
 		pontox1 = v.x
 		pontoy1 = v.y
+
 		cam:setPosition(v.x, v.y)
+
 		if v.y > 600 then
 			printfloorflag1 = true
 		end

@@ -3,7 +3,7 @@ local player2image , player2anim
 function player2_load()
 	player2 = {
 	x =math.random(420,780),
-	y = 0,
+	y = -200,
 	speed = 25,
 	life = 100,
 	w = 30,
