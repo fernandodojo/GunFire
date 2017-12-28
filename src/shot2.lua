@@ -116,8 +116,12 @@ function shot2_update(dt)
 
 		pontox2 = v.x
 		pontoy2 = v.y
+		cam:setPosition(v.x, v.y)
+		if v.y > 600 then
+			printfloorflag2 = true
+		end
 
-		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 25) or circlecolision(player2.x, player2.y, v.x, v.y, 25) then
+		if v.x> 2000 or v.x < -2000 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 25) or circlecolision(player2.x, player2.y, v.x, v.y, 25) then
 			gamestate = "player1"
 			delay.temp = delay.init
 			shotnumber = shotnumber - 1

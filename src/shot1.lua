@@ -1,6 +1,6 @@
 local bullets1image, bullets1anim
 
-function shot1_load()
+function shot1_load()	
 	bullets1 = {} -- tabela de balas
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
 	strength1 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
@@ -115,8 +115,13 @@ function shot1_update(dt)
 
 		pontox1 = v.x
 		pontoy1 = v.y
+		cam:setPosition(v.x, v.y)
+		if v.y > 600 then
+			printfloorflag1 = true
+		end
 
-		if v.x> 790 or v.x < 10 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 25) or  circlecolision(player1.x, player1.y, v.x, v.y, 25)then
+		
+		if v.x> 2000 or v.x < -2000 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 25) or  circlecolision(player1.x, player1.y, v.x, v.y, 25)then
 			gamestate = "player2"			
 			shotnumber = shotnumber - 1
 			delay.temp = delay.init
