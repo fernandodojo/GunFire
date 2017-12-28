@@ -19,7 +19,6 @@ require "src/menu"
 require "src/game"
 require "src/end"
 require "src/instruction"
-
 anim = require "libs/anim8"
 
 math.randomseed(os.time())
@@ -27,13 +26,13 @@ math.randomseed(os.time())
 function love.keypressed(key)
 	if key == "escape" then
 		love.event.quit()
-	end
+	end	
 end
 
 function love.load()
 	gamestate = "player1"
 	state = "menu"
-	menu_load()
+	menu_load()	
 end
 
 function love.update(dt)
@@ -59,5 +58,6 @@ function love.draw()
 		end_draw()
 	end
 end
+
 
 

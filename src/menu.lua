@@ -26,10 +26,10 @@ function menu_load()
 
   	menuimage = love.graphics.newImage("res/img/bakchgroundmenu.png")
 	fontetitle = love.graphics.setNewFont("res/font/Ailerons.otf", 100) 
-	fontmenu = love.graphics.setNewFont("res/font/Ailerons.otf", 25) 	 	
+	fontmenu = love.graphics.setNewFont("res/font/Ailerons.otf", 25)	 	 	
 end
 
-function menu_update()
+function menu_update()	
 	function love.mousepressed(x, y, button)
 		if button ==1 then
 			mx = x
@@ -44,7 +44,7 @@ function menu_update()
 				love.event.push("quit")
 			end
 		end
-	end
+	end	
 end
 
 function menu_draw()
@@ -61,7 +61,7 @@ function menu_draw()
 		
 	--love.graphics.rectangle("line", start.x, start.y, start.w, start.h)
 	--love.graphics.rectangle("line", instructions.x, instructions.y, instructions.w, instructions.h)
-	--love.graphics.rectangle("line", exit.x, exit.y, exit.w, exit.h)	
+	--love.graphics.rectangle("line", exit.x, exit.y, exit.w, exit.h)
 end
 
 function game()
