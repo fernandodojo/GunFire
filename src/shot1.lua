@@ -52,8 +52,7 @@ function shot1_load()
 	local explosion1animgrid = anim.newGrid(256,256,explosion1image:getWidth(), explosion1image:getHeight())
 	explosion1anim = anim.newAnimation(explosion1animgrid('1-8',4, '1-8',6, '1-8', 7, '1-8',8), 0.06)
 
-	--shot1sound = love.audio.newSource("res/sound/shot1.wav")
-	explosion1sound = love.audio.newSource("res/sound/explosion1.wav")
+	explosion1sound = love.audio.newSource("res/sound/explosion1.ogg")
 end
 
 function shot1_update(dt)	
