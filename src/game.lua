@@ -16,6 +16,8 @@ function game_load()
 	shot2_load()
 	floor_load()
 	backgroud = love.graphics.newImage("res/img/background.png")
+	speaker = love.graphics.newImage("res/img/speaker.png")
+	nospeaker = love.graphics.newImage("res/img/nospeaker.png")
 	mainsound = love.audio.newSource("res/sound/mainsoundtrack.ogg")
 	shotsound = love.audio.newSource("res/sound/shot1.wav")
 	movimentsound = love.audio.newSource("res/sound/shipmoviment.ogg")
@@ -99,7 +101,10 @@ function game_draw()
 		love.graphics.rectangle("line", 50, 50, 10, 100)
 		love.graphics.rectangle("fill", 50, 150,10, volume*-100)
 		love.graphics.print(math.ceil(volume*10), 30,48 )
-	end		
+	end
+	if volume <=0 or not play then
+		love.graphics.draw(nospeaker, 10, 0)
+	end
 end
 
 
