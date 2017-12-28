@@ -3,6 +3,7 @@ function aiming1_load()
 	y1 =  0
 	angle1 = - 0.785398
 	anglespeed1 = 0.3-- change this to the angular speed you want
+	--play = true	
 end
 
 function aiming1_update(dt)
@@ -11,10 +12,17 @@ function aiming1_update(dt)
 	
 	if love.keyboard.isDown("w") and gamestate == "player1" then
 		angle1 = angle1 - anglespeed1 * dt
+		if play then
+			aimsound:play()
+		end
 	end
 	if love.keyboard.isDown("s") and gamestate == "player1" then
 		angle1 = angle1 + anglespeed1 * dt
-	end	
+		if play then
+			aimsound:play()
+		end		
+	end
+		
 end
  
 function aiming1_draw()
@@ -25,3 +33,4 @@ function aiming1_draw()
 	--love.graphics.print(x1, 0,25)
 	--love.graphics.print(y1, 0,50)
 end
+

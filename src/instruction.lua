@@ -52,6 +52,10 @@ function instruction_draw()
 	love.graphics.printf("UP", 157, 188, 150)
 	love.graphics.printf("SPACE", 157, 218, 200)
 	love.graphics.printf("NUMPAD ENTER", 157, 248, 400)
+	love.graphics.printf("M", 157, 298, 400)
+	love.graphics.printf("N", 420, 298, 400)
+	love.graphics.printf("O", 155, 328, 400)
+	love.graphics.printf("L", 450, 328, 400)
 
 
 	love.graphics.setFont(instructionfont)
@@ -60,10 +64,13 @@ function instruction_draw()
 	love.graphics.printf("Use a tecla,                               , para definir a força de lançamento do Jogador 1 e,           , para definir a força do Jogador 2. ", 35 ,175,750)
 	love.graphics.printf("Use a tecla,                        , para realizar o lançamento do Jogador 1.",35,225,750)
 	love.graphics.printf("Use a tecla,                                                     , para realizar o lançamento do Jogador 2.",35,255,750)
+	love.graphics.printf("Use a tecla,        , para remover o som,      , para retornar.",35,305,750)
+	love.graphics.printf("Use a tecla,      , para aumentar o volume,     , para diminuir.",35,335,750)
 
-	love.graphics.printf("O objetivo do jogo é matar o adversário, calculando a força e mira necessária para acerta-lo dentro de 30 segundos.",35,325,730)
-	love.graphics.printf("Considere a variação do vento e da gravidade antes de realizar o laçamento.",35,365,750)
-	love.graphics.printf("Tiros com grande altitude, força causam danos proporcionais.",35,405,730)
+
+	love.graphics.printf("O objetivo do jogo é matar o adversário, calculando a força, variação do vento e  mira necessária para acerta-lo dentro de 30 segundos. Quanto maior a altitude alcançada maior será o dano.",35,375,730)
+	--love.graphics.printf("Considere a variação do vento e da gravidade antes de realizar o laçamento.",35,415,750)
+	--love.graphics.printf("Tiros com grande altitude, força causam maior dano.",35,455,730)
 
 	love.graphics.printf("Menu", menuback.x,menuback.y,750)
 	love.graphics.printf("Iniciar ", start.x, start.y,750)
