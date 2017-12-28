@@ -4,7 +4,7 @@ function menu_load()
 	my = 0
 
 	start={
-	x = 355,
+	x = 365,
   	y = 450,
   	w= 100,
   	h = 30
@@ -18,14 +18,14 @@ function menu_load()
 	}
 
   	exit={
-  	x = 505,
+  	x = 525,
   	y = 450,
   	w = 57,
   	h = 30
   	}
 
   	menuimage = love.graphics.newImage("res/img/bakchgroundmenu.png")
-	fontetitle = love.graphics.setNewFont("res/font/Ailerons.otf", 100) 
+	fontetitle = love.graphics.setNewFont("res/font/MRROBOT.ttf", 110) 
 	fontmenu = love.graphics.setNewFont("res/font/Ailerons.otf", 25)	 	 	
 end
 
@@ -50,7 +50,7 @@ end
 function menu_draw()
 	love.graphics.draw(menuimage, 0, 0)
 	love.graphics.setFont(fontetitle)
-	love.graphics.printf("GUNFIRE", 200, 137, 450)
+	love.graphics.printf("GUNFIRE", 140, 137, 600)
 	love.graphics.setColor(255,255,255)
 	love.graphics.setFont(fontmenu)
 	
