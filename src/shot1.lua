@@ -26,6 +26,8 @@ function shot1_load()
 	damage1 = 0
 	selfdamage1 = 0
 
+	gameraflag = false
+
 	--delay de impressão
 	delayprintinit1 = 2
 	delayprinttemp1 = 2
@@ -117,9 +119,9 @@ function shot1_update(dt)
 
 		pontox1 = v.x
 		pontoy1 = v.y
-
+		
 		cam:setPosition(v.x, v.y)
-
+				
 		if v.y > 600 then
 			printfloorflag1 = true
 		end
@@ -251,6 +253,7 @@ function shot1_keypressed(key)
 		if play then
 			shotsound:play()
 		end
+		gameraflag = true
 		--table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})
 	end
 end

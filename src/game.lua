@@ -93,12 +93,22 @@ function game_update(dt)
 	if not play then
 		mainsound:pause()
 	end
+
+	if shotnumber == 0 and not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
+		cam:setPosition(400, 300)
+	end
+	if gamestate == "player1" and love.keyboard.isDown("lshift") and shotnumber == 0 then
+		cam:setPosition(player1.x, player1.y)
+	end
+	if gamestate == "player2" and love.keyboard.isDown("up") and shotnumber == 0 then
+		cam:setPosition(player2.x, player2.y)
+	end
 end
 
 function game_draw()
 	love.graphics.setFont(gamefont)
 
-	if shotnumber ~= 0 or printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2 then
+	--if shotnumber ~= 0 or printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2 then
 		cam:draw(function()
 			love.graphics.setFont(gamefont)
 			love.graphics.draw(backgroud,-1000, -600)			
@@ -112,7 +122,7 @@ function game_draw()
 			shot1_draw()
 			shot2_draw()
 		end)
-	else
+	--[[else
 		love.graphics.setFont(gamefont)
 		love.graphics.draw(backgroud,-1000, -600)
 		moviments_draw()
@@ -124,7 +134,7 @@ function game_draw()
 		player2_draw()	
 		shot1_draw()
 		shot2_draw()
-	end
+	end]]
 	ui_draw()	
 
 	if love.keyboard.isDown("o")  or love.keyboard.isDown("l") then
