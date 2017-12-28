@@ -95,7 +95,7 @@ function shot2_update(dt)
 			else
 				strength2 = strength2 + 3
 			end
-			if play then
+			if play and noise then
 				loadingsound:play()
 			end
 		end

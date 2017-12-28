@@ -12,13 +12,13 @@ function aiming1_update(dt)
 	
 	if love.keyboard.isDown("w") and gamestate == "player1" then
 		angle1 = angle1 - anglespeed1 * dt
-		if play then
+		if play and noise then
 			aimsound:play()
 		end
 	end
 	if love.keyboard.isDown("s") and gamestate == "player1" then
 		angle1 = angle1 + anglespeed1 * dt
-		if play then
+		if play and noise then
 			aimsound:play()
 		end		
 	end

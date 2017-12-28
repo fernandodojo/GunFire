@@ -3,6 +3,7 @@ function game_load()
 	cam = gamera.new(-1400,-600,4600,3000)
 	cam:setScale(1.0)	
 	play = true
+	noise = true
 	volume = 0.5
 	mx = 0
 	my = 0
@@ -37,7 +38,21 @@ function game_load()
 		end
 		if key == "escape" then
 		love.event.quit()
-		end		
+		end	
+		if key == "m" then
+			if play == false then
+			play = true
+			elseif play then
+				play = false
+			end
+		end
+		if key == "n" then
+			if noise == false then
+			noise = true
+			elseif noise then
+				noise = false
+			end
+		end
 	end
 
 	function love.mousepressed(x, y, button)		
@@ -55,14 +70,6 @@ function game_update(dt)
 	shot1_update(dt)
 	shot2_update(dt)
 	floor_update(dt)
-
-	if love.keyboard.isDown("m") then		
-		play = false
-
-	end
-	if love.keyboard.isDown("n") then		
-		play = true
-	end
 
 	if love.keyboard.isDown("o") then
 		volume = volume + 0.01
@@ -118,7 +125,6 @@ function game_draw()
 		shot1_draw()
 		shot2_draw()
 	end
-	--delaytime_draw()
 	ui_draw()	
 
 	if love.keyboard.isDown("o")  or love.keyboard.isDown("l") then
