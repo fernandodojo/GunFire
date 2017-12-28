@@ -50,16 +50,5 @@ function moviments_update(dt)
 
 end
 
-function moviments_draw()
-	--[[--BARRA DE MOVIMENTO--
-	love.graphics.setColor(32, 166, 216)
-	love.graphics.rectangle("line", motion1.x, motion1.y, motion1.w, motion1.h)
-	love.graphics.rectangle("fill", motion1.x, motion1.y, motionlimiter1*6, motion1.h)
-	--BARRA DE MOVIMENTO--
-
-	--BARRA DE FORÇA--
-	love.graphics.rectangle("line", motion2.x, motion2.y, motion2.w, motion2.h)
-	love.graphics.rectangle("fill", motion2.x, motion2.y, motionlimiter2*6, motion2.h)
-	--BARRA DE FORÇA--
-	love.graphics.setColor(255,255,255)]]
+function moviments_draw()	
 end

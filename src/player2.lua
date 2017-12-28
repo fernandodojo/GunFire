@@ -51,7 +51,6 @@ function player2_draw()
 	--DEBUGGING AND OLD CODE--
 	
 	player2anim:draw(player2image,player2.x, player2.y-4, 0, 0.27, 0.27, player2image:getWidth()/2,player2image:getHeight()/18)
-	--love.graphics.draw(player2.image, 400,525, 0, 0.45,0.45)
 	if player2.life <= 0 or player2.y > 600 then
 		player2dead = true
 		state = "end"

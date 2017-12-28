@@ -121,7 +121,7 @@ function shot2_update(dt)
 			printfloorflag2 = true
 		end
 
-		if v.x> 2000 or v.x < -2000 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 25) or circlecolision(player2.x, player2.y, v.x, v.y, 25) then
+		if v.x> 3000 or v.x < -2000 or v.y > 600 or circlecolision(player1.x, player1.y, v.x, v.y, 25) or circlecolision(player2.x, player2.y, v.x, v.y, 25) then
 			gamestate = "player1"
 			delay.temp = delay.init
 			shotnumber = shotnumber - 1
@@ -218,14 +218,6 @@ function shot2_draw()
 	end	
 	love.graphics.setColor(255,255,255)
 	-- DECRESCIMENTO DE VIDA --
-
-	--[[--BARRA DE FORÇA--
-	love.graphics.print(strength2, (strength2 + 772)/1.66, 531) -- impressão da força de tiro
-	love.graphics.setColor(216, 136, 32)
-	love.graphics.rectangle("line", strengthline2.x, strengthline2.y, strengthline2.w, strengthline2.h)
-	love.graphics.rectangle("fill", strengthline2.x, strengthline2.y, strength2/1.66, strengthline2.h)
-	love.graphics.setColor(255,255,255)
-	--BARRA DE FORÇA--]]
 
 	--MOSTRADOR DE ANGULO--
 	love.graphics.print(math.ceil(math.deg(angle2)).."º", x2 -30, y2 - 30)

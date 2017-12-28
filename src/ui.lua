@@ -35,7 +35,7 @@ function ui_draw()
 	end
 
 	love.graphics.print("Vento", 580, 0)
-	
+
 	if vento2 == -1 then
 		if vento == 0 then
 			love.graphics.draw(arrows.up,605,25, 0, 0.3)
@@ -80,8 +80,8 @@ function ui_draw()
 		elseif vento== -2 then
 		love.graphics.draw(arrows.fastdowndownleft,605,25, 0, 0.3)
 		end
-	--elseif vento2==0 and vento1 == 0 then
-	--	love.graphics.print("0", 615, 25)		
+	elseif vento2==0 and vento1 == 0 then
+		love.graphics.print("0", 615, 25)		
 	end
 
 	love.graphics.draw(player1.image, 10,525, 0, 0.45,0.45) --imagem do player1

@@ -1,6 +1,6 @@
 gamefont = love.graphics.setNewFont("res/font/A-Space.otf", 13)
 function game_load()
-	cam = gamera.new(-1400,-600,3000,3000)
+	cam = gamera.new(-1400,-600,4600,3000)
 	cam:setScale(1.0)	
 	play = true
 	volume = 0.5
