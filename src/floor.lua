@@ -1,6 +1,6 @@
 function floor_load()
   floor = {}
-  for i=0, 750, 50 do
+  for i=-200, 950, 50 do
     floor[i] = {}
     for j = 300, 480, 30 do
       floor[i][j] = 1
@@ -16,7 +16,7 @@ function floor_update(dt)
 end
 
 function floor_draw()
-  for i=0, 750, 50 do
+  for i=-200, 950, 50 do
     for j = 300, 480, 30 do
       if floor[i][j] == 1 then
         love.graphics.draw(moonfloor, i, j)

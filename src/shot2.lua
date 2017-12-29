@@ -154,7 +154,7 @@ function shot2_update(dt)
 		-- DECRESCIMENTO DE VIDA --
 
 		--REMOÇÃO BLOCO DE PISO --
-		for k=0, 750, 50 do
+		for k=-200, 950, 50 do
 	    	for l = 300, 480, 30 do
 	    		if squarecollision(v.x-5, v.y-5,10, 10, k, l, w, h) and floor[k][l] ==1 then
 	        		floor[k][l] = 0

@@ -21,7 +21,7 @@ end
 
 function player2_update(dt)
 	grav = 250
-	for i=0, 750, 50 do
+	for i=-200, 950, 50 do
 		for j = 300, 480, 30 do
 			if floor[i][j] == 1 then
 				if squarecollision(player2.x-15,player2.y-15, player2.w, player2.h, i,j,w,h) then
