@@ -97,10 +97,10 @@ function game_update(dt)
 	if shotnumber == 0 and not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
 		cam:setPosition(400, 300)
 	end
-	if gamestate == "player1" and love.keyboard.isDown("lshift") and shotnumber == 0 then
+	if gamestate == "player1" and  gameraflag1 and shotnumber == 0 then --love.keyboard.isDown("lshift")
 		cam:setPosition(player1.x, player1.y)
 	end
-	if gamestate == "player2" and love.keyboard.isDown("up") and shotnumber == 0 then
+	if gamestate == "player2" and gameraflag2 and shotnumber == 0 then --love.keyboard.isDown("up")
 		cam:setPosition(player2.x, player2.y)
 	end
 end

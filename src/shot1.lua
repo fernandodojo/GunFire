@@ -26,7 +26,7 @@ function shot1_load()
 	damage1 = 0
 	selfdamage1 = 0
 
-	gameraflag = false
+	gameraflag1 = false
 
 	--delay de impressão
 	delayprintinit1 = 2
@@ -64,6 +64,7 @@ function shot1_update(dt)
 	elseif 	delayprinttemp1 <= 0 then
 		delayprinttemp1 = delayprintinit1
 		printflag1 = false
+		gameraflag1 = false
 		damage1 = 0	
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
@@ -74,6 +75,7 @@ function shot1_update(dt)
 	elseif 	delayprinttempself1 <= 0 then
 		delayprinttempself1 = delayprintinitself1
 		printflagself1 = false
+		gameraflag1 = false
 		selfdamage1 = 0	
 	end
 	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
@@ -84,15 +86,14 @@ function shot1_update(dt)
 	elseif 	delayfloorflag1 <= 0 then
 		delayfloorflag1 = delayfloorflaginit1
 		printfloorflag1 = false
+		gameraflag1 = false
 	end
 	--FLAG DE DELAY DE ANIMAÇÃO APÓS DANO NO PISO--
 
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player1" then 
 		if love.keyboard.isDown("lshift") then
-			--if not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
-				--cam:setPosition(player1.x, player1.y)
-			--end
+			gameraflag1 = true
 			if strength1 >=500 then
 				strength1 = 500
 			else
@@ -253,7 +254,7 @@ function shot1_keypressed(key)
 		if play then
 			shotsound:play()
 		end
-		gameraflag = true
+		gameraflag1 = true
 		--table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})
 	end
 end
