@@ -127,7 +127,7 @@ function shot1_update(dt)
 			printfloorflag1 = true
 		end
 		
-		if v.x> 3000 or v.x < -2000 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 25) or  circlecolision(player1.x, player1.y, v.x, v.y, 25)then
+		if v.x> 3800 or v.x < -3000 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 25) or  circlecolision(player1.x, player1.y, v.x, v.y, 25)then
 			gamestate = "player2"			
 			shotnumber = shotnumber - 1
 			delay.temp = delay.init
@@ -189,7 +189,7 @@ function shot1_draw()
 	love.graphics.setFont(gamefont)
 	for i, v in ipairs(bullets1) do
 		bullets1anim:draw(bullets1image,v.x, v.y, 0, 0.4, 0.4, bullets1image:getWidth()/16,bullets1image:getHeight()/16)
-		--love.graphics.circle("line", v.x, v.y, 30)
+		--love.graphics.circle("line", v.x, v.y, 30)		
 	end
 		
 	if printflag1 then
