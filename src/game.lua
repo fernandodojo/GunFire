@@ -87,10 +87,10 @@ function game_update(dt)
 	love.audio.setVolume( volume )
 
 
-	if play then
+	if play and noise then
 		mainsound:play()
 	end
-	if not play then
+	if not play or not noise then
 		mainsound:pause()
 	end
 
