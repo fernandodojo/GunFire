@@ -61,6 +61,3 @@ function love.draw()
 		end_draw()
 	end
 end
-
-
-
