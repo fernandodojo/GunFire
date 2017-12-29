@@ -106,25 +106,10 @@ function game_update(dt)
 end
 
 function game_draw()
-	love.graphics.setFont(gamefont)
-
-	--if shotnumber ~= 0 or printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2 then
-		cam:draw(function()
-			love.graphics.setFont(gamefont)
-			love.graphics.draw(backgroud,-1000, -600)			
-			moviments_draw()
-			delaytime_draw()
-			aiming1_draw()
-			aiming2_draw()
-			floor_draw()
-			player1_draw()
-			player2_draw()	
-			shot1_draw()
-			shot2_draw()
-		end)
-	--[[else
+	love.graphics.setFont(gamefont)	
+	cam:draw(function()
 		love.graphics.setFont(gamefont)
-		love.graphics.draw(backgroud,-1000, -600)
+		love.graphics.draw(backgroud,-1000, -600)			
 		moviments_draw()
 		delaytime_draw()
 		aiming1_draw()
@@ -134,7 +119,7 @@ function game_draw()
 		player2_draw()	
 		shot1_draw()
 		shot2_draw()
-	end]]
+	end)	
 	ui_draw()	
 
 	if love.keyboard.isDown("o")  or love.keyboard.isDown("l") then
