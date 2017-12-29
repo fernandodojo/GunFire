@@ -62,23 +62,23 @@ function ui_draw()
 		end
 	elseif vento2 == 1 then
 		if vento == 0 then
-		love.graphics.draw(arrows.down,605,25, 0, 0.3)
+			love.graphics.draw(arrows.down,605,25, 0, 0.3)
 		elseif vento ==1 then
-		love.graphics.draw(arrows.downright,605,25, 0, 0.3)
+			love.graphics.draw(arrows.downright,605,25, 0, 0.3)
 		elseif vento== -1 then
-		love.graphics.draw(arrows.downleft,605,25, 0, 0.3)
+			love.graphics.draw(arrows.downleft,605,25, 0, 0.3)
 		elseif vento ==2 then
-		love.graphics.draw(arrows.fastdownright,605,25, 0, 0.3)
+			love.graphics.draw(arrows.fastdownright,605,25, 0, 0.3)
 		elseif vento== -2 then
-		love.graphics.draw(arrows.fastdownleft,605,25, 0, 0.3)
+			love.graphics.draw(arrows.fastdownleft,605,25, 0, 0.3)
 		end
 	elseif vento2 ==2 then
 		if vento == 0 then
-		love.graphics.draw(arrows.fastdown,605,25, 0, 0.3)
+			love.graphics.draw(arrows.fastdown,605,25, 0, 0.3)
 		elseif vento ==2  then
-		love.graphics.draw(arrows.fastdowndownright,605,25, 0, 0.3)
+			love.graphics.draw(arrows.fastdowndownright,605,25, 0, 0.3)
 		elseif vento== -2 then
-		love.graphics.draw(arrows.fastdowndownleft,605,25, 0, 0.3)
+			love.graphics.draw(arrows.fastdowndownleft,605,25, 0, 0.3)
 		end
 	elseif vento2==0 and vento1 == 0 then
 		love.graphics.print("0", 615, 25)		
