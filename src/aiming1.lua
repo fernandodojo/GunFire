@@ -15,12 +15,14 @@ function aiming1_update(dt)
 		if play and noise then
 			aimsound:play()
 		end
+		gameraflag1 = true
 	end
 	if love.keyboard.isDown("s") and gamestate == "player1" then
 		angle1 = angle1 + anglespeed1 * dt
 		if play and noise then
 			aimsound:play()
-		end		
+		end
+		gameraflag1 = true		
 	end
 		
 end
