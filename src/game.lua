@@ -1,6 +1,6 @@
 gamefont = love.graphics.setNewFont("res/font/A-Space.otf", 13)
 function game_load()
-	cam = gamera.new(-1400,-600,4600,3000)
+	cam = gamera.new(-3000,-600,6800,2000)
 	cam:setScale(1.0)	
 	play = true
 	noise = true
@@ -109,7 +109,7 @@ function game_draw()
 	love.graphics.setFont(gamefont)	
 	cam:draw(function()
 		love.graphics.setFont(gamefont)
-		love.graphics.draw(backgroud,-1000, -600)			
+		love.graphics.draw(backgroud,-3000, -600)			
 		moviments_draw()
 		delaytime_draw()
 		aiming1_draw()
