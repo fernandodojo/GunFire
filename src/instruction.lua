@@ -1,7 +1,4 @@
-
-
 function instruction_load()
-
 	menuback={
 	x = 50,
   	y = 500,
@@ -16,14 +13,8 @@ function instruction_load()
   	h = 18
   	}
   	
-  	--instructionsimage = love.graphics.newImage("res/img/backgroundinstructions.png")
 	instructionfont = love.graphics.setNewFont("res/font/A-Space.otf", 16)	
-	instructionfontb = love.graphics.setNewFont("res/font/A-Space.otf", 24)
-
-	leftarrow = love.graphics.newImage("res/img/leftarrow.png")
-	rightarrow = love.graphics.newImage("res/img/rightarrow.png")
-	uparrow = love.graphics.newImage("res/img/uparrow.png")
-	downarrow = love.graphics.newImage("res/img/downarrow.png") 	
+	instructionfontb = love.graphics.setNewFont("res/font/A-Space.otf", 24) 	
 end
 
 function instruction_update(dt)
@@ -53,9 +44,9 @@ function instruction_draw()
 	love.graphics.printf("SPACE", 157, 218, 200)
 	love.graphics.printf("NUMPAD ENTER", 157, 248, 400)
 	love.graphics.printf("M", 157, 298, 400)
-	love.graphics.printf("N", 420, 298, 400)
-	love.graphics.printf("O", 155, 328, 400)
-	love.graphics.printf("L", 450, 328, 400)
+	love.graphics.printf("N", 157, 328, 400)
+	love.graphics.printf("O", 155, 368, 400)
+	love.graphics.printf("L", 450, 368, 400)
 
 
 	love.graphics.setFont(instructionfont)
@@ -64,14 +55,14 @@ function instruction_draw()
 	love.graphics.printf("Use a tecla,                               , para definir a força de lançamento do Jogador 1 e,           , para definir a força do Jogador 2. ", 35 ,175,750)
 	love.graphics.printf("Use a tecla,                        , para realizar o lançamento do Jogador 1.",35,225,750)
 	love.graphics.printf("Use a tecla,                                                     , para realizar o lançamento do Jogador 2.",35,255,750)
-	love.graphics.printf("Use a tecla,        , para remover o som,      , para retornar.",35,305,750)
-	love.graphics.printf("Use a tecla,      , para aumentar o volume,     , para diminuir.",35,335,750)
+	love.graphics.printf("Use a tecla,        , para desligar o ligar o som.",35,305,750)
+	love.graphics.printf("Use a tecla,        , para desligar o som de fundo e de movimentos do Jogadores.",35,335,750)
+
+	love.graphics.printf("Use a tecla,      , para aumentar o volume,     , para diminuir.",35,375,750)
 
 
-	love.graphics.printf("O objetivo do jogo é matar o adversário, calculando a força, variação do vento e  mira necessária para acerta-lo dentro de 30 segundos. Quanto maior a altitude alcançada maior será o dano.",35,375,730)
-	--love.graphics.printf("Considere a variação do vento e da gravidade antes de realizar o laçamento.",35,415,750)
-	--love.graphics.printf("Tiros com grande altitude, força causam maior dano.",35,455,730)
-
+	love.graphics.printf("O objetivo do jogo é matar o adversário, calculando a força, variação do vento e  mira necessária para acerta-lo dentro de 30 segundos. Quanto maior a altitude alcançada maior será o dano.",35,415,730)
+	
 	love.graphics.printf("Menu", menuback.x,menuback.y,750)
 	love.graphics.printf("Iniciar ", start.x, start.y,750)
 	
