@@ -27,7 +27,10 @@ function game_load()
 	movimentsound = love.audio.newSource("res/sound/shipmoviment.ogg")
 	loadingsound = love.audio.newSource("res/sound/loading.ogg")
 	aimsound = love.audio.newSource("res/sound/aimsound.ogg")
-	
+
+	delayvolume = 3
+	delayvolumeinit = 3
+	volumeflag = false
 
 	function love.keypressed(key)
 		if gamestate == "player1" and state == "game" then
@@ -71,13 +74,22 @@ function game_update(dt)
 	shot2_update(dt)
 	floor_update(dt)
 
+	if delayvolume > 0 then
+		delayvolume =  delayvolume - dt
+	elseif delayvolume <= 0  then 
+		delayvolume = delayvolumeinit
+		volumeflag = false
+	end
+
 	if love.keyboard.isDown("o") then
+		volumeflag = true
 		volume = volume + 0.01
 		if volume >= 1.0 then
 			volume = 1.0
 		end
 	end
 	if love.keyboard.isDown("l") then
+		volumeflag = true
 		volume = volume - 0.01
 		if volume <= 0.0 then
 			volume = 0.0
@@ -122,7 +134,7 @@ function game_draw()
 	end)	
 	ui_draw()	
 
-	if love.keyboard.isDown("o")  or love.keyboard.isDown("l") then
+	if volumeflag then		
 		love.graphics.rectangle("line", 50, 50, 10, 100)
 		love.graphics.rectangle("fill", 50, 150,10, volume*-100)
 		love.graphics.print(math.ceil(volume*10), 30,48 )
