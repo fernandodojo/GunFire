@@ -113,10 +113,10 @@ function shot1_update(dt)
 	-- BUG FIX--
 	
 	for i, v in ipairs (bullets1) do
-		v.x = v.x + v.dx * dt --+ (vento) --modificação de posição da bala atirando em direção ao mouse no eixo x
+		v.x = v.x + v.dx * dt --+ (ventohorizontal) --modificação de posição da bala atirando em direção ao mouse no eixo x
 		v.y = v.y + v.dy * dt --modificação de posição da bala atirando em direção ao mouse no eixo y
-		v.dy = v.dy + gravity + vento2 -- implementação da gravidade
-		v.dx = v.dx + vento				
+		v.dy = v.dy + gravity + ventovertical -- implementação da gravidade
+		v.dx = v.dx + ventohorizontal				
 
 		pontox1 = v.x
 		pontoy1 = v.y
@@ -245,8 +245,8 @@ function shot1_keypressed(key)
 	--my = y
 	--angle = math.atan2(x1-player1.y , y1 - player1.x )
 	
-	direction1x = (strength1 + vento) * math.cos(angle1)
-	direction1y = (strength1+ vento) * math.sin(angle1)	
+	direction1x = (strength1 + ventohorizontal) * math.cos(angle1)
+	direction1y = (strength1+ ventohorizontal) * math.sin(angle1)	
 
 	if key == "space" and shotnumber ==0 and not printflag1 and not printflagself1 and not printfloorflag1 then
 		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x, dy = direction1y})

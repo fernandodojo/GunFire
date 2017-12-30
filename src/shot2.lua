@@ -113,10 +113,10 @@ function shot2_update(dt)
 	-- BUG FIX--
 
 	for i, v in ipairs (bullets2) do
-		v.x = v.x + v.dx * dt ---(vento)--modificação de posição da bala atirando em direção ao mouse
+		v.x = v.x + v.dx * dt ---(ventohorizontal)--modificação de posição da bala atirando em direção ao mouse
 		v.y = v.y + v.dy * dt
-		v.dy = v.dy + gravity + vento2-- implementação da gravidade
-		v.dx = v.dx + vento
+		v.dy = v.dy + gravity + ventovertical-- implementação da gravidade
+		v.dx = v.dx + ventohorizontal
 
 		pontox2 = v.x
 		pontoy2 = v.y
@@ -241,8 +241,8 @@ function shot2_keypressed(key)
 	--my = y
 	--angle2 = math.atan2(my-player2.y , mx - player2.x )
 
-	direction2x = (strength2 - vento) * -math.cos(angle2)
-	direction2y = (strength2 - vento) * -math.sin(angle2)
+	direction2x = (strength2 - ventohorizontal) * -math.cos(angle2)
+	direction2y = (strength2 - ventohorizontal) * -math.sin(angle2)
 
 	if key == "kpenter" and shotnumber == 0  and not printflag2 and not printflagself2 and not printfloorflag2 then
 		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y})
