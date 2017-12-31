@@ -26,6 +26,7 @@ function shot1_load()
 	damage1 = 0
 	selfdamage1 = 0
 
+	movimentflag1 = true
 	gameraflag1 = false
 
 	--delay de impressão
@@ -134,6 +135,7 @@ function shot1_update(dt)
 			strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 			motionlimiter1 = 50
 			table.remove(bullets1, i)
+			movimentflag1 = true
 			if play then
 				explosion1sound:play()
 			end
@@ -159,7 +161,7 @@ function shot1_update(dt)
 		for k=-200, 950, 50 do
 	    	for l = 300, 480, 30 do
 	    		if squarecollision(v.x-5, v.y-5, 10, 10, k, l, w, h) and floor[k][l] ==1 then
-	        		floor[k][l] = 0
+	    			 floor[k][l] = 0
 		        	gamestate = "player2"						
 					shotnumber = shotnumber - 1
 					delay.temp = delay.init
@@ -167,6 +169,7 @@ function shot1_update(dt)
 					motionlimiter1 = 50
 					printfloorflag1 = true					
 					table.remove(bullets1, i)
+					movimentflag1 = true
 					if play then
 						explosion1sound:play()
 					end		      		
@@ -254,6 +257,7 @@ function shot1_keypressed(key)
 		if play then
 			shotsound:play()
 		end
+		movimentflag1 = false
 		gameraflag1 = true
 		--table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})
 	end

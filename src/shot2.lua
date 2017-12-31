@@ -26,6 +26,7 @@ function shot2_load()
 	damage2 = 0
 	selfdamage2 = 0
 
+	movimentsflag2 = true
 	gameraflag2 = false
 
 	--delay de impressão
@@ -134,6 +135,7 @@ function shot2_update(dt)
 			strength1 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 			motionlimiter2 = 50
 			table.remove(bullets2, i)
+			movimentsflag2 = true
 			if play then
 				explosion2sound:play()
 			end
@@ -165,6 +167,7 @@ function shot2_update(dt)
 					printfloorflag2 = true
 					motionlimiter2 = 50
 					table.remove(bullets2, i)
+					movimentsflag2 = true
 					if play then
 						explosion2sound:play()
 					end					
@@ -250,6 +253,7 @@ function shot2_keypressed(key)
 		if play then
 			shotsound:play()
 		end
+		movimentsflag2 = false
 		--table.insert(bullets2, {x = x2, y = y2, dx = direction2x + 5, dy = direction2y-20})
 	end
 end
