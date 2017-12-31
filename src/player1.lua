@@ -55,6 +55,27 @@ function player1_draw()
 		player1dead = true
 		state = "end"
 		end_load()
-	end	
+	end
+
+
+	for i=-200, 950, 50 do
+		for j = 300, 480, 30 do
+			if floor[i][j] == 1 then
+				if squarecollision(player1.x-15,player1.y-15, player1.w, player1.h, i,j,w,h) then
+					--[[if player1.x< i and player1.y> j and player1.y < j+ h then
+						player1.x = player1.x - 1			
+					end
+					if player1.x > i + w and player1.y> j and player1.y < j+ h then
+						player1.x = player1.x + 1
+					end				
+					if player1.y < j then
+						grav = 0					
+					end	]]
+					love.graphics.print(i..j, 0,0)
+					--if player.x 						
+				end
+			end			
+  		end
+  	end	
 end
 
