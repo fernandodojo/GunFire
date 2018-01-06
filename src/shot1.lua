@@ -161,7 +161,12 @@ function shot1_update(dt)
 		for k=-200, 950, 50 do
 	    	for l = 300, 480, 30 do
 	    		if squarecollision(v.x-5, v.y-5, 10, 10, k, l, w, h) and floor[k][l] ==1 then
-	    			 floor[k][l] = 0
+	    			print(k)
+	    			if (k - player1.x< 50) and player1.y - l < 30 or l - player1.y< 30  then
+	    				print(true) 
+	    			end
+
+	    			floor[k][l] = 0
 		        	gamestate = "player2"						
 					shotnumber = shotnumber - 1
 					delay.temp = delay.init

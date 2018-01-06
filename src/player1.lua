@@ -71,8 +71,12 @@ function player1_draw()
 					if player1.y < j then
 						grav = 0					
 					end	]]
-					love.graphics.print(i..j, 0,0)
-					--if player.x 						
+					love.graphics.print(i.." " ..j, 0,0)
+					--[[if player1.x - i < 50 or i - player1.x  < 50 then
+						print(true)
+					end]]
+
+
 				end
 			end			
   		end
