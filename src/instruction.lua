@@ -41,27 +41,37 @@ function instruction_draw()
 	love.graphics.printf("LEFT SHIFT", 50, 100, 150)
 	love.graphics.printf("SPACE", 50, 130, 200)
 	
-	love.graphics.printf("LEFT , RIGHT", 50, 160, 175)
+	--[[love.graphics.printf("LEFT , RIGHT", 50, 160, 175)
 	love.graphics.printf("UP , DOWN", 50, 190, 150)	
 	love.graphics.printf("RIGHT SHIFT", 50, 220, 175)	
-	love.graphics.printf("RIGHT CTRL", 50, 250, 400)
+	love.graphics.printf("RIGHT CTRL", 50, 250, 400)]]
+
+	love.graphics.printf("5 , 6", 50, 160, 175)
+	love.graphics.printf("8 , 5", 50, 190, 150)	
+	love.graphics.printf("UP", 50, 220, 175)	
+	love.graphics.printf("RIGHT ENTER", 50, 250, 400)
 
 	love.graphics.printf("M", 50, 280, 400)
 	love.graphics.printf("N", 50, 310, 400)
-	love.graphics.printf("O", 50, 340, 400)
-	love.graphics.printf("L", 50, 370, 400)
+	love.graphics.printf("L", 50, 340, 400)
+	love.graphics.printf("K", 50, 370, 400)
 
 
 	love.graphics.setFont(instructionfont)
 	love.graphics.printf("Move o Jogador 1.", 123,45, 730)	
-	love.graphics.printf("Move a mira do Jogador 1.", 121,75,730)	
+	love.graphics.printf("Move a mira do Jogador 1.", 123,75,730)	
 	love.graphics.printf("Define a força de lançamento do Jogador 1. ", 217 ,105,750)
 	love.graphics.printf("Lançamento do Jogador 1.",157,135,750)
 
-	love.graphics.printf("Move o Jogador 2.", 227,165, 730)
+	--[[love.graphics.printf("Move o Jogador 2.", 227,165, 730)
 	love.graphics.printf("Move a mira do Jogador 2.", 192,195,730)
 	love.graphics.printf("Define a força de lançamento do Jogador 2. ", 227 ,225,750)	
-	love.graphics.printf("Lançamento do Jogador 2.",220,255,750)
+	love.graphics.printf("Lançamento do Jogador 2.",220,255,750)]]
+
+	love.graphics.printf("Move o Jogador 2.", 119,165, 730)
+	love.graphics.printf("Move a mira do Jogador 2.", 119,195,730)
+	love.graphics.printf("Define a força de lançamento do Jogador 2. ", 103 ,225,750)	
+	love.graphics.printf("Lançamento do Jogador 2.",238,255,750)
 
 	love.graphics.printf("Desliga e ligar o som.",90,285,750)
 	love.graphics.printf("Desliga o som de fundo e de movimentos do Jogadores.",90,315,750)

@@ -81,14 +81,14 @@ function game_update(dt)
 		volumeflag = false
 	end
 
-	if love.keyboard.isDown("o") then
+	if love.keyboard.isDown("l") then
 		volumeflag = true
 		volume = volume + 0.01
 		if volume >= 1.0 then
 			volume = 1.0
 		end
 	end
-	if love.keyboard.isDown("l") then
+	if love.keyboard.isDown("k") then
 		volumeflag = true
 		volume = volume - 0.01
 		if volume <= 0.0 then
