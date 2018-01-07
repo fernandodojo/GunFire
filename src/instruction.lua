@@ -53,8 +53,8 @@ function instruction_draw()
 
 	love.graphics.printf("M", 50, 280, 400)
 	love.graphics.printf("N", 50, 310, 400)
-	love.graphics.printf("L", 50, 340, 400)
-	love.graphics.printf("K", 50, 370, 400)
+	love.graphics.printf("K", 50, 340, 400)
+	love.graphics.printf("J", 50, 370, 400)
 
 
 	love.graphics.setFont(instructionfont)

@@ -1,20 +1,20 @@
 local endfont = love.graphics.setNewFont("res/font/A-Space.otf", 20)
 function end_load()
-	playagain = {
+	playagain = { --botão para jogar novamento
 	x = 285,
 	y = 400,
 	w = 225,
 	h = 25
 	}
 
-	menuend = {
-	x = 355,
+	menuend = { --botao para voltar para o menu 
+	x = 355, 
 	y = 450,
 	w = 75,
 	h = 25
 	}
 
-	exit = {
+	exit = { --botão para sair do jogo
   	x = 370,
   	y = 500,
   	w = 50,
@@ -23,7 +23,9 @@ function end_load()
  end
 
 function end_update(dt)
-	function love.mousepressed(x, y, button)
+	--[[esta função detecta o toque do ponto de click do mouse dentro dos retangulos e cada botão, caso seja detectado , 
+	será chamado a função responsavel por fazer a mudança de estado de jogo assim como o carregamento da respectiva função de estado]]
+	function love.mousepressed(x, y, button) 
 		if button ==1 then
 			mx = x
 			my = y
@@ -44,7 +46,9 @@ end
 function end_draw()
 	love.graphics.setFont(endfont)
 	love.graphics.setBackgroundColor(61, 61, 61, 50)
-	if player1dead then
+
+	--desenho e impressão dependendo de qual player perdeu
+	if player1dead then 
 		love.graphics.print("Jogador 2 Venceu", 285,75)
 		love.graphics.draw(player1.imagedamaged, 175,230, 0, 1,1)
 		love.graphics.draw(player2.image, 501,175, 0, 1,1)
@@ -65,6 +69,7 @@ function end_draw()
 	--DEBUGGING AND OLD CODE--	
 end
 
+--função de mudança de estado de jogo e carregamento do respectivo load
 function game()
 	state = "game"
 	game_load()

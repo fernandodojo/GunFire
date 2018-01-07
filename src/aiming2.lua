@@ -1,3 +1,4 @@
+--https://www.love2d.org/forums/viewtopic.php?f=4&t=35233#p104896
 function aiming2_load()			
 	x2 = 0
 	y2 =  0

@@ -1,3 +1,4 @@
+--https://www.love2d.org/forums/viewtopic.php?f=4&t=35233#p104896
 local bullets2image, bullets2anim
 
 function shot2_load()
