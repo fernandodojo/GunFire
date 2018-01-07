@@ -93,7 +93,7 @@ function shot2_update(dt)
 	
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player2" then
-		if love.keyboard.isDown("up") then
+		if love.keyboard.isDown("rshift") then
 			gameraflag2 = true
 			if strength2 >=500 then
 				strength2 = 500
@@ -247,7 +247,7 @@ function shot2_keypressed(key)
 	direction2x = (strength2 - ventohorizontal) * -math.cos(angle2)
 	direction2y = (strength2 - ventohorizontal) * -math.sin(angle2)
 
-	if key == "kpenter" and shotnumber == 0  and not printflag2 and not printflagself2 and not printfloorflag2 then
+	if key == "rctrl" and shotnumber == 0  and not printflag2 and not printflagself2 and not printfloorflag2 then
 		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y})
 		shotnumber = shotnumber + 1
 		if play then

@@ -9,14 +9,14 @@ function aiming2_update(dt)
 	x2 = player2.x - math.cos(angle2) * 25
 	y2 = player2.y - math.sin(angle2) * 25
 	
-	if love.keyboard.isDown("y") and gamestate == "player2" and movimentsflag2 then
+	if love.keyboard.isDown("up") and gamestate == "player2" and movimentsflag2 then
 		angle2 = angle2 + anglespeed2 * dt
 		if play and noise then
 			aimsound:play()
 		end
 		gameraflag2 = true
 	end
-	if love.keyboard.isDown("h") and gamestate == "player2" and movimentsflag2 then
+	if love.keyboard.isDown("down") and gamestate == "player2" and movimentsflag2 then
 		angle2 = angle2 - anglespeed2 * dt
 		if play and noise then
 			aimsound:play()
