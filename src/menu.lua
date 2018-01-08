@@ -3,21 +3,21 @@ function menu_load()
 	mx = 0
 	my = 0
 
-	start={
+	start={ --botão iniciar
 	x = 365,
   	y = 450,
   	w= 100,
   	h = 30
   	}
 
-  	instructions = {
+  	instructions = { --botão instruções
 	x = 158,
 	y = 450,
 	w = 147,
 	h = 30
 	}
 
-  	exit={
+  	exit={ --botão sair
   	x = 525,
   	y = 450,
   	w = 57,
@@ -29,7 +29,8 @@ function menu_load()
 	fontmenu = love.graphics.setNewFont("res/font/Ailerons.otf", 25)	 	 	
 end
 
-function menu_update()	
+function menu_update()
+	--função de detecção de toque do ponto de click nos botões iniciar, instruções e sair.	Caso seja detectado o toque, função de mudança de estado de jogo podem ser chamadas.
 	function love.mousepressed(x, y, button)
 		if button ==1 then
 			mx = x
@@ -48,14 +49,13 @@ function menu_update()
 end
 
 function menu_draw()
-	love.graphics.draw(menuimage, 0, 0)
-	love.graphics.setFont(fontetitle)
-	love.graphics.printf("GUNFIRE", 140, 137, 600)
-	love.graphics.setColor(255,255,255)
-	love.graphics.setFont(fontmenu)
-	
-	love.graphics.printf("Iniciar", start.x, start.y, 250)
-	
+	love.graphics.draw(menuimage, 0, 0) -- imagem do menu
+	love.graphics.setFont(fontetitle) --definição de fonte
+	love.graphics.printf("GUNFIRE", 140, 137, 600) -- impressão do titulo do jogo
+	love.graphics.setColor(255,255,255) -- cor das letras
+
+	love.graphics.setFont(fontmenu)	--definição de outra fonte
+	love.graphics.printf("Iniciar", start.x, start.y, 250)	-- impressão dos respectivos botoões
 	love.graphics.printf("Instruções", instructions.x,instructions.y, 250)
 	love.graphics.printf("Sair", exit.x, exit.y, 250)		
 		
@@ -64,6 +64,7 @@ function menu_draw()
 	--love.graphics.rectangle("line", exit.x, exit.y, exit.w, exit.h)
 end
 
+--função de mudança de estado de jogo assim como carregamento de load do respectivo estado.
 function game()
 	state = "game"
 	game_load()

@@ -107,6 +107,7 @@ function game_update(dt)
 	love.audio.setVolume(volume) -- volume do jogo
 
 	if play and noise then -- se tanto o volume global quanod o volume de fundo estiverem ativador, o som de fundo será tocado
+		mainsound:play()
 	end
 	if not play or not noise then --se ou o volume global ou de fundo estivem desativados, o som de fundo não será tocado.
 		mainsound:pause()

@@ -8,6 +8,6 @@ function checaToqueC(posxT, posyT, posxR, posyR, r)
 	end
 end
 
-
+--função de detecção de toque do click com circulo
 
 

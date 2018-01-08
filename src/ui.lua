@@ -1,4 +1,7 @@
+--ARQUIVO UTILIZADO PARA DESENHOS DE TODA E QUALQUER COISA DE OUTROS CÓDIGOS QUE NÃO DEVEM SER AFETADOS PELA MOVIMENTAÇÃO DA CAMERA--
 function ui_load()
+	
+--VARIAÇÃO DE TODAS AS DIREÇÕES COM NIVEIS DE INTESIDADE DAS SETAS--
 	arrows={
 	left = love.graphics.newImage("res/img/left.png"),
 	right = love.graphics.newImage("res/img/right.png"),
@@ -20,6 +23,7 @@ function ui_load()
 	fastleftleftdown = love.graphics.newImage("res/img/fastleftleftdown.png"),
 	fastrightrightdown = love.graphics.newImage("res/img/fastrightrightdown.png"),
 	}
+--VARIAÇÃO DE TODAS AS DIREÇÕES COM NIVEIS DE INTESIDADE DAS SETAS--
 
 end
 
@@ -28,7 +32,7 @@ function ui_update(dt)
 end
 
 function ui_draw()
-	love.graphics.setFont(delayfont)
+	love.graphics.setFont(delayfont) --fonte durante o jogo
 	love.graphics.print(delay.print1, 395,25)
 	if gamestate == "player1" then
 		love.graphics.print("Player 1", 360, 0)
