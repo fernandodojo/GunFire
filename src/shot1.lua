@@ -6,29 +6,29 @@ function shot1_load()
 	shotnumber = 0 -- declaração de variável para guardar numero de tiros na tela
 	strength1 = 0 -- declaração de variável para guardar força(velocidade) de lançamento da bala
 		
-	strengthline1 = {
+	strengthline1 = { --coordenadas da barra de força
 	x = 75,
 	y = 530,
 	w = 300,
 	h = 14
 	}
 
-	life1 = {
+	life1 = { --coordenadas da barra de vida 
 	x = nil,
 	y = nil,
 	w = 50,
 	h = 5
 	}
 
-	pontox1 = 0
-	pontoy1 = 0
+	pontox1 = 0 -- ultima localização no eixo x da bala
+	pontoy1 = 0 --ultima localização no eixo y da bala
 
-	decrelife1 = 0
-	damage1 = 0
-	selfdamage1 = 0
+	decrelife1 = 0 -- variavel q guarda quanto deve ser decrescido de vida do player
+	damage1 = 0	-- variavel responsavel por receber o valor do dano final para exclusivamente ser impresso respeitando o daley de sua impressão.
+	selfdamage1 = 0 -- variavel responsavel por receber o valor do dano final em si mesmo para exclusivamente ser impresso respeitando o daley de sua impressão.
 
-	movimentflag1 = true
-	gameraflag1 = false
+	movimentflag1 = true -- flag responsavel por limitar o movimento do player quando após o mesmo atirar.
+	gameraflag1 = false -- flag responsavel por ativar a camera zom caso alguma condição for atendida.
 
 	--delay de impressão
 	delayprintinit1 = 2
@@ -42,11 +42,11 @@ function shot1_load()
 	printflagself1 = false		
 	--delay de impressão de dano proprio
 
-	--delay de impressão de dano no piso
+	--delay de impressão de dano no piso animação
 	delayfloorflag1 = 2
 	delayfloorflaginit1 = 2
 	printfloorflag1 = false		
-	--delay de impressão de dano no piso	
+	--delay de impressão de dano no piso animação
 
 	bullets1image = love.graphics.newImage("/res/img/bullets1.png")
 	local bullets1animgrid = anim.newGrid(256,256,bullets1image:getWidth(), bullets1image:getHeight())
@@ -60,18 +60,23 @@ function shot1_load()
 end
 
 function shot1_update(dt)	
-	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+	--verifica se a flag de impressão foi ativada após dano.. se isso for verdade e o delay definido for maior q zero, então o dano continuará a ser impresso.
+	--se o delay for menor ou igual a zero, ele voltara a ter seu valor inicial, assim como as flags de impressão de dano, de ativação de camera e a variavel q guardo a quantidade de dano
+
 	if printflag1 == true and delayprinttemp1 > 0 then
 		delayprinttemp1 = delayprinttemp1 - dt
-	elseif 	delayprinttemp1 <= 0 then
+	elseif 	delayprinttemp1 <= 0 then 
 		delayprinttemp1 = delayprintinit1
 		printflag1 = false
 		gameraflag1 = false
 		damage1 = 0	
 	end
-	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
+--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 
-	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
+--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
+	--verifica se a flag de impressão foi ativada após dano.. se isso for verdade e o delay definido for maior q zero, então o dano continuará a ser impresso.
+	--se o delay for menor ou igual a zero, ele voltara a ter seu valor inicial, assim como as flags de impressão de dano, de ativação de camera e a variavel q guardo a quantidade de dano
 	if printflagself1 == true and delayprinttempself1 > 0 then
 		delayprinttempself1 = delayprinttempself1 - dt
 	elseif 	delayprinttempself1 <= 0 then
@@ -80,9 +85,9 @@ function shot1_update(dt)
 		gameraflag1 = false
 		selfdamage1 = 0	
 	end
-	--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
+--FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO EM SI MESMO--
 
-	--FLAG DE DELAY DE ANIMAÇÃO APÓS DANO NO PISO--
+--FLAG DE DELAY DE ANIMAÇÃO APÓS DANO NO PISO--
 	if printfloorflag1 == true and delayfloorflag1 > 0 then
 		delayfloorflag1 = delayfloorflag1 - dt
 	elseif 	delayfloorflag1 <= 0 then
@@ -90,7 +95,7 @@ function shot1_update(dt)
 		printfloorflag1 = false
 		gameraflag1 = false
 	end
-	--FLAG DE DELAY DE ANIMAÇÃO APÓS DANO NO PISO--
+--FLAG DE DELAY DE ANIMAÇÃO APÓS DANO NO PISO--
 
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player1" then 
@@ -101,7 +106,7 @@ function shot1_update(dt)
 			else
 				strength1 = strength1 + 3
 			end
-			if play and noise then
+			if play and noise then 
 				loadingsound:play()
 			end
 		end
@@ -117,26 +122,27 @@ function shot1_update(dt)
 	for i, v in ipairs (bullets1) do
 		v.x = v.x + v.dx * dt --+ (ventohorizontal) --modificação de posição da bala atirando em direção ao mouse no eixo x
 		v.y = v.y + v.dy * dt --modificação de posição da bala atirando em direção ao mouse no eixo y
-		v.dy = v.dy + gravity + ventovertical -- implementação da gravidade
-		v.dx = v.dx + ventohorizontal				
+		v.dy = v.dy + gravity + ventovertical -- implementação da gravidade + atuação do vento
+		v.dx = v.dx + ventohorizontal	--implementação da atuação do vento na horizontal			
 
-		pontox1 = v.x
-		pontoy1 = v.y
+		pontox1 = v.x --a ultima posição da bala recebera a posição enquanto a bala não for removida
+		pontoy1 = v.y --a ultima posição da bala recebera a posição enquanto a bala não for removida
 		
-		cam:setPosition(v.x, v.y)
+		cam:setPosition(v.x, v.y) -- a camera seguira a bala sempre que houver bala na tela
 				
-		if v.y > 600 then
+		if v.y > 600 then --se a bala alcançar a coordenada 600 no eixo y, a mesma ativará uma flag para impressão da animação
 			printfloorflag1 = true
 		end
 		
 		if v.x> 3800 or v.x < -3000 or v.y > 600 or circlecolision(player2.x, player2.y, v.x, v.y, 25) or  circlecolision(player1.x, player1.y, v.x, v.y, 25)then
-			gamestate = "player2"			
-			shotnumber = shotnumber - 1
-			delay.temp = delay.init
+			--limitação de existencia da bala. Enquanto elas estiver dentro de determinada area ou não atingir algum player
+			gamestate = "player2" --se houve colisão com o player 2 automaticamente mudará o estado de jogo			
+			shotnumber = shotnumber - 1 --limitação de efetuar um novo tiro enquanto um estiver na tela
+			delay.temp = delay.init --o delay de 30 segundo pŕa cada player volta a ter seu valor inicial ja que ao atirar o jogo muda de vez
 			strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
-			motionlimiter1 = 50
-			table.remove(bullets1, i)
-			movimentflag1 = true
+			motionlimiter1 = 50 -- a limitação de deslocamento volta a ter seu valor inicial
+			table.remove(bullets1, i) --bala é removida do jogo
+			movimentflag1 = true -- como houve mudança de vez, a limitação de movimento após tiro volta a ter seu valor inicial
 			if play then
 				explosion1sound:play()
 			end
@@ -144,33 +150,32 @@ function shot1_update(dt)
 		
 		-- DECRESCIMENTO DE VIDA --
 		decrelife1 = 2*(strength1/100 + v.dy/100) 				
-		if circlecolision(player2.x, player2.y, v.x, v.y, 25) then --Decrescimento de vida quando detectado colisão da bala com o player
+		if circlecolision(player2.x, player2.y, v.x, v.y, 25) then --Decrescimento de vida quando detectado colisão da bala com o player condierando a soma dos raios do player e da bala
 			player2.life = player2.life - decrelife1
-			damage1 = damage1 + decrelife1
-			printflag1 = true			
+			damage1 = damage1 + decrelife1 -- variavel que guarda valor do dano a ser impresso
+			printflag1 = true --flag para inicializar impressão de dano e animações
 		end
 
-		if circlecolision(player1.x, player1.y, v.x, v.y, 25)  then --Decrescimento de vida quando detectado colisão da bala com o player		
+		if circlecolision(player1.x, player1.y, v.x, v.y, 25)  then --Decrescimento de vida quando detectado colisão da bala com o player condierando a soma dos raios do player e da bala
 			player1.life = player1.life - (decrelife1+10)/2
-			selfdamage1 = selfdamage1 + (decrelife1+10)/2
-			printflagself1 = true			
-			--explosion1sound:play()
+			selfdamage1 = selfdamage1 + (decrelife1+10)/2 -- variavel que guarda valor do dano a ser impresso
+			printflagself1 = true	--flag para inicializar impressão de dano e animações		
 		end
 		-- DECRESCIMENTO DE VIDA --
 
 		--REMOÇÃO BLOCO DE PISO --
 		for k=-200, 950, 50 do
 	    	for l = 300, 480, 30 do
-	    		if squarecollision(v.x-5, v.y-5, 10, 10, k, l, w, h) and floor[k][l] ==1 then
-	    			 floor[k][l] = 0
-		        	gamestate = "player2"						
-					shotnumber = shotnumber - 1
-					delay.temp = delay.init
+	    		if squarecollision(v.x-5, v.y-5, 10, 10, k, l, w, h) and floor[k][l] ==1 then --verifica a colição entre a bala e cada bloco do chão
+	    			 floor[k][l] = 0 -- caso acha colisão este bloco será desativado para futuros desenhos e toque
+		        	gamestate = "player2" --ocorre mudança de vez de jogador						
+					shotnumber = shotnumber - 1 --impossibilita o player de dar mais tiros enquanto houve bala na tela
+					delay.temp = delay.init -- o tempo de cada plauer  é zerado
 					strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.			
-					motionlimiter1 = 50
-					printfloorflag1 = true					
-					table.remove(bullets1, i)
-					movimentflag1 = true
+					motionlimiter1 = 50 -- o deslocamento do player 1 é zerado
+					printfloorflag1 = true	--flag de ativação da animação e delay da mesma				
+					table.remove(bullets1, i) -- remoção da bala
+					movimentflag1 = true --flag de permição de deslocamento do player volta a ter seu valor original
 					if play then
 						explosion1sound:play()
 					end		      		
@@ -192,19 +197,20 @@ end
 function shot1_draw()
 	love.graphics.setFont(gamefont)
 	for i, v in ipairs(bullets1) do
+		--impressão de cada bala 
 		bullets1anim:draw(bullets1image,v.x, v.y, 0, 0.4, 0.4, bullets1image:getWidth()/16,bullets1image:getHeight()/16)
 		--love.graphics.circle("line", v.x, v.y, 30)		
 	end
 		
-	if printflag1 then
+	if printflag1 then --flag que permite a animação de explosão por alguns segudos ja que essa ativa o delay
 		--explosion1anim:draw(explosion1image,player2.x, player2.y, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
 		explosion1anim:draw(explosion1image,pontox1, pontoy1, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
 	end
-	if printflagself1 then
+	if printflagself1 then --flag que permite a animação de explosão por alguns segudos ja que essa ativa o delay
 		--explosion1anim:draw(explosion1image,player1.x, player1.y, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
 		explosion1anim:draw(explosion1image,pontox1, pontoy1, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
 	end
-	if printfloorflag1 then
+	if printfloorflag1 then--flag que permite a animação de explosão por alguns segudos ja que essa ativa o delay
 		explosion1anim:draw(explosion1image,pontox1, pontoy1, 0, 0.8, 0.8, explosion1image:getWidth()/16,explosion1image:getHeight()/16)
 	end
 	
@@ -217,7 +223,7 @@ function shot1_draw()
 
 	-- DECRESCIMENTO DE VIDA --
 	love.graphics.setColor(255,255,0)
-	if printflag1 then		
+	if printflag1 then	--flag que permite a impressão do dano por  alguns segudos ja que essa ativa o delay	
 		love.graphics.print(math.floor(damage1).."0", player2.x + 15, player2.y - 65)
 	end
 	love.graphics.setColor(255,255,255)
@@ -225,7 +231,7 @@ function shot1_draw()
 
 	-- DECRESCIMENTO DE VIDA --
 	love.graphics.setColor(255,255,0)
-	if printflagself1 then		
+	if printflagself1 then	--flag que permite a impressão do dano em si mesmo por  alguns segudos ja que essa ativa o delay		
 		love.graphics.print(math.floor(selfdamage1).."0", player1.x -15, player1.y - 65)
 	end
 	love.graphics.setColor(255,255,255)
@@ -249,17 +255,17 @@ function shot1_keypressed(key)
 	--my = y
 	--angle = math.atan2(x1-player1.y , y1 - player1.x )
 	
-	direction1x = (strength1 + ventohorizontal) * math.cos(angle1)
-	direction1y = (strength1+ ventohorizontal) * math.sin(angle1)	
+	direction1x = (strength1 + ventohorizontal) * math.cos(angle1) -- simulação de direção, a direção será calculando usando a velocidade definida pela soma da força mais do vento multiplicado pelo cosceno angulo
+	direction1y = (strength1+ ventohorizontal) * math.sin(angle1) -- simulação de direção, a direção será calculando usando a velocidade definida pela soma da força mais do vento multiplicado pelo seno angulo	
 
-	if key == "space" and shotnumber ==0 and not printflag1 and not printflagself1 and not printfloorflag1 then
-		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x, dy = direction1y})
-		shotnumber = shotnumber + 1
+	if key == "space" and shotnumber ==0 and not printflag1 and not printflagself1 and not printfloorflag1 then -- limita a ativação do tiro quando não houver balas na tela, assim como impossibilda um novo tiro enquanto um antigo estiver explodindo
+		table.insert (bullets1 , {x = x1, y = y1, dx = direction1x, dy = direction1y}) -- ao atirar serão inseridos dados como posição inicial e direção de deslocamento
+		shotnumber = shotnumber + 1 --informa q há tiros na tela
 		if play then
 			shotsound:play()
 		end
-		movimentflag1 = false
-		gameraflag1 = true
+		movimentflag1 = false -- proibi o player de se movimentar apos tiro
+		gameraflag1 = true --ativa a camera zoom
 		--table.insert (bullets1 , {x = x1, y = y1, dx = direction1x - 5, dy = direction1y-20})
 	end
 end
