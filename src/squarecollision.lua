@@ -4,3 +4,5 @@ function squarecollision(x1,y1,w1,h1, x2,y2,w2,h2)
          y1 < y2+h2 and
          y2 < y1+h1
 end
+
+--função checatoque entre dois quadrados, utilzado entre o player e o chão com o objetivo de zerar bloquear sua passagem.
