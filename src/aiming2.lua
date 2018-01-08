@@ -12,7 +12,7 @@ function aiming2_update(dt)
 	y2 = player2.y - math.sin(angle2) * 25
 	
 	--if love.keyboard.isDown("up") and gamestate == "player2" and movimentsflag2 then
-	if love.keyboard.isDown("kp8") and gamestate == "player2" and movimentsflag2 then --permite-se mudar o valor do angulo ao pressionar w caso seja a vez deste jogador
+	if love.keyboard.isDown("kp8") and gamestate == "player2" and movimentsflag2 and not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then --permite-se mudar o valor do angulo ao pressionar w caso seja a vez deste jogador
 		angle2 = angle2 + anglespeed2 * dt
 		if play and noise then --o som de movimento de angulo é ativado.
 			aimsound:play()
@@ -20,7 +20,7 @@ function aiming2_update(dt)
 		gameraflag2 = true --apartir desta flag é possivel ativar a camera zoom para seguir o player 1 enquano não houve bala do mesmo na tela
 	end
 	--if love.keyboard.isDown("down") and gamestate == "player2" and movimentsflag2 then
-	if love.keyboard.isDown("kp5") and gamestate == "player2" and movimentsflag2 then --permite-se mudar o valor do angulo ao pressionar w caso seja a vez deste jogador
+	if love.keyboard.isDown("kp5") and gamestate == "player2" and movimentsflag2 and not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then --permite-se mudar o valor do angulo ao pressionar w caso seja a vez deste jogador
 		angle2 = angle2 - anglespeed2 * dt
 		if play and noise then
 			aimsound:play() --o som de movimento de angulo é ativado.

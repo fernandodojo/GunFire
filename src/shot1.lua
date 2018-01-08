@@ -67,6 +67,7 @@ function shot1_update(dt)
 		delayprinttemp1 = delayprinttemp1 - dt
 	elseif 	delayprinttemp1 <= 0 then 
 		delayprinttemp1 = delayprintinit1
+		delay.temp = delay.init
 		printflag1 = false
 		gameraflag1 = false
 		damage1 = 0	
@@ -80,6 +81,7 @@ function shot1_update(dt)
 		delayprinttempself1 = delayprinttempself1 - dt
 	elseif 	delayprinttempself1 <= 0 then
 		delayprinttempself1 = delayprintinitself1
+		delay.temp = delay.init
 		printflagself1 = false
 		gameraflag1 = false
 		selfdamage1 = 0	
@@ -91,6 +93,7 @@ function shot1_update(dt)
 		delayfloorflag1 = delayfloorflag1 - dt
 	elseif 	delayfloorflag1 <= 0 then
 		delayfloorflag1 = delayfloorflaginit1
+		delay.temp = delay.init
 		printfloorflag1 = false
 		gameraflag1 = false
 	end
@@ -137,7 +140,7 @@ function shot1_update(dt)
 			--limitação de existencia da bala. Enquanto elas estiver dentro de determinada area ou não atingir algum player
 			gamestate = "player2" --se houve colisão com o player 2 automaticamente mudará o estado de jogo			
 			shotnumber = shotnumber - 1 --limitação de efetuar um novo tiro enquanto um estiver na tela
-			delay.temp = delay.init --o delay de 30 segundo pŕa cada player volta a ter seu valor inicial ja que ao atirar o jogo muda de vez
+			--delay.temp = delay.init --o delay de 30 segundo pŕa cada player volta a ter seu valor inicial ja que ao atirar o jogo muda de vez
 			strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.
 			motionlimiter1 = 50 -- a limitação de deslocamento volta a ter seu valor inicial
 			table.remove(bullets1, i) --bala é removida do jogo
@@ -169,7 +172,7 @@ function shot1_update(dt)
 	    			 floor[k][l] = 0 -- caso acha colisão este bloco será desativado para futuros desenhos e toque
 		        	gamestate = "player2" --ocorre mudança de vez de jogador						
 					shotnumber = shotnumber - 1 --impossibilita o player de dar mais tiros enquanto houve bala na tela
-					delay.temp = delay.init -- o tempo de cada player  é zerado
+					--delay.temp = delay.init -- o tempo de cada player  é zerado
 					strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.			
 					motionlimiter1 = 50 -- o deslocamento do player 1 é zerado
 					printfloorflag1 = true	--flag de ativação da animação e delay da mesma				
