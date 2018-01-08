@@ -33,7 +33,11 @@ function delaytime_update(dt)
 	a zero, ela voltara a assumir seu valor inicial, assim como alterará a vez do jogador zerando sua ultima configuração de força e deslocamento]]
 	if delay.temp >0 then
 		delay.temp = delay.temp - dt
-		delay.print1 = math.floor(delay.temp)
+		if (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
+			delay.print1 = 30
+		else
+			delay.print1 = math.floor(delay.temp)
+		end
 	elseif delay.temp <=0 then
 		delay.temp = delay.init
 		if gamestate == "player1" then
