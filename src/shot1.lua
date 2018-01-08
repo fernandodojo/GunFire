@@ -28,7 +28,7 @@ function shot1_load()
 	selfdamage1 = 0 -- variavel responsavel por receber o valor do dano final em si mesmo para exclusivamente ser impresso respeitando o daley de sua impressão.
 
 	movimentflag1 = true -- flag responsavel por limitar o movimento do player quando após o mesmo atirar.
-	gameraflag1 = false -- flag responsavel por ativar a camera zom caso alguma condição for atendida.
+	gameraflag1 = false -- flag responsavel por ativar  um delay para q a camera zom mantenha o foco na jogada do respectivo player
 
 	--delay de impressão
 	delayprintinit1 = 2
@@ -63,7 +63,6 @@ function shot1_update(dt)
 --FLAG DE DELAY DE IMPRESSAO DA VIDA APÓS O DANO--
 	--verifica se a flag de impressão foi ativada após dano.. se isso for verdade e o delay definido for maior q zero, então o dano continuará a ser impresso.
 	--se o delay for menor ou igual a zero, ele voltara a ter seu valor inicial, assim como as flags de impressão de dano, de ativação de camera e a variavel q guardo a quantidade de dano
-
 	if printflag1 == true and delayprinttemp1 > 0 then
 		delayprinttemp1 = delayprinttemp1 - dt
 	elseif 	delayprinttemp1 <= 0 then 
@@ -120,8 +119,8 @@ function shot1_update(dt)
 	-- BUG FIX--
 	
 	for i, v in ipairs (bullets1) do
-		v.x = v.x + v.dx * dt --+ (ventohorizontal) --modificação de posição da bala atirando em direção ao mouse no eixo x
-		v.y = v.y + v.dy * dt --modificação de posição da bala atirando em direção ao mouse no eixo y
+		v.x = v.x + v.dx * dt --+ (ventohorizontal) --modificação de posição da bala atirando em direção ao angulo da mira no eixo x
+		v.y = v.y + v.dy * dt --modificação de posição da bala atirando em direção angulo da mira no eixo y
 		v.dy = v.dy + gravity + ventovertical -- implementação da gravidade + atuação do vento
 		v.dx = v.dx + ventohorizontal	--implementação da atuação do vento na horizontal			
 
@@ -170,7 +169,7 @@ function shot1_update(dt)
 	    			 floor[k][l] = 0 -- caso acha colisão este bloco será desativado para futuros desenhos e toque
 		        	gamestate = "player2" --ocorre mudança de vez de jogador						
 					shotnumber = shotnumber - 1 --impossibilita o player de dar mais tiros enquanto houve bala na tela
-					delay.temp = delay.init -- o tempo de cada plauer  é zerado
+					delay.temp = delay.init -- o tempo de cada player  é zerado
 					strength2 = 0 -- mantem na tela a força utiliza pelo jogador que não esta jogando até o atual terminar a jogada, permitindo zerar a força apenas quando o da vez estiver jogando.			
 					motionlimiter1 = 50 -- o deslocamento do player 1 é zerado
 					printfloorflag1 = true	--flag de ativação da animação e delay da mesma				
