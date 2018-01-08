@@ -1,4 +1,4 @@
---https://preview.tinyurl.com/fernando-gunfire
+--https://tinyurl.com/fernando-gunfire
 io.stdout:setvbuf("no") --permite fazer debbug do código pelo console interativo do sublime
 io.stdout:setvbuf "no" --permite fazer debbug do código pelo console interativo do sublime
 
