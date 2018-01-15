@@ -101,8 +101,8 @@ function shot2_update(dt)
 	
 	--condição para que regula quando vai haver incremento da força do tiro ao pressionar tecla "space", apenas quando for a vez de determinado jogador, impedindo o incremento da força do outro mesmo utilizando a mesma tecla
 	if gamestate == "player2" then
-		--if love.keyboard.isDown("rshift") then
-		if love.keyboard.isDown("up") then
+		if love.keyboard.isDown("rshift") then
+		--if love.keyboard.isDown("up") then
 			gameraflag2 = true
 			if strength2 >=500 then
 				strength2 = 500
@@ -258,8 +258,8 @@ function shot2_keypressed(key)
 	direction2x = (strength2 - ventohorizontal) * -math.cos(angle2) -- simulação de direção, a direção será calculando usando a velocidade definida pela soma da força mais do vento multiplicado pelo cosceno angulo
 	direction2y = (strength2 - ventohorizontal) * -math.sin(angle2) -- simulação de direção, a direção será calculando usando a velocidade definida pela soma da força mais do vento multiplicado pelo seno angulo	
 
-	--if key == "rctrl" and shotnumber == 0  and not printflag2 and not printflagself2 and not printfloorflag2 then
-	if key == "kpenter" and shotnumber == 0  and not printflag2 and not printflagself2 and not printfloorflag2 then	-- limita a ativação do tiro quando não houver balas na tela, assim como impossibilda um novo tiro enquanto um antigo estiver explodindo
+	if key == "rctrl" and shotnumber == 0  and not printflag2 and not printflagself2 and not printfloorflag2 then
+	--if key == "kpenter" and shotnumber == 0  and not printflag2 and not printflagself2 and not printfloorflag2 then	-- limita a ativação do tiro quando não houver balas na tela, assim como impossibilda um novo tiro enquanto um antigo estiver explodindo
 		table.insert(bullets2, {x = x2, y = y2 , dx = direction2x, dy = direction2y}) -- ao atirar serão inseridos dados como posição inicial e direção de deslocamento
 		shotnumber = shotnumber + 1 --informa q há tiros na tela
 		if play then

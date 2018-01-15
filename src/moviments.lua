@@ -37,8 +37,8 @@ function moviments_update(dt)
 		end
 		gameraflag1 = true -- ativação da flag de camera quando ocorre movimento do player1
 	end
-	--if love.keyboard.isDown("left") and player2.x > -300 and motionlimiter2 >0 and gamestate == "player2" and movimentsflag2 then
-	if love.keyboard.isDown("kp4") and player2.x > -300 and motionlimiter2 >0 and gamestate == "player2" and movimentsflag2 and not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
+	if love.keyboard.isDown("left") and player2.x > -300 and motionlimiter2 >0 and gamestate == "player2" and movimentsflag2 then
+	--if love.keyboard.isDown("kp4") and player2.x > -300 and motionlimiter2 >0 and gamestate == "player2" and movimentsflag2 and not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
 		player2.x = player2.x - player2.speed * dt
 		motionlimiter2 = motionlimiter2 - player1.speed * dt
 		if play and noise then
@@ -46,8 +46,8 @@ function moviments_update(dt)
 		end
 		gameraflag2 = true -- ativação da flag de camera quando ocorre movimento do player2
 	end
-	--if love.keyboard.isDown("right") and player2.x < 1050 and motionlimiter2 >0 and gamestate == "player2" and movimentsflag2 and not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
-	if love.keyboard.isDown("kp6") and player2.x < 1050 and motionlimiter2 >0 and gamestate == "player2" and movimentsflag2 and not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
+	if love.keyboard.isDown("right") and player2.x < 1050 and motionlimiter2 >0 and gamestate == "player2" and movimentsflag2 and not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
+	--if love.keyboard.isDown("kp6") and player2.x < 1050 and motionlimiter2 >0 and gamestate == "player2" and movimentsflag2 and not (printflag1 or  printflagself1 or printfloorflag1 or printflag2 or printflagself2 or printfloorflag2) then
 		player2.x = player2.x + player2.speed * dt
 		motionlimiter2 = motionlimiter2 - player1.speed * dt
 		if play and noise then
