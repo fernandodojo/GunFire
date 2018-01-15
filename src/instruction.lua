@@ -45,10 +45,10 @@ function instruction_draw()
 --CONTROLES DO JOGADOR 1 --
 
 --CONTROLES DO JOGADOR 2 --
-	love.graphics.printf("5 , 6", 50, 160, 175)
-	love.graphics.printf("8 , 5", 50, 190, 150)	
-	love.graphics.printf("UP", 50, 220, 175)	
-	love.graphics.printf("RIGHT ENTER", 50, 250, 400)
+	love.graphics.printf("LEFT , RIGHT", 50, 160, 175)
+	love.graphics.printf("UP , DOWN", 50, 190, 150)	
+	love.graphics.printf("RIGHT SHIFT", 50, 220, 175)	
+	love.graphics.printf("RIGHT CTRL", 50, 250, 400)
 --CONTROLES DO JOGADOR 2 --
 
 --CONTROLES DO JOGADOR 2 ALTERNATIVO --
@@ -74,10 +74,10 @@ function instruction_draw()
 --INSTRUÇÕES JOGADOR 1 --
 
 --INSTRUÇÕES JOGADOR 2 --
-	love.graphics.printf("Move o Jogador 2.", 119,165, 730)
-	love.graphics.printf("Move a mira do Jogador 2.", 119,195,730)
-	love.graphics.printf("Define a força de lançamento do Jogador 2. ", 103 ,225,750)	
-	love.graphics.printf("Lançamento do Jogador 2.",238,255,750)
+	love.graphics.printf("Move o Jogador 2.", 225,165, 730)
+	love.graphics.printf("Move a mira do Jogador 2.", 187,195,730)
+	love.graphics.printf("Define a força de lançamento do Jogador 2. ", 225 ,225,750)	
+	love.graphics.printf("Lançamento do Jogador 2.",217,255,750)
 --INSTRUÇÕES JOGADOR 2 --
 
 --INSTRUÇÕES JOGADOR 2 ALTERNATIVO--
