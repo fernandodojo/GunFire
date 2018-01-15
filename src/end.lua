@@ -20,7 +20,7 @@ function end_load()
   	w = 50,
   	h = 25
   	}
-  	play= false
+  	play = false
  end
 
 function end_update(dt)
